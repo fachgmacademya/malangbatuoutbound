@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /404.html
 
-Sitemap: https://malangbatuoutbound.com/sitemap-index.xml
+Sitemap: https://malangbatuoutbound.web.id/sitemap-index.xml
+
 
