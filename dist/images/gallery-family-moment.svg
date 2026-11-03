@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450" width="700" height="450">
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4A2A18"/>
+      <stop offset="100%" stop-color="#874D29"/>
+    </linearGradient>
+    <pattern id="cardPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="20" cy="20" r="1.5" fill="#FFFFFF" opacity="0.12"/>
+    </pattern>
+  </defs>
+
+  <rect width="700" height="450" fill="url(#cardGrad)"/>
+  <rect width="700" height="450" fill="url(#cardPattern)"/>
+
+  <!-- Mountain Hills in Background of card -->
+  <path d="M0,380 Q180,310 350,340 T700,310 L700,450 L0,450 Z" fill="#000000" opacity="0.18"/>
+  <path d="M0,400 Q200,360 420,380 T700,360 L700,450 L0,450 Z" fill="#000000" opacity="0.25"/>
+
+  <!-- Center Decorative Icon -->
+  <g transform="translate(350, 160)" fill="#FFFFFF" opacity="0.9">
+      <circle cx="0" cy="-30" r="25"/>
+      <path d="M-35,40 C-35,5 35,5 35,40 Z"/>
+      <circle cx="-55" cy="-20" r="18" opacity="0.75"/>
+      <path d="M-80,45 C-80,18 -30,18 -30,45 Z" opacity="0.75"/>
+      <circle cx="55" cy="-20" r="18" opacity="0.75"/>
+      <path d="M30,45 C30,18 80,18 80,45 Z" opacity="0.75"/>
+    </g>
+
+  <!-- Category Badge -->
+  <g transform="translate(45, 45)">
+    <rect width="210" height="34" rx="17" fill="#0B1F33" fill-opacity="0.6" stroke="#65B7E8" stroke-width="1.2"/>
+    <text x="105" y="22" fill="#65B7E8" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="1">GATHERING</text>
+  </g>
+
+  <!-- Title Bottom Ribbon -->
+  <g transform="translate(45, 360)">
+    <rect width="610" height="54" rx="12" fill="#0B1F33" fill-opacity="0.82" stroke="#FFFFFF" stroke-opacity="0.15" stroke-width="1"/>
+    <text x="30" y="34" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="18" font-weight="600">Keseruan Balon Ria Family Gathering</text>
+  </g>
+</svg>

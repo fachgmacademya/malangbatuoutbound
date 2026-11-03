@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://malangbatuoutbound.com/sitemap-index.xml
+
