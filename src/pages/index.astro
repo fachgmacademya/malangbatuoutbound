@@ -1,0 +1,719 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import PackageCard from '../components/PackageCard.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import { siteConfig, getWhatsAppUrl } from '../data/site';
+import { featuredPackages } from '../data/packages';
+import { facilitiesData } from '../data/facilities';
+import { galleryItems } from '../data/gallery';
+import { homeFaqs } from '../data/faqs';
+import { testimonialsData } from '../data/testimonials';
+
+const heroWaLink = getWhatsAppUrl('Halo, saya ingin konsultasi kegiatan outbound di Malang Batu.');
+const aboutWaLink = getWhatsAppUrl('Halo, saya ingin berdiskusi mengenai layanan perencanaan kegiatan outbound di Malang Batu.');
+const closingWaLink = getWhatsAppUrl('Halo, saya ingin mendiskusikan rencana kegiatan outbound dan meminta penawaran.');
+
+// User request: Tampilkan 5 FAQ saja
+const displayFaqs = homeFaqs.slice(0, 5);
+---
+
+<BaseLayout
+  title="Outbound Malang & Batu | Layanan Team Building & Gathering Terbaik"
+  description="Layanan perancang kegiatan outbound, corporate gathering, dan team building profesional di Malang dan Kota Batu. Solusi program fleksibel di lokasi alam yang sejuk."
+  canonicalPath="/"
+  activePath="/"
+  faqs={displayFaqs}
+>
+  <!-- 1. HERO SECTION -->
+  <section class="hero-section position-relative overflow-hidden py-5 py-lg-6" style="background: linear-gradient(180deg, #FFFFFF 0%, #F4F7FA 100%);">
+    <div class="container py-3 py-lg-4">
+      <div class="row align-items-center g-4 g-lg-5">
+        <!-- Hero Text -->
+        <div class="col-12 col-lg-7 text-center text-lg-start">
+          <div class="d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill bg-primary bg-opacity-10 text-primary small fw-bold mb-3">
+            <span class="text-success">●</span> Wilayah Malang, Kota Batu &amp; Sekitarnya
+          </div>
+
+          <!-- Single H1 for the page as per PRD -->
+          <h1 class="display-4 fw-extrabold text-dark tracking-tight mb-3 lh-sm">
+            Outbound, Gathering &amp; Team Building di Malang dan Batu
+          </h1>
+
+          <p class="lead text-muted mb-4 fs-5" style="max-width: 640px;">
+            Rancang kegiatan luar ruang yang bermakna, menyegarkan, dan mempererat kekompakan tim Anda. Kami membantu perusahaan, sekolah, instansi, dan komunitas merencanakan program outbound terarah di tengah suasana alam pegunungan Jawa Timur yang sejuk.
+          </p>
+
+          <!-- CTAs -->
+          <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center justify-content-lg-start gap-3 mb-4">
+            <a
+              href={heroWaLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-mbo-whatsapp w-100 w-sm-auto px-4 py-3 fs-6"
+              aria-label="Konsultasikan kegiatan via WhatsApp (buka jendela baru)"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.364 2.76 1.057 3.96L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.707 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+              </svg>
+              <span>Konsultasikan Kegiatan</span>
+            </a>
+            <!-- Tombol Lihat Pilihan Paket: Tanpa icon panah bawah & langsung menuju ke /paket/ -->
+            <a href="/paket/" class="btn-mbo-secondary w-100 w-sm-auto px-4 py-3 fs-6">
+              <span>Lihat Pilihan Paket</span>
+            </a>
+          </div>
+
+          <!-- Highlight Key Value Points -->
+          <div class="row g-2 pt-2 text-start">
+            <div class="col-12 col-sm-4">
+              <div class="d-flex align-items-center gap-2 small text-dark fw-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="var(--color-secondary-blue)" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
+                </svg>
+                <span>Program Fleksibel</span>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="d-flex align-items-center gap-2 small text-dark fw-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="var(--color-secondary-blue)" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
+                </svg>
+                <span>Pilihan Lokasi Sejuk</span>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="d-flex align-items-center gap-2 small text-dark fw-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="var(--color-secondary-blue)" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
+                </svg>
+                <span>Fasilitator Berpengalaman</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual Media -->
+        <div class="col-12 col-lg-5">
+          <div class="position-relative mx-auto rounded-4 overflow-hidden shadow-lg border border-white" style="max-width: 540px;">
+            <img
+              src="/images/hero-outbound-malang.svg"
+              alt="Simulasi kegiatan outbound dan team building di tengah hamparan pemandangan alam Kota Batu Malang"
+              width="1200"
+              height="800"
+              fetchpriority="high"
+              class="img-fluid w-100 object-fit-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. SECTION ABOUT / TENTANG KAMI (2 KOLOM) -->
+  <section class="section-padding bg-white border-top border-bottom border-light">
+    <div class="container">
+      <div class="row align-items-center g-4 g-lg-5">
+        <!-- Kolom 1 (Kiri): Visual & Highlight Area -->
+        <div class="col-12 col-lg-6">
+          <div class="position-relative rounded-4 overflow-hidden shadow-md border border-light">
+            <img
+              src="/images/about-malang-outbound.svg"
+              alt="Tim fasilitator Malang Batu Outbound memandu kegiatan di alam terbuka"
+              width="700"
+              height="500"
+              loading="lazy"
+              class="w-100 h-auto object-fit-cover"
+            />
+          </div>
+        </div>
+
+        <!-- Kolom 2 (Kanan): Profil Usaha & Pendekatan Layanan -->
+        <div class="col-12 col-lg-6">
+          <div class="ps-lg-3">
+            <span class="badge-mbo-subheading mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                <circle cx="8" cy="8" r="8"/>
+              </svg>
+              Tentang Kami
+            </span>
+            <h2 class="display-6 fw-bold mb-3 text-dark">
+              Mitra Perancang Kegiatan Outbound &amp; Gathering di Malang Batu
+            </h2>
+            <p class="text-muted mb-3">
+              <strong>{siteConfig.name}</strong> diposisikan sebagai penyedia layanan sekaligus konsultan perancang kegiatan outbound, corporate gathering, dan outdoor event di wilayah Kota Batu, Kota Malang, dan Kabupaten Malang.
+            </p>
+            <p class="text-muted small mb-4">
+              Kami tidak hanya sekadar menjual daftar paket permainan. Kami mendengarkan kebutuhan instansi Anda: mulai dari pemilihan konsep simulasi, karakter rombongan peserta, rekomendasi venue alam yang sejuk, hingga penyediaan fasilitas pendukung secara transparan dan terukur.
+            </p>
+
+            <!-- Poin Komitmen Utama -->
+            <div class="row g-3 mb-4">
+              <div class="col-12 col-sm-6">
+                <div class="p-3 rounded-3 bg-light border border-light h-100">
+                  <div class="d-flex align-items-center gap-2 mb-1">
+                    <span class="text-success fw-bold">✓</span>
+                    <strong class="text-dark small">Program Terarah</strong>
+                  </div>
+                  <div class="text-muted" style="font-size: 0.82rem;">Disesuaikan dengan tujuan sinergi tim, evaluasi divisi, atau refreshing.</div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6">
+                <div class="p-3 rounded-3 bg-light border border-light h-100">
+                  <div class="d-flex align-items-center gap-2 mb-1">
+                    <span class="text-success fw-bold">✓</span>
+                    <strong class="text-dark small">Mitigasi &amp; P3K Siaga</strong>
+                  </div>
+                  <div class="text-muted" style="font-size: 0.82rem;">Briefing keselamatan kerja, kotak medis darurat, dan rencana cadangan hujan.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex flex-wrap align-items-center gap-3">
+              <a href="/tentang-kami/" class="btn-mbo-primary py-2.5 px-4 small">
+                <span>Pelajari Profil Kami Selengkapnya &rarr;</span>
+              </a>
+              <a href={aboutWaLink} target="_blank" rel="noopener noreferrer" class="btn-mbo-secondary py-2.5 px-4 small">
+                <span>Tanya Kami via WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. PENGENALAN LAYANAN (SERVICES OVERVIEW) -->
+  <section class="section-padding bg-light">
+    <div class="container">
+      <SectionHeading
+        badge="Layanan Utama"
+        title="Solusi Kegiatan Luar Ruang Terarah"
+        subtitle="Dari pelatihan kepemimpinan divisi hingga gathering santai keluarga, kami merancang aktivitas yang sesuai dengan karakter peserta dan target acara Anda."
+      />
+
+      <div class="row g-4">
+        <!-- Service 1: Team Building -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="p-4 rounded-4 bg-white h-100 border border-light shadow-sm d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-inline-flex p-3 rounded-3 bg-primary bg-opacity-10 text-primary mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="var(--color-secondary-blue)" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4 1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                </svg>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Outbound Team Building</h3>
+              <p class="small text-muted mb-0">
+                Simulasi interaktif luar ruang untuk melatih kerja sama tim, komunikasi terbuka, rasa saling percaya, dan penyelesaian masalah di bawah bimbingan fasilitator terlatih.
+              </p>
+            </div>
+            <div class="mt-4 pt-2">
+              <a href={getWhatsAppUrl('Halo, saya ingin konsultasi layanan Outbound Team Building di Malang Batu.')} target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary rounded-pill py-2 w-100 fw-semibold d-flex align-items-center justify-content-center gap-1.5">
+                <span>Konsultasi Layanan</span> &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 2: Corporate Gathering -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="p-4 rounded-4 bg-white h-100 border border-light shadow-sm d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-inline-flex p-3 rounded-3 bg-primary bg-opacity-10 text-primary mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="var(--color-secondary-blue)" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022M6 8.694 1 10.36V15h5zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309L7 4.81z"/>
+                  <path d="M2 11h1v1H2zm2 0h1v1H4zm-2 2h1v1H2zm2 0h1v1H4zm4-4h1v1H8zm2 0h1v1h-1zm-2 2h1v1H8zm2 0h1v1h-1zm-2 2h1v1H8zm2 0h1v1h-1zM8 7h1v1H8zm2 0h1v1h-1z"/>
+                </svg>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Corporate Gathering &amp; Outing</h3>
+              <p class="small text-muted mb-0">
+                Acara rekreasi bersama seluruh karyawan dan staf kantor dengan nuansa santai, fun games penghangat suasana, dan perayaan kebersamaan untuk menyegarkan motivasi kerja.
+              </p>
+            </div>
+            <div class="mt-4 pt-2">
+              <a href={getWhatsAppUrl('Halo, saya ingin konsultasi layanan Corporate Gathering & Outing di Malang Batu.')} target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary rounded-pill py-2 w-100 fw-semibold d-flex align-items-center justify-content-center gap-1.5">
+                <span>Konsultasi Layanan</span> &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 3: Family Gathering -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="p-4 rounded-4 bg-white h-100 border border-light shadow-sm d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-inline-flex p-3 rounded-3 bg-primary bg-opacity-10 text-primary mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="var(--color-secondary-blue)" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                </svg>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Family &amp; Community Gathering</h3>
+              <p class="small text-muted mb-0">
+                Kegiatan ramah semua usia yang dirancang hangat untuk keluarga karyawan, reuni komunitas, atau asosiasi dengan aktivitas ringan tanpa tuntutan fisik berat.
+              </p>
+            </div>
+            <div class="mt-4 pt-2">
+              <a href={getWhatsAppUrl('Halo, saya ingin konsultasi layanan Family & Community Gathering di Malang Batu.')} target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary rounded-pill py-2 w-100 fw-semibold d-flex align-items-center justify-content-center gap-1.5">
+                <span>Konsultasi Layanan</span> &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 4: Outbound Edukasi Sekolah -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="p-4 rounded-4 bg-white h-100 border border-light shadow-sm d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-inline-flex p-3 rounded-3 bg-primary bg-opacity-10 text-primary mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="var(--color-secondary-blue)" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z"/>
+                  <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.534z"/>
+                </svg>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Outbound Edukasi Sekolah</h3>
+              <p class="small text-muted mb-0">
+                Program kepemimpinan dasar, kemandirian siswa, dan kebersamaan pelajar sekolah (SD, SMP, SMA) dengan metode belajar aktif di alam terbuka yang aman dan terpantau.
+              </p>
+            </div>
+            <div class="mt-4 pt-2">
+              <a href={getWhatsAppUrl('Halo, saya ingin konsultasi layanan Outbound Edukasi Sekolah di Malang Batu.')} target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary rounded-pill py-2 w-100 fw-semibold d-flex align-items-center justify-content-center gap-1.5">
+                <span>Konsultasi Layanan</span> &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 5: Outdoor Adventure & Rafting -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="p-4 rounded-4 bg-white h-100 border border-light shadow-sm d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-inline-flex p-3 rounded-3 bg-primary bg-opacity-10 text-primary mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="var(--color-secondary-blue)" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016m6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
+                  <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
+                </svg>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Outdoor Adventure &amp; Rafting</h3>
+              <p class="small text-muted mb-0">
+                Kombinasi outbound dengan aktivitas petualangan beradrenalin seperti arung jeram Kaliwatu/Kasembon, simulasi taktis paintball, atau wisata jeep keliling lereng gunung.
+              </p>
+            </div>
+            <div class="mt-4 pt-2">
+              <a href={getWhatsAppUrl('Halo, saya ingin konsultasi kegiatan Outdoor Adventure & Rafting di Malang Batu.')} target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary rounded-pill py-2 w-100 fw-semibold d-flex align-items-center justify-content-center gap-1.5">
+                <span>Konsultasi Layanan</span> &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 6 / Custom Consultation -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="p-4 rounded-4 bg-primary bg-opacity-10 h-100 border border-primary border-opacity-25 d-flex flex-column justify-content-between shadow-sm">
+            <div>
+              <div class="d-inline-flex p-3 rounded-3 bg-white text-primary shadow-sm mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="var(--color-secondary-blue)" viewBox="0 0 16 16" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
+                </svg>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Program Kustom Sesuai Kebutuhan</h3>
+              <p class="small text-muted mb-0">
+                Punya konsep atau durasi acara tersendiri? Kami siap merancang alur kegiatan dan kebutuhan logistik khusus sesuai anggaran instansi Anda.
+              </p>
+            </div>
+            <div class="mt-4 pt-2">
+              <a href={heroWaLink} target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary rounded-pill py-2 w-100 fw-semibold d-flex align-items-center justify-content-center gap-1.5">
+                <span>Diskusikan Konsep Anda</span> &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. MENGAPA MEMILIH KAMI (VALUE PROPOSITION) -->
+  <section class="section-padding bg-white border-top border-bottom border-light">
+    <div class="container">
+      <div class="row align-items-center g-4 g-lg-5">
+        <div class="col-12 col-lg-5">
+          <SectionHeading
+            badge="Pendekatan Layanan"
+            title="Mengapa Memilih Malang Batu Outbound?"
+            subtitle="Kami tidak sekadar menjual paket permainan. Kami menjadi mitra perencanaan yang mendengarkan tujuan kegiatan dan memastikan setiap agenda berjalan lancar, aman, serta tepat sasaran."
+            align="start"
+            class="mb-4"
+          />
+
+          <div class="p-4 rounded-4 bg-light border border-light shadow-sm">
+            <div class="d-flex align-items-center gap-3">
+              <div class="p-3 rounded-circle bg-success bg-opacity-10 text-success flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="fw-bold text-dark">Informasi Jelas &amp; Transparan</div>
+                <div class="small text-muted">Seluruh rincian fasilitas, venue, dan agenda disepakati bersama sebelum pelaksanaan kegiatan.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-7">
+          <div class="row g-3">
+            <!-- Point 1 -->
+            <div class="col-12 col-sm-6">
+              <div class="p-4 rounded-4 bg-light border border-light h-100 shadow-sm">
+                <div class="fw-bold text-primary mb-2 d-flex align-items-center gap-2">
+                  <span class="badge bg-primary bg-opacity-10 text-primary rounded-circle p-2">01</span>
+                  <span>Program Disesuaikan Tujuan</span>
+                </div>
+                <p class="small text-muted mb-0">
+                  Aktivitas diselaraskan dengan kebutuhan tim: membangun keakraban lintas divisi, melatih komunikasi dua arah, atau sekadar rekreasi refreshing.
+                </p>
+              </div>
+            </div>
+
+            <!-- Point 2 -->
+            <div class="col-12 col-sm-6">
+              <div class="p-4 rounded-4 bg-light border border-light h-100 shadow-sm">
+                <div class="fw-bold text-primary mb-2 d-flex align-items-center gap-2">
+                  <span class="badge bg-primary bg-opacity-10 text-primary rounded-circle p-2">02</span>
+                  <span>Aktivitas untuk Semua Usia</span>
+                </div>
+                <p class="small text-muted mb-0">
+                  Desain permainan memperhitungkan kondisi fisik dan rentang usia peserta agar seluruh rombongan dapat berpartisipasi dengan nyaman tanpa risiko berlebih.
+                </p>
+              </div>
+            </div>
+
+            <!-- Point 3 -->
+            <div class="col-12 col-sm-6">
+              <div class="p-4 rounded-4 bg-light border border-light h-100 shadow-sm">
+                <div class="fw-bold text-primary mb-2 d-flex align-items-center gap-2">
+                  <span class="badge bg-primary bg-opacity-10 text-primary rounded-circle p-2">03</span>
+                  <span>Dukungan Koordinasi Terpadu</span>
+                </div>
+                <p class="small text-muted mb-0">
+                  Kami membantu mempermudah koordinasi penyiapan lapangan (ground), perlengkapan simulasi, audio sound system, hingga kebutuhan konsumsi acara.
+                </p>
+              </div>
+            </div>
+
+            <!-- Point 4 -->
+            <div class="col-12 col-sm-6">
+              <div class="p-4 rounded-4 bg-light border border-light h-100 shadow-sm">
+                <div class="fw-bold text-primary mb-2 d-flex align-items-center gap-2">
+                  <span class="badge bg-primary bg-opacity-10 text-primary rounded-circle p-2">04</span>
+                  <span>Mitigasi &amp; Standar Keselamatan</span>
+                </div>
+                <p class="small text-muted mb-0">
+                  Setiap kegiatan didampingi briefing keselamatan, P3K siaga, dan rencana cadangan (Plan B) bila terjadi perubahan cuaca di lapangan.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. PROGRAM / PAKET UNGGULAN -->
+  <section class="section-padding bg-light" id="paket-unggulan">
+    <div class="container">
+      <SectionHeading
+        badge="Paket Pilihan"
+        title="Pilihan Program Outbound &amp; Gathering"
+        subtitle="Berikut adalah beberapa konsep program outbound populer di Malang dan Batu. Detail durasi, fasilitas pendukung, dan susunan acara dapat disesuaikan."
+      />
+
+      <div class="row">
+        {featuredPackages.map((pkg) => (
+          <PackageCard pkg={pkg} />
+        ))}
+      </div>
+
+      <!-- Link to full package page -->
+      <div class="text-center mt-3 pt-3">
+        <a href="/paket/" class="btn-mbo-secondary px-4 py-2.5">
+          <span>Lihat Seluruh Informasi &amp; Rincian Paket</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. PILIHAN FASILITAS (FACILITIES PREVIEW) -->
+  <section class="section-padding bg-white border-top border-bottom border-light">
+    <div class="container">
+      <SectionHeading
+        badge="Fasilitas Kegiatan"
+        title="Dukungan Fasilitas &amp; Perlengkapan Lengkap"
+        subtitle="Kelancaran acara luar ruang ditunjang oleh kesiapan perlengkapan yang terawat dan venue pilihan yang nyaman."
+      />
+
+      <div class="row g-4 mb-4">
+        {facilitiesData.slice(0, 3).map((facility) => (
+          <div class="col-12 col-md-4">
+            <div class="mbo-card">
+              <div style="aspect-ratio: 16/10;" class="overflow-hidden bg-light">
+                <img
+                  src={facility.image}
+                  alt={facility.alt}
+                  width="700"
+                  height="450"
+                  loading="lazy"
+                  class="w-100 h-100 object-fit-cover"
+                />
+              </div>
+              <div class="p-4 d-flex flex-column flex-grow-1">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <span class="badge bg-primary bg-opacity-10 text-primary small">{facility.category}</span>
+                  <span class="badge bg-secondary bg-opacity-10 text-secondary small">{facility.status}</span>
+                </div>
+                <h3 class="h6 fw-bold mb-2 text-dark">{facility.title}</h3>
+                <p class="small text-muted mb-3 flex-grow-1">{facility.description}</p>
+                <ul class="list-unstyled small text-muted mb-0">
+                  {facility.features.map((feat) => (
+                    <li class="d-flex align-items-center gap-1.5 mb-1">
+                      <span class="text-success small">✓</span> {feat}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA to Facilities Page -->
+      <div class="text-center pt-2">
+        <a href="/fasilitas/" class="btn-mbo-secondary px-4 py-2.5">
+          <span>Pelajari Seluruh Fasilitas &amp; Perlengkapan</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. DOKUMENTASI KEGIATAN (GALLERY HIGHLIGHTS) -->
+  <section class="section-padding bg-light">
+    <div class="container">
+      <SectionHeading
+        badge="Dokumentasi Kegiatan"
+        title="Suasana Hangat &amp; Kebersamaan di Lapangan"
+        subtitle="Gambaran visual keceriaan, kerja sama, dan tantangan yang telah dilalui peserta di berbagai spot alam Malang Raya dan Kota Batu."
+      />
+
+      <div class="row g-3 g-lg-4 mb-4">
+        {galleryItems.slice(0, 6).map((item) => (
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="position-relative rounded-4 overflow-hidden shadow-sm border border-light h-100 group">
+              <div style="aspect-ratio: 16/10;" class="overflow-hidden bg-light">
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  width="700"
+                  height="450"
+                  loading="lazy"
+                  class="w-100 h-100 object-fit-cover"
+                />
+              </div>
+              <div class="p-3 bg-white">
+                <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                  <span class="badge bg-light text-primary border small">{item.category}</span>
+                  <span class="small text-muted">{item.location}</span>
+                </div>
+                <div class="small fw-semibold text-dark">{item.title}</div>
+                <div class="text-muted" style="font-size: 0.82rem;">{item.caption}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center pt-2">
+        <a href="/galeri/" class="btn-mbo-secondary px-4 py-2.5">
+          <span>Lihat Galeri Dokumentasi Lengkap</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. ALUR KONSULTASI (CONSULTATION STEPS) -->
+  <section class="section-padding bg-white border-top border-bottom border-light">
+    <div class="container">
+      <SectionHeading
+        badge="Alur Sederhana"
+        title="4 Langkah Mudah Merencanakan Kegiatan"
+        subtitle="Dari konsultasi awal hingga pelaksanaan di lokasi, proses komunikasi dibuat cepat dan praktis melalui WhatsApp."
+      />
+
+      <div class="row g-4 position-relative">
+        <!-- Step 1 -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="p-4 rounded-4 bg-light border border-light h-100 text-center shadow-sm">
+            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary text-white fw-bold fs-4 mb-3" style="width: 56px; height: 56px;">
+              1
+            </div>
+            <h3 class="h6 fw-bold mb-2 text-dark">Ceritakan Kebutuhan</h3>
+            <p class="small text-muted mb-0">
+              Sampaikan perkiraan tanggal kegiatan, estimasi jumlah peserta, serta profil rombongan tim Anda.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="p-4 rounded-4 bg-light border border-light h-100 text-center shadow-sm">
+            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary text-white fw-bold fs-4 mb-3" style="width: 56px; height: 56px;">
+              2
+            </div>
+            <h3 class="h6 fw-bold mb-2 text-dark">Diskusi &amp; Rekomendasi</h3>
+            <p class="small text-muted mb-0">
+              Kami memberikan alternatif konsep program, opsi venue sejuk di Malang/Batu, dan format kegiatan.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="p-4 rounded-4 bg-light border border-light h-100 text-center shadow-sm">
+            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary text-white fw-bold fs-4 mb-3" style="width: 56px; height: 56px;">
+              3
+            </div>
+            <h3 class="h6 fw-bold mb-2 text-dark">Penawaran Rencana</h3>
+            <p class="small text-muted mb-0">
+              Anda menerima rincian fasilitas, draft susunan acara (run-down), serta estimasi kebutuhan biaya.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="p-4 rounded-4 bg-light border border-light h-100 text-center shadow-sm">
+            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-success text-white fw-bold fs-4 mb-3" style="width: 56px; height: 56px;">
+              4
+            </div>
+            <h3 class="h6 fw-bold mb-2 text-dark">Pelaksanaan di Lokasi</h3>
+            <p class="small text-muted mb-0">
+              Fasilitator dan tim logistik kami mendampingi seluruh rangkaian kegiatan hingga evaluasi selesai.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. SECTION TESTIMONI PESERTA (BARU, DI ATAS FAQ) -->
+  <section class="section-padding bg-light">
+    <div class="container">
+      <SectionHeading
+        badge="Ulasan & Testimoni"
+        title="Pengalaman Nyata Bersama Kami"
+        subtitle="Kepercayaan dari perwakilan instansi, sekolah, dan komunitas yang telah menyelenggarakan kegiatan outdoor bersama Malang Batu Outbound."
+      />
+
+      <div class="row g-4">
+        {testimonialsData.map((testi) => (
+          <div class="col-12 col-md-4">
+            <div class="testimonial-card">
+              <!-- Rating Stars -->
+              <div class="star-rating mb-3" aria-label={`Rating ${testi.rating} dari 5 bintang`}>
+                {Array.from({ length: testi.rating }).map(() => (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                ))}
+              </div>
+
+              <!-- Quote Body -->
+              <p class="small text-muted mb-4 flex-grow-1 lh-base fst-italic">
+                &ldquo;{testi.comment}&rdquo;
+              </p>
+
+              <!-- Tags Program & Lokasi -->
+              <div class="d-flex flex-wrap gap-1.5 mb-3">
+                <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-10" style="font-size: 0.72rem;">
+                  {testi.programType}
+                </span>
+                <span class="badge bg-light text-secondary border" style="font-size: 0.72rem;">
+                  {testi.location}
+                </span>
+              </div>
+
+              <!-- User Info -->
+              <div class="d-flex align-items-center gap-3 pt-3 border-top border-light">
+                <div class="testimonial-avatar">
+                  {testi.avatarText}
+                </div>
+                <div>
+                  <h3 class="h6 fw-bold mb-0 text-dark fs-6">{testi.name}</h3>
+                  <div class="text-muted" style="font-size: 0.8rem;">{testi.role}</div>
+                  <div class="text-secondary fw-semibold" style="font-size: 0.75rem;">{testi.organization}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. FAQ SECTION (AEO-READY, 5 FAQ SAJA) -->
+  <section class="section-padding bg-white border-top border-bottom border-light">
+    <div class="container">
+      <SectionHeading
+        badge="Tanya Jawab"
+        title="Pertanyaan yang Sering Diajukan"
+        subtitle="Jawaban ringkas dan faktual seputar perencanaan kegiatan outbound di wilayah Malang dan Kota Batu."
+      />
+
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-9">
+          <!-- User request: 5 FAQ saja -->
+          <FAQAccordion faqs={displayFaqs} idPrefix="homeFaq" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. CTA PENUTUP (CLOSING CONVERSION BANNER) -->
+s  <section class="py-5 bg-primary position-relative overflow-hidden" style="background: linear-gradient(135deg, #102A43 0%, #0B1F33 100%) !important;">
+    <div class="container py-4 text-center text-white position-relative z-1">
+      <!-- Badge CTA: Teks jelas & kontras sesuai palet PRD -->
+      <div class="d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill mb-3" style="background-color: rgba(101, 183, 232, 0.15); border: 1px solid rgba(101, 183, 232, 0.35); color: #65B7E8; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;">
+        <span style="color: #25D366;">●</span> Mulai Perencanaan Acara Anda
+      </div>
+      <h2 class="display-6 fw-bold text-white mb-3">
+        Siap Merancang Outbound &amp; Gathering di Malang Batu?
+      </h2>
+      <p class="lead text-white text-opacity-75 mb-4 mx-auto" style="max-width: 640px; font-size: 1.1rem;">
+        Hubungi kami sekarang untuk berkonsultasi secara langsung mengenai pilihan aktivitas, ketersediaan lokasi, dan penawaran program yang tepat untuk instansi Anda.
+      </p>
+
+      <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-3">
+        <a
+          href={closingWaLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-mbo-whatsapp px-4 py-3 fs-6"
+          aria-label="Konsultasi via WhatsApp (buka jendela baru)"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.364 2.76 1.057 3.96L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.707 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+          </svg>
+          <span>Chat WhatsApp: {siteConfig.phoneDisplay}</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

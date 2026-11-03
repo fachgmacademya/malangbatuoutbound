@@ -1,0 +1,614 @@
+/* ==========================================================================
+   Malang Batu Outbound - Global Design System & Custom CSS
+   Palette & Standards based on PRD Section 9
+   ========================================================================== */
+
+:root {
+  --color-primary-navy: #102A43;
+  --color-deep-navy: #0B1F33;
+  --color-secondary-blue: #2563A6;
+  --color-accent-blue: #65B7E8;
+  --color-bg: #F4F7FA;
+  --color-surface: #FFFFFF;
+  --color-text-main: #243447;
+  --color-text-muted: #64748B;
+  --color-border: #DCE4EC;
+  --color-whatsapp: #25D366;
+  --color-whatsapp-dark: #1EBE5D;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --transition-base: all 0.25s ease-in-out;
+  --shadow-sm: 0 2px 8px rgba(16, 42, 67, 0.06);
+  --shadow-md: 0 8px 24px rgba(16, 42, 67, 0.08);
+  --shadow-lg: 0 16px 36px rgba(16, 42, 67, 0.12);
+}
+
+/* Global Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  color: var(--color-text-main);
+  background-color: var(--color-bg);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  max-width: 100%;
+  position: relative;
+}
+
+/* Anti-Overflow Safeguards for all pages on mobile viewports (Never apply to sticky header) */
+main,
+section,
+footer,
+.site-footer {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+@supports not (overflow-x: clip) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+  main,
+  section,
+  footer,
+  .site-footer {
+    overflow-x: hidden;
+  }
+}
+
+img,
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent accidental word blowout on small mobile screens */
+h1, h2, h3, h4, h5, h6, p, span, a, li {
+  overflow-wrap: break-word;
+}
+
+/* Accessible Focus States */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
+/* Typography Overrides */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-primary-navy);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+p {
+  color: var(--color-text-muted);
+}
+
+/* Button Component Styles */
+.btn-mbo-primary {
+  background-color: var(--color-primary-navy);
+  color: #FFFFFF;
+  border: 1px solid var(--color-primary-navy);
+  font-weight: 600;
+  padding: 0.75rem 1.6rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: var(--transition-base);
+  text-decoration: none;
+}
+
+.btn-mbo-primary:hover {
+  background-color: var(--color-deep-navy);
+  color: #FFFFFF;
+  border-color: var(--color-deep-navy);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(16, 42, 67, 0.25);
+}
+
+.btn-mbo-secondary {
+  background-color: #FFFFFF;
+  color: var(--color-primary-navy);
+  border: 1.5px solid var(--color-border);
+  font-weight: 600;
+  padding: 0.75rem 1.6rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: var(--transition-base);
+  text-decoration: none;
+}
+
+.btn-mbo-secondary:hover {
+  background-color: var(--color-bg);
+  color: var(--color-secondary-blue);
+  border-color: var(--color-secondary-blue);
+  transform: translateY(-2px);
+}
+
+.btn-mbo-whatsapp {
+  background-color: var(--color-whatsapp);
+  color: #FFFFFF !important;
+  border: 1px solid var(--color-whatsapp);
+  font-weight: 600;
+  padding: 0.75rem 1.6rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: var(--transition-base);
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+}
+
+.btn-mbo-whatsapp:hover {
+  background-color: var(--color-whatsapp-dark);
+  border-color: var(--color-whatsapp-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+}
+
+/* Header & Navigation */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1050;
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(16, 42, 67, 0.08);
+  box-shadow: 0 4px 16px rgba(11, 31, 51, 0.06);
+  transition: box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-link-mbo {
+  color: var(--color-text-main);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  transition: var(--transition-base);
+  text-decoration: none;
+}
+
+.nav-link-mbo:hover,
+.nav-link-mbo.active {
+  color: var(--color-secondary-blue);
+  background-color: rgba(37, 99, 166, 0.08);
+}
+
+/* ==========================================================================
+   Mega Dropdown Menu (Navbar Paket)
+   ========================================================================== */
+
+.nav-item-dropdown {
+  position: relative;
+}
+
+.dropdown-chevron,
+.mobile-chevron {
+  transition: transform 0.25s ease;
+}
+
+/* Category header matching PRD: Accent light blue, uppercase, subtle border */
+.dropdown-cat-title {
+  color: var(--color-accent-blue);
+  font-size: 0.86rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-bottom: 0.65rem;
+  margin-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(101, 183, 232, 0.22);
+  line-height: 1.3;
+  transition: color 0.18s ease;
+}
+
+a.dropdown-cat-title:hover {
+  color: #FFFFFF;
+}
+
+/* Subitem links: clean surface white text, hover turns to accent blue */
+.dropdown-subitem {
+  display: block;
+  color: #FFFFFF;
+  font-size: 0.92rem;
+  font-weight: 500;
+  padding: 0.42rem 0;
+  text-decoration: none;
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.dropdown-subitem:hover {
+  color: var(--color-accent-blue);
+  transform: translateX(4px);
+}
+
+/* Desktop: Hover trigger + Centered mega dropdown panel */
+@media (min-width: 992px) {
+  .site-header .container {
+    position: relative;
+  }
+
+  .nav-item-dropdown {
+    position: static;
+  }
+
+  .mega-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(14px);
+    width: 880px;
+    max-width: calc(100% - 24px);
+    background: linear-gradient(180deg, var(--color-primary-navy) 0%, var(--color-deep-navy) 100%);
+    border: 1px solid rgba(101, 183, 232, 0.25);
+    border-radius: 20px;
+    padding: 2rem 2.25rem;
+    box-shadow: 0 20px 48px rgba(11, 31, 51, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.24s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.24s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0.24s;
+    z-index: 1060;
+  }
+
+  /* Invisible hover bridge between nav link and dropdown */
+  .nav-item-dropdown::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 18px;
+    display: none;
+  }
+
+  .nav-item-dropdown:hover::before {
+    display: block;
+  }
+
+  .nav-item-dropdown:hover .mega-dropdown-menu,
+  .nav-item-dropdown:focus-within .mega-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(4px);
+  }
+
+  .nav-item-dropdown:hover .dropdown-chevron {
+    transform: rotate(180deg);
+  }
+}
+
+/* Mobile: Collapsible dropdown on click */
+@media (max-width: 991.98px) {
+  .mega-dropdown-menu {
+    display: none;
+    background: linear-gradient(180deg, var(--color-primary-navy) 0%, var(--color-deep-navy) 100%);
+    border: 1px solid rgba(101, 183, 232, 0.25);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  .mega-dropdown-menu .row {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+
+  .navbar-collapse {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .mega-dropdown-menu.show {
+    display: block;
+    animation: fadeInDropdown 0.22s ease-in-out;
+  }
+
+  .nav-item-dropdown.mobile-open .dropdown-chevron,
+  .nav-item-dropdown.mobile-open .mobile-chevron {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes fadeInDropdown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section Common Styling */
+.section-padding {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+}
+
+.badge-mbo-subheading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: rgba(37, 99, 166, 0.1);
+  color: var(--color-secondary-blue);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+}
+
+/* Card Styling */
+.mbo-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mbo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(37, 99, 166, 0.3);
+}
+
+/* Accordion Custom Styling */
+.accordion-mbo .accordion-item {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px !important;
+  margin-bottom: 0.9rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.accordion-mbo .accordion-button {
+  font-weight: 600;
+  color: var(--color-primary-navy);
+  background-color: var(--color-surface);
+  padding: 1.25rem 1.5rem;
+  box-shadow: none;
+  font-size: 1.05rem;
+}
+
+.accordion-mbo .accordion-button:not(.collapsed) {
+  background-color: rgba(37, 99, 166, 0.05);
+  color: var(--color-secondary-blue);
+}
+
+.accordion-mbo .accordion-body {
+  color: var(--color-text-muted);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  padding: 1rem 1.5rem 1.5rem 1.5rem;
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(37, 99, 166, 0.3);
+}
+
+.testimonial-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-secondary-blue), var(--color-primary-navy));
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.star-rating {
+  color: #FFB800;
+  display: flex;
+  gap: 2px;
+}
+
+/* Floating Top Button (Directly Above WhatsApp) */
+.floating-top-btn {
+  position: fixed;
+  bottom: 96px;
+  right: 28px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: var(--color-primary-navy);
+  color: #FFFFFF;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(16, 42, 67, 0.35);
+  cursor: pointer;
+  z-index: 1040;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.9);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s, background-color 0.2s, box-shadow 0.2s;
+}
+
+.floating-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.floating-top-btn:hover {
+  background-color: var(--color-secondary-blue);
+  color: #FFFFFF;
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 8px 24px rgba(37, 99, 166, 0.45);
+}
+
+/* Floating WhatsApp Button */
+.whatsapp-float-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1040;
+  background-color: var(--color-whatsapp);
+  color: #FFFFFF !important;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-decoration: none;
+}
+
+.whatsapp-float-btn:hover {
+  transform: scale(1.1) translateY(-3px);
+  background-color: var(--color-whatsapp-dark);
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.6);
+}
+
+/* Subtle Ping Pulse */
+.whatsapp-float-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--color-whatsapp);
+  opacity: 0.4;
+  animation: pulse-ring 2.4s infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Mobile floating buttons styling - safely contained inside viewport */
+@media (max-width: 576px) {
+  .whatsapp-float-btn {
+    right: 16px;
+    bottom: 16px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .whatsapp-float-btn svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .floating-top-btn {
+    right: 18px;
+    bottom: 76px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .floating-top-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Footer */
+.site-footer {
+  background-color: var(--color-deep-navy);
+  color: #A0B2C6;
+  padding-top: 4.5rem;
+  padding-bottom: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-footer h5 {
+  color: #FFFFFF;
+  font-size: 1.15rem;
+  margin-bottom: 1.25rem;
+}
+
+.site-footer a {
+  color: #A0B2C6;
+  text-decoration: none;
+  transition: var(--transition-base);
+}
+
+.site-footer a:hover {
+  color: var(--color-accent-blue);
+  padding-left: 3px;
+}
+

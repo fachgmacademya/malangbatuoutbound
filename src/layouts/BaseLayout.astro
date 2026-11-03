@@ -1,0 +1,73 @@
+---
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/custom.css';
+import SEOHead from '../components/SEOHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import BackToTop from '../components/BackToTop.astro';
+import type { FAQItem } from '../data/faqs';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  type?: 'website' | 'article';
+  activePath?: string;
+  faqs?: FAQItem[];
+}
+
+const {
+  title,
+  description,
+  canonicalPath = '/',
+  ogImage,
+  type = 'website',
+  activePath = '/',
+  faqs = []
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <SEOHead
+      title={title}
+      description={description}
+      canonicalPath={canonicalPath}
+      ogImage={ogImage}
+      type={type}
+      faqs={faqs}
+    />
+  </head>
+  <body>
+    <!-- Skip to main content for Accessibility -->
+    <a href="#main-content" class="visually-hidden-focusable position-absolute top-0 start-0 m-3 p-2 bg-dark text-white rounded-2 z-3">
+      Lewati ke konten utama
+    </a>
+
+    <!-- Header Navigation -->
+    <Header activePath={activePath} />
+
+    <!-- Main Content -->
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <Footer />
+
+    <!-- Floating Top (Above WhatsApp Action) -->
+    <BackToTop />
+
+    <!-- Floating WhatsApp Action -->
+    <WhatsAppButton />
+
+    <!-- Bootstrap Bundle JS -->
+    <script>
+      import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+    </script>
+  </body>
+</html>
+

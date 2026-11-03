@@ -1,0 +1,46 @@
+---
+import type { FAQItem } from '../data/faqs';
+
+export interface Props {
+  faqs: FAQItem[];
+  idPrefix?: string;
+}
+
+const { faqs, idPrefix = 'homeFaq' } = Astro.props;
+---
+
+<div class="accordion accordion-mbo" id={`${idPrefix}Accordion`}>
+  {faqs.map((faq, index) => {
+    const headingId = `${idPrefix}Heading${index}`;
+    const collapseId = `${idPrefix}Collapse${index}`;
+    const isOpen = index === 0;
+
+    return (
+      <div class="accordion-item">
+        <h3 class="accordion-header m-0" id={headingId}>
+          <button
+            class={`accordion-button ${isOpen ? '' : 'collapsed'}`}
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target={`#${collapseId}`}
+            aria-expanded={isOpen ? 'true' : 'false'}
+            aria-controls={collapseId}
+          >
+            {faq.question}
+          </button>
+        </h3>
+        <div
+          id={collapseId}
+          class={`accordion-collapse collapse ${isOpen ? 'show' : ''}`}
+          aria-labelledby={headingId}
+          data-bs-parent={`#${idPrefix}Accordion`}
+        >
+          <div class="accordion-body">
+            {faq.answer}
+          </div>
+        </div>
+      </div>
+    );
+  })}
+</div>
+

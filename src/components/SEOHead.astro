@@ -1,0 +1,128 @@
+---
+import { siteConfig } from '../data/site';
+import type { FAQItem } from '../data/faqs';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  type?: 'website' | 'article';
+  faqs?: FAQItem[];
+}
+
+const {
+  title = `${siteConfig.tagline} | ${siteConfig.name}`,
+  description = siteConfig.description,
+  canonicalPath = '/',
+  ogImage = '/images/hero-outbound-malang.svg',
+  type = 'website',
+  faqs = []
+} = Astro.props;
+
+const canonicalUrl = new URL(canonicalPath, siteConfig.siteUrl).href;
+const fullOgImage = new URL(ogImage, siteConfig.siteUrl).href;
+
+// Structured Data: LocalBusiness & WebSite
+const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${siteConfig.siteUrl}/#business`,
+  name: siteConfig.name,
+  url: siteConfig.siteUrl,
+  telephone: '+62-822-1122-1909',
+  description: siteConfig.description,
+  areaServed: [
+    { '@type': 'City', name: 'Malang' },
+    { '@type': 'City', name: 'Batu' },
+    { '@type': 'AdministrativeArea', name: 'Kabupaten Malang' }
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+62-822-1122-1909',
+    contactType: 'customer service',
+    availableLanguage: ['Indonesian']
+  }
+};
+
+const webSiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteConfig.siteUrl}/#website`,
+  url: siteConfig.siteUrl,
+  name: siteConfig.name,
+  inLanguage: 'id-ID',
+  publisher: {
+    '@id': `${siteConfig.siteUrl}/#business`
+  }
+};
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': canonicalUrl,
+  url: canonicalUrl,
+  name: title,
+  description: description,
+  inLanguage: 'id-ID',
+  isPartOf: {
+    '@id': `${siteConfig.siteUrl}/#website`
+  },
+  about: {
+    '@id': `${siteConfig.siteUrl}/#business`
+  }
+};
+
+// Optional FAQPage schema
+let faqSchema = null;
+if (faqs && faqs.length > 0) {
+  faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${canonicalUrl}#faq`,
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.answer
+      }
+    }))
+  };
+}
+---
+
+<!-- Core Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+<meta name="robots" content="index, follow" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={siteConfig.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={fullOgImage} />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={fullOgImage} />
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" href="/favicon.ico" />
+
+<!-- Schema JSON-LD -->
+<script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(webSiteSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
+{faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+

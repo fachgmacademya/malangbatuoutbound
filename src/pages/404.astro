@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getWhatsAppUrl } from '../data/site';
+
+const waLink = getWhatsAppUrl('Halo, saya mengalami kendala halaman tidak ditemukan di website.');
+---
+
+<BaseLayout
+  title="Halaman Tidak Ditemukan (404) | Malang Batu Outbound"
+  description="Halaman yang Anda tuju tidak ditemukan atau telah dipindahkan."
+  canonicalPath="/404/"
+>
+  <div class="container py-5 my-5 text-center">
+    <div class="py-4" style="max-width: 620px; margin: 0 auto;">
+      <div class="mb-4 rounded-4 overflow-hidden shadow-sm mx-auto" style="max-width: 480px; aspect-ratio: 16/9;">
+        <img
+          src="/images/page-404-trail.jpg"
+          alt="Jalur alam berkabut di Batu Malang"
+          width="480"
+          height="270"
+          class="w-100 h-100 object-fit-cover"
+          loading="eager"
+        />
+      </div>
+      <span class="badge bg-danger bg-opacity-10 text-danger rounded-pill px-3 py-1.5 fw-bold mb-3">
+        Error 404
+      </span>
+      <h1 class="display-5 fw-bold mb-3 text-dark">Halaman Tidak Ditemukan</h1>
+      <p class="text-muted mb-4">
+        Mohon maaf, alamat halaman yang Anda cari mungkin telah dipindahkan atau tautan yang Anda gunakan kurang tepat.
+      </p>
+      <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+        <a href="/" class="btn-mbo-primary px-4 py-2.5">
+          <span>Kembali ke Beranda</span>
+        </a>
+        <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-mbo-whatsapp px-4 py-2.5">
+          <span>Hubungi Bantuan via WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+

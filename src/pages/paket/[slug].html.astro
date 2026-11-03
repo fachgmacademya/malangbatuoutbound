@@ -1,0 +1,468 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { catalogPackages, type PackageItem } from '../../data/packages';
+import { getWhatsAppUrl } from '../../data/site';
+
+export function getStaticPaths() {
+  return catalogPackages.map((pkg) => ({
+    params: { slug: pkg.slug },
+    props: { pkg }
+  }));
+}
+
+interface Props {
+  pkg: PackageItem;
+}
+
+const { pkg } = Astro.props;
+const waLink = getWhatsAppUrl(pkg.whatsappMessage);
+---
+
+<BaseLayout
+  title={`Paket ${pkg.title} | Layanan Outbound Malang Batu`}
+  description={pkg.summary}
+  canonicalPath={`/paket/${pkg.slug}.html`}
+  activePath="/paket/"
+>
+  <!-- 1. DEDICATED HERO BANNER DETAIL PAKET -->
+  <section class="position-relative overflow-hidden py-4 py-md-5 text-white" style="background: linear-gradient(135deg, #102A43 0%, #0B1F33 100%);">
+    <!-- Ambient Backdrop Light -->
+    <div class="position-absolute top-0 start-50 translate-middle-x w-100 h-100 pointer-events-none" style="background: radial-gradient(circle at 50% 15%, rgba(101, 183, 232, 0.14) 0%, transparent 70%);"></div>
+
+    <div class="container position-relative z-1 py-2 py-md-4">
+      <!-- Breadcrumb Nav Berjenjang -->
+      <nav aria-label="breadcrumb" class="mb-3 d-inline-block mw-100">
+        <ol class="breadcrumb small mb-0 px-3 py-1.5 rounded-pill flex-nowrap overflow-x-auto text-nowrap" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(4px);">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Beranda</a></li>
+          <li class="breadcrumb-item"><a href="/paket/" class="text-white-50 text-decoration-none">Paket</a></li>
+          <li class="breadcrumb-item active" style="color: #65B7E8;" aria-current="page">{pkg.title}</li>
+        </ol>
+      </nav>
+
+      <div class="row align-items-center g-4">
+        <div class="col-12 col-lg-8">
+          <!-- Category Badge Pill -->
+          <div class="d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill mb-3" style="background-color: rgba(101, 183, 232, 0.15); border: 1px solid rgba(101, 183, 232, 0.35); color: #65B7E8; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;">
+            <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #25D366; flex-shrink: 0;"></span>
+            <span>{pkg.category}</span>
+          </div>
+
+          <!-- Main Heading H1 -->
+          <h1 class="fw-bold text-white mb-3 tracking-tight" style="font-size: clamp(1.85rem, 3.5vw, 2.75rem); line-height: 1.25;">
+            Paket {pkg.title} Malang Batu
+          </h1>
+
+          <!-- Lead Paragraph -->
+          <p class="text-white text-opacity-80 mb-4" style="max-width: 720px; font-size: clamp(0.98rem, 1.5vw, 1.1rem); line-height: 1.75;">
+            {pkg.summary}
+          </p>
+
+          <!-- Badges Ribbon: Icon SVG & Spacing Rapi -->
+          <div class="d-flex flex-wrap align-items-center gap-2 pt-1">
+            <!-- Durasi Badge -->
+            <div class="badge px-3 py-2 rounded-pill fw-normal d-inline-flex align-items-center gap-2" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); color: #F4F7FA; font-size: 0.85rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#65B7E8" class="flex-shrink-0" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+              </svg>
+              <span>{pkg.duration}</span>
+            </div>
+
+            <!-- Program Badge / Nilai Tambah -->
+            {pkg.badge && (
+              <div class="badge px-3 py-2 rounded-pill fw-normal d-inline-flex align-items-center gap-2" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); color: #F4F7FA; font-size: 0.85rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#FFC107" class="flex-shrink-0" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                </svg>
+                <span>{pkg.badge}</span>
+              </div>
+            )}
+
+            <!-- Keamanan & SOP Medis -->
+            <div class="badge px-3 py-2 rounded-pill fw-normal d-inline-flex align-items-center gap-2" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); color: #F4F7FA; font-size: 0.85rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#25D366" class="flex-shrink-0" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.134a.197.197 0 0 0 .01.006l.016.008a.49.49 0 0 0 .433 0l.016-.008.01-.006c.076-.039.174-.077.294-.134.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.464 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.927 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
+              </svg>
+              <span>Standard Safety &amp; SOP Medis</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tombol Aksi WhatsApp Hero -->
+        <div class="col-12 col-lg-4 text-start text-lg-end mt-2 mt-lg-0">
+          <a
+            href={waLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-mbo-whatsapp px-4 py-3 shadow-lg fs-6 fw-bold d-inline-flex align-items-center justify-content-center gap-2.5 w-100 w-sm-auto"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" class="flex-shrink-0">
+              <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.364 2.76 1.057 3.96L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.707 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+            </svg>
+            <span>Tanya Paket via WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. DETAIL CONTENT SECTION -->
+  <section class="py-4 py-md-5 bg-light">
+    <div class="container py-lg-3">
+      <div class="row g-4 g-lg-5">
+        <!-- Kolom Utama (Kiri) -->
+        <div class="col-12 col-lg-8">
+          <!-- Featured Image Card (16:9 Utuh & Terlindungi) -->
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4 bg-white">
+            <div class="position-relative" style="aspect-ratio: 16/9; max-height: 440px; background-color: #0B1F33;">
+              <img
+                src={pkg.image}
+                alt={pkg.alt}
+                width="800"
+                height="450"
+                loading="eager"
+                decoding="async"
+                class="w-100 h-100 object-fit-cover"
+              />
+              <span class="position-absolute bottom-0 start-0 m-3 badge bg-dark bg-opacity-75 text-white fw-semibold px-3 py-1.5 rounded-pill small d-inline-flex align-items-center gap-1.5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="#65B7E8" class="flex-shrink-0" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                </svg>
+                <span>Destinasi Terpilih Malang Raya &amp; Kota Batu</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Section 1: Detail Lengkap Paket -->
+          <div class="p-3.5 p-md-4 p-lg-5 rounded-4 bg-white border border-light shadow-sm mb-4">
+            <div class="d-flex align-items-center gap-2.5 mb-3">
+              <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 36px; height: 36px; background-color: rgba(30, 90, 157, 0.12); color: var(--color-primary-blue);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                  <path d="M4 4h8v2H4zM4 8h8v1H4zM4 10h5v1H4z"/>
+                </svg>
+              </span>
+              <h2 class="h4 fw-bold text-dark mb-0">Detail &amp; Sasaran Paket</h2>
+            </div>
+            
+            <p class="text-muted mb-4" style="line-height: 1.8; font-size: 1rem;">
+              {pkg.summary} Seluruh alur program dirancang terstruktur dan didampingi fasilitator berdedikasi tinggi untuk memastikan tujuan kelompok tercapai secara optimal di tengah kenyamanan alam pegunungan Kota Batu dan Malang.
+            </p>
+
+            <!-- Sasaran Peserta Callout Box -->
+            <div class="p-3.5 rounded-3 border-start border-4 border-primary bg-light mb-0">
+              <div class="d-flex align-items-start gap-3">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 32px; height: 32px; background-color: rgba(30, 90, 157, 0.12); color: var(--color-primary-blue);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                  </svg>
+                </span>
+                <div>
+                  <strong class="text-dark d-block mb-1" style="font-size: 0.95rem;">Sasaran &amp; Profil Peserta:</strong>
+                  <span class="text-secondary small" style="line-height: 1.6;">{pkg.targetAudience}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: DAFTAR PROGRAM DALAM PAKET INI (Rapi & Kartu Elegan) -->
+          <div class="p-3.5 p-md-4 p-lg-5 rounded-4 bg-white border border-light shadow-sm mb-4">
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+              <div>
+                <span class="badge bg-primary bg-opacity-10 text-primary fw-bold px-3 py-1 rounded-pill small mb-2 d-inline-block">PILIHAN PROGRAM LENGKAP</span>
+                <h2 class="h4 fw-bold text-dark mb-1">Program dalam Paket {pkg.title}</h2>
+              </div>
+              <span class="badge bg-light text-muted border px-3 py-1.5 rounded-pill small">{pkg.programs.length} Modul Tersedia</span>
+            </div>
+            <p class="text-muted small mb-4">
+              Berikut adalah pilihan program yang dapat Anda pilih atau kombinasikan dalam paket ini. Klik <strong>Lihat Detail Program</strong> untuk melihat rincian alur kegiatan, sasaran, dan manfaat khusus masing-masing program:
+            </p>
+
+            <div class="d-flex flex-column gap-3.5">
+              {pkg.programs.map((prog, index) => {
+                const programUrl = `/paket/${pkg.slug}/${prog.slug}.html`;
+                return (
+                  <div class="p-3.5 p-md-4 rounded-4 bg-white border border-secondary border-opacity-15 shadow-sm transition-hover">
+                    <!-- Header Kartu Program -->
+                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2 pb-2 border-bottom border-light">
+                      <div class="d-flex align-items-center gap-2.5">
+                        <span class="d-inline-flex align-items-center justify-content-center rounded-circle fw-bold text-white flex-shrink-0 shadow-2xs" style="width: 32px; height: 32px; background: linear-gradient(135deg, #1E5A9D, #0B1F33); font-size: 0.82rem;">
+                          0{index + 1}
+                        </span>
+                        <h3 class="h5 fw-bold text-dark mb-0">{prog.title}</h3>
+                      </div>
+                      {prog.badge && (
+                        <span class="badge bg-warning text-dark fw-bold px-2.5 py-1 rounded-pill small">
+                          {prog.badge}
+                        </span>
+                      )}
+                    </div>
+
+                    <!-- Deskripsi Singkat -->
+                    <p class="text-muted small mb-3" style="line-height: 1.65;">
+                      {prog.summary}
+                    </p>
+
+                    <!-- Baris Bawah Responsif: Durasi & Tombol Detail -->
+                    <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2.5 pt-2.5 border-top border-light">
+                      <div class="small text-muted d-flex align-items-center gap-2">
+                        <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 24px; height: 24px; background-color: rgba(30, 90, 157, 0.1); color: var(--color-primary-blue);">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                          </svg>
+                        </span>
+                        <span><strong>Durasi:</strong> {prog.duration.split('/')[0]}</span>
+                      </div>
+
+                      <!-- Tombol Lihat Detail Program -->
+                      <a
+                        href={programUrl}
+                        class="btn btn-sm btn-outline-primary rounded-pill px-3.5 py-1.5 fw-bold d-inline-flex align-items-center justify-content-center gap-1.5 shadow-2xs text-nowrap"
+                      >
+                        <span>Lihat Detail Program</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" class="flex-shrink-0">
+                          <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <!-- Section 3: Rangkaian Aktivitas Umum -->
+          <div class="p-3.5 p-md-4 p-lg-5 rounded-4 bg-white border border-light shadow-sm mb-4">
+            <div class="d-flex align-items-center gap-2.5 mb-3">
+              <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 36px; height: 36px; background-color: rgba(30, 90, 157, 0.12); color: var(--color-primary-blue);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z"/>
+                  <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z"/>
+                  <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5zM2 7h1v1H2zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm1 .5H2v1h1z"/>
+                </svg>
+              </span>
+              <h2 class="h4 fw-bold text-dark mb-0">Rangkaian Aktivitas Umum</h2>
+            </div>
+            
+            <p class="text-muted small mb-4">
+              Gambaran alur simulasi umum yang dijalankan bersama tim fasilitator profesional kami di lapangan:
+            </p>
+
+            <div class="d-flex flex-column gap-2.5">
+              {pkg.activities.map((act, idx) => (
+                <div class="p-3 rounded-3 bg-light d-flex align-items-center gap-3 border border-light">
+                  <div class="flex-shrink-0 d-inline-flex align-items-center justify-content-center rounded-circle fw-bold text-white shadow-2xs" style="width: 32px; height: 32px; background: linear-gradient(135deg, #1E5A9D, #0B1F33); font-size: 0.85rem;">
+                    {idx + 1}
+                  </div>
+                  <div class="flex-grow-1">
+                    <span class="text-dark fw-semibold" style="font-size: 0.95rem;">{act}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Section 4: Fasilitas Include & Exclude (Icon Checklist & Cross SVG Bersih) -->
+          <div class="p-3.5 p-md-4 p-lg-5 rounded-4 bg-white border border-light shadow-sm mb-4">
+            <h2 class="h4 fw-bold text-dark mb-4">Fasilitas &amp; Perlengkapan</h2>
+
+            <div class="row g-4">
+              <!-- Included -->
+              <div class="col-12 col-md-6">
+                <div class="p-3.5 p-md-4 rounded-4 h-100" style="background-color: #F0FDF4; border: 1px solid #BBF7D0;">
+                  <h3 class="h6 fw-bold text-success mb-3 d-flex align-items-center gap-2">
+                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 22px; height: 22px; background-color: rgba(34, 197, 94, 0.2); color: #16A34A;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                      </svg>
+                    </span>
+                    <span>Fasilitas Termasuk (Include):</span>
+                  </h3>
+                  <ul class="list-unstyled mb-0 small">
+                    {pkg.includedHighlights.map((inc) => (
+                      <li class="d-flex align-items-start gap-2.5 mb-2.5">
+                        <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                          </svg>
+                        </span>
+                        <span class="text-dark fw-medium" style="line-height: 1.55;">{inc}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Excluded / Optional -->
+              <div class="col-12 col-md-6">
+                <div class="p-3.5 p-md-4 rounded-4 h-100" style="background-color: #FEF2F2; border: 1px solid #FECACA;">
+                  <h3 class="h6 fw-bold text-danger mb-3 d-flex align-items-center gap-2">
+                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 22px; height: 22px; background-color: rgba(239, 68, 68, 0.18); color: #DC2626;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                      </svg>
+                    </span>
+                    <span>Belum Termasuk (Exclude / Opsional):</span>
+                  </h3>
+                  <ul class="list-unstyled mb-0 small">
+                    {pkg.excludedHighlights && pkg.excludedHighlights.map((exc) => (
+                      <li class="d-flex align-items-start gap-2.5 mb-2.5">
+                        <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(239, 68, 68, 0.12); color: #DC2626;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                          </svg>
+                        </span>
+                        <span class="text-secondary" style="line-height: 1.55;">{exc}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5: Rekomendasi Lokasi Ground Outbound (Icon Map Pin & Card Rapi) -->
+          {pkg.recommendedVenues && pkg.recommendedVenues.length > 0 && (
+            <div class="p-3.5 p-md-4 p-lg-5 rounded-4 bg-white border border-light shadow-sm">
+              <div class="d-flex align-items-center gap-2.5 mb-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 36px; height: 36px; background-color: rgba(30, 90, 157, 0.12); color: var(--color-primary-blue);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
+                    <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                  </svg>
+                </span>
+                <h2 class="h4 fw-bold text-dark mb-0">Rekomendasi Lokasi Ground Favorit</h2>
+              </div>
+              <p class="text-muted small mb-4">
+                Kami siap memfasilitasi paket {pkg.title} di berbagai destinasi alam sejuk Malang Raya dan Kota Batu berikut:
+              </p>
+
+              <div class="row g-3">
+                {pkg.recommendedVenues.map((venue) => (
+                  <div class="col-12 col-sm-6">
+                    <div class="p-3 rounded-3 bg-light border border-light d-flex align-items-center gap-3 transition-hover h-100">
+                      <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 shadow-2xs" style="width: 34px; height: 34px; background-color: rgba(30, 90, 157, 0.12); color: var(--color-primary-blue);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                          <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                        </svg>
+                      </span>
+                      <span class="small fw-semibold text-dark" style="line-height: 1.4;">{venue}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div class="mt-4 pt-2 text-center text-sm-start">
+                <a href="/fasilitas/" class="small text-decoration-none fw-bold text-primary d-inline-flex align-items-center gap-1.5 hover-underline">
+                  <span>Lihat rincian seluruh destinasi &amp; fasilitas ground</span>
+                  <span class="fs-6">&rarr;</span>
+                </a>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <!-- Sidebar Ringkasan (Kanan) -->
+        <div class="col-12 col-lg-4">
+          <div class="sticky-top" style="top: 96px; z-index: 10;">
+            <!-- Box Konsultasi Cepat -->
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white mb-4">
+              <div class="card-header text-white p-4 text-center border-0" style="background: linear-gradient(135deg, #102A43 0%, #1E5A9D 100%) !important;">
+                <span class="badge bg-warning text-dark fw-bold mb-2 px-3 py-1 rounded-pill small">Konsultasi Resmi</span>
+                <h3 class="h5 fw-bold mb-0 text-white">Tanya Paket {pkg.title}</h3>
+              </div>
+
+              <div class="card-body p-4">
+                <div class="small text-muted mb-3 pb-3 border-bottom border-light">
+                  <div class="d-flex justify-content-between mb-2.5">
+                    <span class="text-secondary">Kategori:</span>
+                    <strong class="text-dark">{pkg.category.split(',')[0]}</strong>
+                  </div>
+                  <div class="d-flex justify-content-between mb-2.5">
+                    <span class="text-secondary">Durasi:</span>
+                    <strong class="text-dark">{pkg.duration.split('/')[0]}</strong>
+                  </div>
+                  <div class="d-flex justify-content-between mb-2.5">
+                    <span class="text-secondary">Program:</span>
+                    <strong class="text-primary">{pkg.programs.length} Modul Tersedia</strong>
+                  </div>
+                  <div class="d-flex justify-content-between mb-2.5">
+                    <span class="text-secondary">Kapasitas:</span>
+                    <strong class="text-dark">20 s/d 500+ Peserta</strong>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <span class="text-secondary">Biaya:</span>
+                    <strong class="text-success fw-bold">Disesuaikan Kebutuhan</strong>
+                  </div>
+                </div>
+
+                <!-- Tombol Tanya Paket WhatsApp -->
+                <div class="mb-3">
+                  <a
+                    href={waLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-mbo-whatsapp w-100 py-3 rounded-pill fw-bold text-center d-inline-flex align-items-center justify-content-center gap-2 shadow-sm"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" class="flex-shrink-0">
+                      <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.364 2.76 1.057 3.96L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.707 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                    </svg>
+                    <span>Tanya Paket via WhatsApp</span>
+                  </a>
+                </div>
+
+                <!-- Tombol Kembali ke Katalog -->
+                <a
+                  href="/paket/"
+                  class="btn btn-outline-primary w-100 py-2.5 rounded-pill small fw-semibold text-center d-block shadow-2xs"
+                >
+                  &larr; Lihat Pilihan Paket Lainnya
+                </a>
+              </div>
+            </div>
+
+            <!-- Kartu Keunggulan Layanan (Checklist SVG Bersih & Rapi) -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+              <h4 class="h6 fw-bold text-dark mb-3">Keuntungan Bersama Kami:</h4>
+              <ul class="list-unstyled mb-0 small text-muted">
+                <li class="d-flex align-items-start gap-2.5 mb-2.5">
+                  <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                      <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                    </svg>
+                  </span>
+                  <span class="text-dark fw-medium">Fasilitator bersertifikasi &amp; berpengalaman</span>
+                </li>
+                <li class="d-flex align-items-start gap-2.5 mb-2.5">
+                  <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                      <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                    </svg>
+                  </span>
+                  <span class="text-dark fw-medium">Perlengkapan game aman &amp; terawat</span>
+                </li>
+                <li class="d-flex align-items-start gap-2.5 mb-2.5">
+                  <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                      <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                    </svg>
+                  </span>
+                  <span class="text-dark fw-medium">Fleksibilitas pilihan lokasi ground</span>
+                </li>
+                <li class="d-flex align-items-start gap-2.5">
+                  <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                      <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                    </svg>
+                  </span>
+                  <span class="text-dark fw-medium">Kustomisasi konsep &amp; budget transparan</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

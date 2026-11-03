@@ -1,0 +1,252 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { facilitiesData } from '../data/facilities';
+import { getWhatsAppUrl, siteConfig } from '../data/site';
+
+const waLink = getWhatsAppUrl('Halo, saya ingin menanyakan ketersediaan dan fasilitas destinasi outbound di Malang Batu.');
+
+const standardEquipments = [
+  {
+    title: 'Peralatan Games & Properti Simulasi',
+    desc: 'Inventaris simulasi team building lengkap: tali tambang dinamis, pipa bocor, karpet terbang, estafet air/bola, spider web, dan rompi pembagi tim warna-warni yang higienis.',
+    icon: `<path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zM2.5 10a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z"/>`
+  },
+  {
+    title: 'Sound System Outdoor & Megaphone',
+    desc: 'Pengeras suara portable outdoor bertenaga tinggi, mic wireless jangkauan panjang, sound master speaker, serta megaphone komando lapangan agar instruksi terdengar jelas merata.',
+    icon: `<path d="M11.536 14.01A8.47 8.47 0 0 0 14.026 8a8.47 8.47 0 0 0-2.49-6.01l-.708.707A7.48 7.48 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303z"/><path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.48 5.48 0 0 1 11.025 8a5.48 5.48 0 0 1-1.61 3.89z"/><path d="M8.707 11.182A4.5 4.5 0 0 0 10.025 8a4.5 4.5 0 0 0-1.318-3.182L8 5.525A3.5 3.5 0 0 1 9.025 8 3.5 3.5 0 0 1 8 10.475zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06"/>`
+  },
+  {
+    title: 'Kit Medis P3K Lapangan & SOP Tanggap',
+    desc: 'Kotak P3K standar petualangan outdoor lengkap: oksigen portable, perban, cairan antiseptik, obat kram/pusing, minyak penghangat, serta jalur rujukan cepat ke fasilitas kesehatan terdekat.',
+    icon: `<path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m.5 5v2.5H11a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V8.5H5a.5.5 0 0 1 0-1h2.5V5a.5.5 0 0 1 1 0"/>`
+  },
+  {
+    title: 'Catering Prasmanan & Coffee Break',
+    desc: 'Menu prasmanan Nusantara hangat, nasi box higienis, hidangan tradisional desa (ubi/pisang rebus, ketan), serta seduhan kopi/teh jahe hangat penghalau hawa dingin pegunungan.',
+    icon: `<path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68 1.858-.282z"/>`
+  }
+];
+---
+
+<BaseLayout
+  title="Fasilitas Destinasi Outbound di Malang & Batu | Lengkap & Nyaman"
+  description="Daftar fasilitas lengkap dari 9 destinasi outbound utama di Malang dan Batu: Coban Rondo, Coban Rais, Coban Putri, Coban Talun, Payung Pinus, Kaliwatu Rafting, Gunung Bromo, Tumpak Sewu, dan Jambuluwuk Resort."
+  canonicalPath="/fasilitas/"
+  activePath="/fasilitas/"
+>
+  <!-- DEDICATED PAGE HERO BANNER (FASILITAS) -->
+  <section class="position-relative overflow-hidden py-5 text-white" style="background: linear-gradient(135deg, #102A43 0%, #0B1F33 100%);">
+    <!-- Ambient Backdrop Light -->
+    <div class="position-absolute top-0 start-50 translate-middle-x w-100 h-100 pointer-events-none" style="background: radial-gradient(circle at 50% 15%, rgba(101, 183, 232, 0.14) 0%, transparent 70%);"></div>
+
+    <div class="container position-relative z-1 py-3 py-md-4 text-center">
+      <!-- Breadcrumb Nav -->
+      <nav aria-label="breadcrumb" class="mb-3 d-inline-block">
+        <ol class="breadcrumb small mb-0 px-3 py-1.5 rounded-pill" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(4px);">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Beranda</a></li>
+          <li class="breadcrumb-item active" style="color: #65B7E8;" aria-current="page">Fasilitas</li>
+        </ol>
+      </nav>
+
+      <!-- Badge Pill -->
+      <div class="d-block mb-3">
+        <span class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill" style="background-color: rgba(101, 183, 232, 0.15); border: 1px solid rgba(101, 183, 232, 0.35); color: #65B7E8; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;">
+          <span style="display: inline-block; width: 7px; height: 7px; border-radius: 50%; background-color: #25D366;"></span> Kesiapan Venue &amp; Ground Outbound
+        </span>
+      </div>
+
+      <!-- Main Heading H1 -->
+      <h1 class="display-5 fw-bold text-white mb-3 tracking-tight">
+        Fasilitas Lengkap di 9 Destinasi Unggulan
+      </h1>
+
+      <!-- Subtitle Description -->
+      <p class="lead text-white text-opacity-75 mb-4 mx-auto" style="max-width: 780px; font-size: 1.1rem; line-height: 1.7;">
+        Informasi detail mengenai kesiapan sarana, daya tampung ground, dan fasilitas pendukung di setiap destinasi terbaik kawasan Malang, Batu, hingga Bromo &amp; Tumpak Sewu untuk kelancaran kegiatan tim Anda.
+      </p>
+
+      <!-- Interactive Quick-Jump Navigation to 9 Destinations -->
+      <div class="pt-2">
+        <div class="small text-white-50 mb-2">Pilih Destinasi untuk Melihat Detail Fasilitas:</div>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+          {facilitiesData.map((d) => (
+            <a
+              href={`#${d.id}`}
+              class="badge px-3 py-2 rounded-pill fw-medium text-decoration-none quick-jump-pill transition-base"
+              style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #FFFFFF; font-size: 0.82rem;"
+            >
+              📍 {d.title.replace('Destinasi ', '').replace('Hotel ', '')}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAFTAR RINCI 9 DESTINASI & FASILITASNYA -->
+  <section class="section-padding bg-white">
+    <div class="container">
+      <div class="text-center mb-5" style="max-width: 760px; margin: 0 auto;">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10 text-primary small fw-bold mb-2">
+          Eksplorasi Ground &amp; Venue
+        </div>
+        <h2 class="h2 fw-bold text-dark mb-3">Detail Fasilitas 9 Destinasi Pilihan</h2>
+        <p class="text-muted small">
+          Setiap lokasi memiliki keunggulan karakter alam, daya tampung, serta fasilitas penunjang yang dirancang untuk kebutuhan spesifik acara Anda.
+        </p>
+      </div>
+
+      <div class="row g-4 mb-5">
+        {facilitiesData.map((dest, idx) => {
+          const destWaLink = getWhatsAppUrl(`Halo, saya ingin menanyakan ketersediaan fasilitas di ${dest.title} untuk rencana kegiatan tim kami.`);
+          return (
+            <div class="col-12 col-md-6 col-lg-4" id={dest.id}>
+              <div class="mbo-card h-100 d-flex flex-column">
+                <!-- Image Header -->
+                <div style="aspect-ratio: 16/10;" class="overflow-hidden bg-light position-relative">
+                  <img
+                    src={dest.image}
+                    alt={dest.alt}
+                    width="700"
+                    height="450"
+                    loading={idx < 3 ? 'eager' : 'lazy'}
+                    class="w-100 h-100 object-fit-cover"
+                  />
+                  <span class="position-absolute top-0 start-0 m-2.5 badge bg-dark bg-opacity-75 text-white small px-2.5 py-1 rounded-pill backdrop-blur" style="font-size: 0.75rem;">
+                    {dest.category}
+                  </span>
+                </div>
+
+                <!-- Card Body -->
+                <div class="p-3.5 p-xl-4 d-flex flex-column flex-grow-1">
+                  <!-- Header title & status -->
+                  <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                    <div>
+                      <h3 class="h6 fw-bold text-dark mb-1 fs-5">{dest.title}</h3>
+                      <div class="small text-muted d-flex align-items-center gap-1" style="font-size: 0.8rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--color-secondary-blue)" viewBox="0 0 16 16" aria-hidden="true">
+                          <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+                        </svg>
+                        <span>{dest.location}</span>
+                      </div>
+                    </div>
+                    <span class="badge bg-primary bg-opacity-10 text-primary small flex-shrink-0" style="font-size: 0.72rem;">
+                      {dest.status}
+                    </span>
+                  </div>
+
+                  <!-- Concise Description -->
+                  <p class="small text-muted mb-2.5 lh-sm" style="font-size: 0.86rem;">
+                    {dest.description}
+                  </p>
+
+                  <!-- Fasilitas Detail List -->
+                  <div class="p-2.5 rounded-3 bg-light border border-light-subtle mb-3">
+                    <div class="fw-bold text-dark small mb-1.5 d-flex align-items-center justify-content-between" style="font-size: 0.8rem;">
+                      <span>Fasilitas Ground:</span>
+                      <span class="badge bg-white text-secondary border" style="font-size: 0.7rem;">{dest.capacity}</span>
+                    </div>
+                    <ul class="list-unstyled small text-muted mb-0 d-flex flex-column gap-1" style="font-size: 0.82rem;">
+                      {dest.features.map((feat) => (
+                        <li class="d-flex align-items-start gap-1.5">
+                          <span class="text-success fw-bold flex-shrink-0">✓</span>
+                          <span>{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <!-- Suitable For Tags -->
+                  <div class="mb-3">
+                    <div class="d-flex flex-wrap gap-1">
+                      {dest.suitableFor.map((act) => (
+                        <span class="badge bg-white text-primary border border-primary border-opacity-25 fw-normal py-1 px-2 rounded-2" style="font-size: 0.72rem;">
+                          {act}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <!-- Action CTA -->
+                  <div class="mt-auto pt-2 border-top border-light">
+                    <a
+                      href={destWaLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="btn btn-sm btn-outline-primary w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-1.5"
+                      style="font-size: 0.82rem;"
+                    >
+                      <span>Tanyakan {dest.title.replace('Destinasi ', '').replace('Hotel ', '')}</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION LOGISTIK & PERLENGKAPAN STANDAR KAMI -->
+  <section class="section-padding bg-light">
+    <div class="container">
+      <div class="text-center mb-5" style="max-width: 720px; margin: 0 auto;">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10 text-primary small fw-bold mb-2">
+          Standar Logistik Terpadu
+        </div>
+        <h2 class="h2 fw-bold text-dark mb-3">Perlengkapan yang Kami Siapkan di Lapangan</h2>
+        <p class="text-muted small">
+          Apapun destinasi yang Anda pilih, seluruh perlengkapan kegiatan di bawah ini selalu disiapkan dan dikawal langsung oleh tim {siteConfig.name}.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        {standardEquipments.map((eq) => (
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="p-4 rounded-4 bg-white border border-light h-100 shadow-sm d-flex flex-column">
+              <div class="d-inline-flex p-3 rounded-3 bg-primary bg-opacity-10 text-primary mb-3 align-self-start">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" set:html={eq.icon} />
+              </div>
+              <h3 class="h5 fw-bold text-dark mb-2">{eq.title}</h3>
+              <p class="small text-muted mb-0 lh-base flex-grow-1">{eq.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION CTA PENUTUP FASILITAS -->
+  <section class="section-padding bg-white">
+    <div class="container">
+      <div class="p-4 p-md-5 rounded-4 bg-primary text-white text-center shadow-md position-relative overflow-hidden" style="background: linear-gradient(135deg, #102A43 0%, #0B1F33 100%) !important;">
+        <h2 class="display-6 fw-bold text-white mb-3">Butuh Bantuan Memilih Destinasi yang Tepat?</h2>
+        <p class="lead text-white text-opacity-75 mb-4 mx-auto" style="max-width: 680px; font-size: 1.05rem;">
+          Konsultasikan profil peserta Anda, jumlah rombongan, serta konsep acara yang diinginkan. Tim kami siap merekomendasikan opsi destinasi paling ideal beserta estimasi penawaran biayanya.
+        </p>
+        <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-3">
+          <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-mbo-whatsapp px-4 py-3 fs-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.364 2.76 1.057 3.96L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.707 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+            </svg>
+            <span>Konsultasi Destinasi via WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .quick-jump-pill:hover {
+    background: rgba(101, 183, 232, 0.25) !important;
+    border-color: #65B7E8 !important;
+    color: #65B7E8 !important;
+    transform: translateY(-2px);
+  }
+</style>

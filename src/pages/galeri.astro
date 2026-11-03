@@ -1,0 +1,372 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { galleryItems } from '../data/gallery';
+import { getWhatsAppUrl, siteConfig } from '../data/site';
+
+const waLink = getWhatsAppUrl('Halo, saya melihat dokumentasi galeri dan ingin konsultasi kegiatan outbound di Malang Batu.');
+
+const categories = ['Semua', 'Team Building', 'Fun Games', 'Gathering', 'Adventure'];
+---
+
+<BaseLayout
+  title="Galeri Dokumentasi Kegiatan Outbound & Gathering di Malang Batu"
+  description="Dokumentasi autentik kegiatan outbound, corporate gathering, team building, arung jeram rafting, dan petualangan alam di Kota Batu, Malang, dan sekitarnya."
+  canonicalPath="/galeri/"
+  activePath="/galeri/"
+>
+  <!-- DEDICATED PAGE HERO BANNER (GALERI) -->
+  <section class="position-relative overflow-hidden py-5 text-white" style="background: linear-gradient(135deg, #102A43 0%, #0B1F33 100%);">
+    <!-- Ambient Backdrop Light -->
+    <div class="position-absolute top-0 start-50 translate-middle-x w-100 h-100 pointer-events-none" style="background: radial-gradient(circle at 50% 15%, rgba(101, 183, 232, 0.14) 0%, transparent 70%);"></div>
+
+    <div class="container position-relative z-1 py-3 py-md-4 text-center">
+      <!-- Breadcrumb Nav -->
+      <nav aria-label="breadcrumb" class="mb-3 d-inline-block">
+        <ol class="breadcrumb small mb-0 px-3 py-1.5 rounded-pill" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(4px);">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Beranda</a></li>
+          <li class="breadcrumb-item active" style="color: #65B7E8;" aria-current="page">Galeri</li>
+        </ol>
+      </nav>
+
+      <!-- Badge Pill -->
+      <div class="d-block mb-3">
+        <span class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill" style="background-color: rgba(101, 183, 232, 0.15); border: 1px solid rgba(101, 183, 232, 0.35); color: #65B7E8; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;">
+          <span style="display: inline-block; width: 7px; height: 7px; border-radius: 50%; background-color: #25D366;"></span> Dokumentasi Visual Lapangan
+        </span>
+      </div>
+
+      <!-- Main Heading H1 -->
+      <h1 class="display-5 fw-bold text-white mb-3 tracking-tight">
+        Galeri Kegiatan Outbound &amp; Gathering
+      </h1>
+
+      <!-- Subtitle Description -->
+      <p class="lead text-white text-opacity-75 mb-4 mx-auto" style="max-width: 780px; font-size: 1.1rem; line-height: 1.7;">
+        Potret autentik dinamika kelompok, keceriaan ice breaking, simulasi pemecahan masalah, arung jeram, hingga malam keakraban di berbagai destinasi sejuk Malang Raya &amp; Kota Batu.
+      </p>
+
+      <!-- Feature Badges Ribbon -->
+      <div class="d-flex flex-wrap justify-content-center gap-2 pt-1">
+        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.85rem;">
+          📸 Foto Momen Nyata Lapangan
+        </span>
+        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.85rem;">
+          🎬 Video Sinematik &amp; Liputan Drone
+        </span>
+        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.85rem;">
+          🏞️ Ragam Destinasi Alam Pegunungan
+        </span>
+        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.85rem;">
+          🔍 Klik Foto untuk Tampilan Layar Penuh
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ISI GALERI DENGAN FILTER KATEGORI -->
+  <section class="section-padding bg-white">
+    <div class="container">
+      <!-- Filter Tabs Kategori -->
+      <div class="d-flex flex-wrap align-items-center justify-content-center gap-2 mb-5">
+        {categories.map((cat, idx) => (
+          <button
+            type="button"
+            class={`gallery-filter-btn btn btn-sm px-3.5 py-2 rounded-pill fw-semibold ${idx === 0 ? 'active' : ''}`}
+            data-filter={cat === 'Semua' ? 'all' : cat}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="row g-4" id="galleryGrid">
+        {galleryItems.map((item, idx) => (
+          <div class="col-12 col-sm-6 col-lg-4 gallery-card-col" data-category={item.category}>
+            <div class="mbo-card h-100 d-flex flex-column position-relative">
+              <div
+                style="aspect-ratio: 16/10;"
+                class="overflow-hidden bg-light position-relative gallery-img-container cursor-pointer"
+                data-img={item.image}
+                data-title={item.title}
+                data-caption={item.caption}
+                data-location={item.location}
+                data-category={item.category}
+              >
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  width="700"
+                  height="450"
+                  loading={idx < 3 ? 'eager' : 'lazy'}
+                  class="w-100 h-100 object-fit-cover transition-base gallery-zoom-img"
+                />
+                <div class="gallery-hover-overlay position-absolute inset-0 d-flex align-items-center justify-content-center">
+                  <span class="badge bg-white text-dark px-3 py-1.5 rounded-pill shadow-sm small fw-semibold d-inline-flex align-items-center gap-1.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
+                      <path d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"/>
+                      <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"/>
+                    </svg>
+                    Lihat Foto
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-3.5 bg-white d-flex flex-column flex-grow-1">
+                <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
+                  <span class="badge bg-primary bg-opacity-10 text-primary small fw-semibold">
+                    {item.category}
+                  </span>
+                  <span class="small text-muted d-flex align-items-center gap-1 text-truncate" style="max-width: 170px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--color-secondary-blue)" viewBox="0 0 16 16" aria-hidden="true" class="flex-shrink-0">
+                      <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+                    </svg>
+                    {item.location}
+                  </span>
+                </div>
+                <h3 class="h6 fw-bold text-dark mb-1.5">{item.title}</h3>
+                <p class="text-muted small mb-0 lh-base">{item.caption}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL SIMPLE -->
+  <div id="galleryModal" class="gallery-modal" aria-hidden="true" role="dialog">
+    <div class="gallery-modal-backdrop" id="modalBackdrop"></div>
+    <div class="gallery-modal-dialog">
+      <div class="gallery-modal-content">
+        <button type="button" class="gallery-modal-close" id="modalCloseBtn" aria-label="Tutup foto">&times;</button>
+        <div class="gallery-modal-img-wrapper">
+          <img id="modalImg" src="" alt="" class="img-fluid" />
+        </div>
+        <div class="gallery-modal-caption p-3 p-md-4 bg-white">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="badge bg-primary bg-opacity-10 text-primary small" id="modalCategory"></span>
+            <span class="small text-muted" id="modalLocation"></span>
+          </div>
+          <h4 class="h5 fw-bold text-dark mb-1" id="modalTitle"></h4>
+          <p class="small text-muted mb-0" id="modalDesc"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION CTA PENUTUP GALERI -->
+  <section class="section-padding bg-light">
+    <div class="container">
+      <div class="p-4 p-md-5 rounded-4 bg-white border border-light text-center shadow-sm">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10 text-primary small fw-bold mb-2">
+          Rancang Momen Berkesan Anda
+        </div>
+        <h2 class="h3 fw-bold text-dark mb-2">Ingin Mengabadikan Momen Kebersamaan Tim Seperti Ini?</h2>
+        <p class="text-muted small mb-4 mx-auto" style="max-width: 620px;">
+          Setiap program kami dirancang khusus agar menjadi pengalaman yang membanggakan, mempererat persaudaraan, dan terdokumentasi rapi untuk instansi Anda.
+        </p>
+        <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-3">
+          <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-mbo-whatsapp px-4 py-2.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.364 2.76 1.057 3.96L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.707 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+            </svg>
+            <span>Konsultasikan Acara Tim Anda</span>
+          </a>
+          <a href="/paket/" class="btn-mbo-secondary px-4 py-2.5">
+            <span>Lihat Paket Terkait</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .gallery-filter-btn {
+    background-color: #FFFFFF;
+    color: var(--color-primary-navy);
+    border: 1px solid var(--color-border);
+    transition: all 0.2s ease;
+  }
+  .gallery-filter-btn:hover,
+  .gallery-filter-btn.active {
+    background-color: var(--color-primary-navy);
+    color: #FFFFFF;
+    border-color: var(--color-primary-navy);
+  }
+  .gallery-img-container {
+    cursor: pointer;
+  }
+  .gallery-hover-overlay {
+    background: rgba(16, 42, 67, 0.4);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .gallery-img-container:hover .gallery-hover-overlay {
+    opacity: 1;
+  }
+  .gallery-img-container:hover .gallery-zoom-img {
+    transform: scale(1.05);
+  }
+
+  /* Simple Lightbox Modal */
+  .gallery-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .gallery-modal.show {
+    display: flex;
+  }
+  .gallery-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(11, 31, 51, 0.85);
+    backdrop-filter: blur(4px);
+  }
+  .gallery-modal-dialog {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    width: 100%;
+    animation: zoomInModal 0.25s ease-out;
+  }
+  .gallery-modal-content {
+    background: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  }
+  .gallery-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #FFFFFF;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.2s;
+  }
+  .gallery-modal-close:hover {
+    background: #000000;
+  }
+  .gallery-modal-img-wrapper {
+    background: #0B1F33;
+    aspect-ratio: 16/10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gallery-modal-img-wrapper img {
+    max-height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  @keyframes zoomInModal {
+    from {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>
+
+<script>
+  function initGallery() {
+    // 1. Filter logic
+    const filterBtns = document.querySelectorAll<HTMLButtonElement>('.gallery-filter-btn');
+    const cardCols = document.querySelectorAll<HTMLElement>('.gallery-card-col');
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filterVal = btn.getAttribute('data-filter');
+
+        cardCols.forEach((col) => {
+          const colCat = col.getAttribute('data-category');
+          if (filterVal === 'all' || colCat === filterVal) {
+            col.style.display = 'block';
+          } else {
+            col.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 2. Lightbox Modal logic
+    const modal = document.getElementById('galleryModal');
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const modalImg = document.getElementById('modalImg') as HTMLImageElement;
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalCategory = document.getElementById('modalCategory');
+    const modalLocation = document.getElementById('modalLocation');
+
+    const containers = document.querySelectorAll<HTMLElement>('.gallery-img-container');
+
+    containers.forEach((container) => {
+      container.addEventListener('click', () => {
+        const img = container.getAttribute('data-img') || '';
+        const title = container.getAttribute('data-title') || '';
+        const caption = container.getAttribute('data-caption') || '';
+        const location = container.getAttribute('data-location') || '';
+        const category = container.getAttribute('data-category') || '';
+
+        if (modalImg) modalImg.src = img;
+        if (modalImg) modalImg.alt = title;
+        if (modalTitle) modalTitle.textContent = title;
+        if (modalDesc) modalDesc.textContent = caption;
+        if (modalCategory) modalCategory.textContent = category;
+        if (modalLocation) modalLocation.textContent = location;
+
+        if (modal) {
+          modal.classList.add('show');
+          modal.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
+    function closeModal() {
+      if (modal) {
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+    }
+
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+    if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  }
+
+  // Run on first load & client transitions
+  initGallery();
+  document.addEventListener('astro:page-load', initGallery);
+</script>

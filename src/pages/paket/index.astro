@@ -1,0 +1,219 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { catalogPackages } from '../../data/packages';
+import { getWhatsAppUrl } from '../../data/site';
+
+const generalWaLink = getWhatsAppUrl('Halo, saya ingin menanyakan rincian dan penawaran paket outbound di Malang Batu.');
+---
+
+<BaseLayout
+  title="Pilihan Paket Outbound & Gathering di Malang Batu"
+  description="Katalog 4 paket outbound unggulan di Malang dan Kota Batu: Outbound Perusahaan, Family Gathering, Outbound Sekolah, dan Outbound Wisata. Program terarah & fleksibel."
+  canonicalPath="/paket/"
+  activePath="/paket/"
+>
+  <!-- 1. DEDICATED PAGE HERO BANNER (PAKET) -->
+  <section class="position-relative overflow-hidden py-5 text-white" style="background: linear-gradient(135deg, #102A43 0%, #0B1F33 100%);">
+    <!-- Ambient Backdrop Light -->
+    <div class="position-absolute top-0 start-50 translate-middle-x w-100 h-100 pointer-events-none" style="background: radial-gradient(circle at 50% 15%, rgba(101, 183, 232, 0.14) 0%, transparent 70%);"></div>
+
+    <div class="container position-relative z-1 py-3 py-md-4 text-center">
+      <!-- Breadcrumb Nav -->
+      <nav aria-label="breadcrumb" class="mb-3 d-inline-block">
+        <ol class="breadcrumb small mb-0 px-3 py-1.5 rounded-pill" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(4px);">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Beranda</a></li>
+          <li class="breadcrumb-item active" style="color: #65B7E8;" aria-current="page">Paket</li>
+        </ol>
+      </nav>
+
+      <!-- Badge Pill -->
+      <div class="d-block mb-3">
+        <span class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill" style="background-color: rgba(101, 183, 232, 0.15); border: 1px solid rgba(101, 183, 232, 0.35); color: #65B7E8; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;">
+          <span style="display: inline-block; width: 7px; height: 7px; border-radius: 50%; background-color: #25D366;"></span> Katalog Program Unggulan
+        </span>
+      </div>
+
+      <!-- Main Heading H1 -->
+      <h1 class="display-5 fw-bold text-white mb-3 tracking-tight">
+        Pilihan Paket Outbound &amp; Gathering Malang Batu
+      </h1>
+
+      <!-- Subtitle Description -->
+      <p class="lead text-white text-opacity-75 mb-4 mx-auto" style="max-width: 780px; font-size: 1.1rem; line-height: 1.7;">
+        Program terstruktur, fleksibel, dan didukung fasilitator profesional di destinasi alam terbaik Malang Raya dan Kota Batu. Pilih kategori paket yang paling sesuai dengan profil rombongan Anda.
+      </p>
+
+      <!-- Key Commitment Badges Ribbon -->
+      <div class="d-flex flex-wrap justify-content-center gap-2 pt-1">
+        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.85rem;">
+          🏢 Outbound Perusahaan
+        </span>
+        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.85rem;">
+          👨‍👩‍👧‍👦 Family Gathering
+        </span>
+        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.85rem;">
+          🎓 Outbound Sekolah
+        </span>
+        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.85rem;">
+          🌲 Outbound Wisata
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. ISI HALAMAN PAKET (GRID 2 KOLOM 2 BARIS) -->
+  <section class="py-5 bg-light">
+    <div class="container py-lg-4">
+      <!-- Transparansi & Info Box -->
+      <div class="alert border-0 rounded-4 p-3.5 mb-5 shadow-sm mx-auto" style="max-width: 860px; background-color: #EBF8FF; border-left: 5px solid #2B6CB0 !important;">
+        <div class="d-flex align-items-center gap-3">
+          <div class="flex-shrink-0 text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#2B6CB0" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+          </div>
+          <div class="small text-dark lh-base">
+            <strong>Kustomisasi &amp; Transparansi Pembiayaan:</strong> Seluruh paket di bawah ini dapat dikustomisasi menurut jumlah peserta, pilihan durasi (half day / full day / 2 hari 1 malam), lokasi ground yang diinginkan, dan kebutuhan tambahan seperti konsumsi atau akomodasi penginapan.
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 Kolom 2 Baris Paket Grid -->
+      <div class="row g-4 mb-5">
+        {catalogPackages.map((pkg) => {
+          const waUrl = getWhatsAppUrl(pkg.whatsappMessage);
+          return (
+            <div class="col-12 col-lg-6">
+              <div class="card h-100 rounded-4 border-0 shadow-sm overflow-hidden bg-white d-flex flex-column transition-hover" style="transition: transform 0.25s ease, box-shadow 0.25s ease;">
+                <!-- Header Gambar & Badge -->
+                <div class="position-relative overflow-hidden bg-light" style="aspect-ratio: 16/9;">
+                  <img
+                    src={pkg.image}
+                    alt={pkg.alt}
+                    width="700"
+                    height="394"
+                    loading="lazy"
+                    decoding="async"
+                    class="w-100 h-100 object-fit-cover"
+                  />
+                  {pkg.badge && (
+                    <span class="position-absolute top-0 start-0 m-3 badge bg-warning text-dark fw-bold px-3 py-2 rounded-pill shadow-sm">
+                      {pkg.badge}
+                    </span>
+                  )}
+                  <span class="position-absolute bottom-0 start-0 m-3 badge bg-dark bg-opacity-75 text-white fw-semibold px-3 py-1.5 rounded-3">
+                    {pkg.category}
+                  </span>
+                </div>
+
+                <!-- Konten Kartu Paket -->
+                <div class="card-body p-4 d-flex flex-column flex-grow-1">
+                  <!-- Judul Paket -->
+                  <h2 class="h4 fw-bold text-dark mb-2">{pkg.title}</h2>
+                  
+                  <!-- Deskripsi Ringkas -->
+                  <p class="text-muted small mb-3" style="line-height: 1.6;">
+                    {pkg.summary}
+                  </p>
+
+                  <!-- Sasaran Peserta -->
+                  <div class="p-2.5 mb-3 rounded-3 bg-light border border-light">
+                    <div class="d-flex align-items-start gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="var(--color-secondary-blue)" class="mt-1 flex-shrink-0" viewBox="0 0 16 16" aria-hidden="true">
+                        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                      </svg>
+                      <div class="small">
+                        <strong class="text-dark">Sasaran Peserta:</strong> <span class="text-secondary">{pkg.targetAudience}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Ringkasan Info (Durasi & Program Pilihan dengan Icon Rapi) -->
+                  <div class="p-3 mb-4 rounded-3 bg-light border border-light">
+                    <div class="row g-2.5 small">
+                      <div class="col-12 col-sm-6">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10 text-primary flex-shrink-0" style="width: 26px; height: 26px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                            </svg>
+                          </span>
+                          <span class="text-secondary"><strong class="text-dark">Durasi:</strong> {pkg.duration.split('/')[0]}</span>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10 text-success flex-shrink-0" style="width: 26px; height: 26px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                              <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                              <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
+                            </svg>
+                          </span>
+                          <span class="text-secondary"><strong class="text-dark">Pilihan Program:</strong> 4 Modul</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 2 Tombol Tindakan Sesuai Permintaan: Lihat Detail & Tanya Paket -->
+                  <div class="mt-auto pt-2 border-top border-light">
+                    <div class="row g-2">
+                      <!-- Tombol 1: Lihat Detail menuju /paket/(nama-paket).html -->
+                      <div class="col-12 col-sm-6">
+                        <a
+                          href={pkg.detailUrl}
+                          class="btn btn-outline-primary w-100 py-2.5 rounded-pill fw-semibold small d-inline-flex align-items-center justify-content-center gap-2"
+                        >
+                          <span>Lihat Detail</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                          </svg>
+                        </a>
+                      </div>
+
+                      <!-- Tombol 2: Tanya Paket menuju WhatsApp -->
+                      <div class="col-12 col-sm-6">
+                        <a
+                          href={waUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="btn-mbo-whatsapp w-100 py-2.5 rounded-pill fw-semibold small d-inline-flex align-items-center justify-content-center gap-2"
+                          aria-label={`Tanya paket ${pkg.title} via WhatsApp (buka tab baru)`}
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.364 2.76 1.057 3.96L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.707 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                          </svg>
+                          <span>Tanya Paket</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- Callout Box Bawah -->
+      <div class="p-4 p-md-5 rounded-4 bg-white border border-light text-center shadow-sm">
+        <div class="d-inline-flex p-3 rounded-circle bg-primary bg-opacity-10 text-primary mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="var(--color-secondary-blue)" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12V6a5 5 0 0 0-5-5"/>
+          </svg>
+        </div>
+        <h2 class="h4 fw-bold mb-2 text-dark">Butuh Paket Khusus atau Kombinasi Aktivitas?</h2>
+        <p class="text-muted small mb-4 mx-auto" style="max-width: 620px;">
+          Tim Malang Batu Outbound siap membantu merancang proposal kegiatan kustom yang mengintegrasikan penginapan villa/resort, konsumsi prasmanan, transportasi bus, hingga petualangan rafting dan offroad.
+        </p>
+        <a href={generalWaLink} target="_blank" rel="noopener noreferrer" class="btn-mbo-whatsapp px-4 py-2.5 d-inline-flex align-items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.364 2.76 1.057 3.96L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.707 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+          </svg>
+          <span>Konsultasi Paket Khusus via WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

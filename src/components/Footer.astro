@@ -1,0 +1,87 @@
+---
+import { siteConfig, getWhatsAppUrl } from '../data/site';
+
+const currentYear = new Date().getFullYear();
+const footerWa = getWhatsAppUrl('Halo, saya ingin menanyakan informasi kegiatan outbound di Malang Batu.');
+
+const networkAreas = [
+  'Kota Batu (Songgoriti, Bumiaji, Selecta)',
+  'Kota Malang (Kawasan Wisata & Edukasi)',
+  'Kabupaten Malang (Coban Rondo, Pujon)',
+  'Kasembon (Arung Jeram & Adventure)',
+  'Coban Talun & Cangar Pegunungan'
+];
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <!-- Col 1: Brand & Positioning -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="d-inline-flex p-2 rounded-3 bg-white mb-3 shadow-sm">
+          <img src="/images/logo-mbo.svg" alt="Malang Batu Outbound" width="160" height="40" class="d-block" />
+        </div>
+        <p class="small text-light text-opacity-75 mb-0 lh-base">
+          {siteConfig.name} adalah mitra terpercaya perancang kegiatan outbound, corporate gathering, team building, dan aktivitas outdoor di Malang Raya &amp; Kota Batu. Program fleksibel, aman, dan terarah.
+        </p>
+      </div>
+
+      <!-- Col 2: Navigasi Halaman (Lebar pas agar dekat dengan Network) -->
+      <div class="col-6 col-md-3 col-lg-2">
+        <h5 class="text-white fw-bold mb-3 fs-6 letter-spacing-1 text-uppercase">Navigasi</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2 small mb-0">
+          {siteConfig.navItems.map((item) => (
+            <li>
+              <a href={item.href} class="text-light text-opacity-75 text-decoration-none transition-base d-inline-block">
+                {item.label}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href="/sitemap-index.xml" class="text-light text-opacity-75 text-decoration-none transition-base d-inline-block" target="_blank" rel="noopener">
+              Sitemap
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Network (Jarak proporsional dengan kolom navigasi) -->
+      <div class="col-6 col-md-3 col-lg-3">
+        <h5 class="text-white fw-bold mb-3 fs-6 letter-spacing-1 text-uppercase">Network</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2 small text-light text-opacity-75 mb-0">
+          {networkAreas.map((area) => (
+            <li class="d-flex align-items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="var(--color-accent-blue)" class="mt-1 flex-shrink-0" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+              </svg>
+              <span>{area}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Col 4: Kontak & Konsultasi -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <h5 class="text-white fw-bold mb-3 fs-6 letter-spacing-1 text-uppercase">Konsultasi Acara</h5>
+        <p class="small text-light text-opacity-75 mb-3 lh-base">
+          Diskusikan rencana kegiatan Anda bersama kami untuk rekomendasi program, lokasi terbaik, dan estimasi biaya.
+        </p>
+        <div class="mb-3">
+          <div class="small text-light text-opacity-50">WhatsApp Resmi:</div>
+          <a href={footerWa} target="_blank" rel="noopener noreferrer" class="fw-bold fs-5 text-decoration-none text-white d-inline-flex align-items-center gap-1.5">
+            <span class="text-success">●</span> {siteConfig.phoneDisplay}
+          </a>
+        </div>
+        <div class="small text-light text-opacity-75">
+          <strong>Jam Layanan:</strong><br />
+          {siteConfig.operatingHours}
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright: Teks rata tengah & teks tambahan dihapus -->
+    <div class="pt-4 border-top border-light border-opacity-10 text-center small text-light text-opacity-50">
+      &copy; {currentYear} {siteConfig.name}. Seluruh Hak Cipta Dilindungi.
+    </div>
+  </div>
+</footer>

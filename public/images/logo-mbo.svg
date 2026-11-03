@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
+  <defs>
+    <linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563A6"/>
+      <stop offset="100%" stop-color="#102A43"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="60" height="60" rx="16" fill="url(#logoBg)"/>
+  <!-- Mountain & Tree in Logo -->
+  <polygon points="40,22 24,54 56,54" fill="#FFFFFF"/>
+  <polygon points="40,32 30,54 50,54" fill="#65B7E8"/>
+  <polygon points="48,36 38,54 58,54" fill="#FFD166" opacity="0.9"/>
+  <!-- Text -->
+  <text x="84" y="38" fill="#102A43" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" letter-spacing="-0.5">MALANG BATU</text>
+  <text x="84" y="58" fill="#2563A6" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" letter-spacing="3.5">OUTBOUND</text>
+</svg>

@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { blogPosts, type BlogPost } from '../../data/blog';
+import { getWhatsAppUrl, siteConfig } from '../../data/site';
+
+export function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+export interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+const articleWaLink = getWhatsAppUrl(`Halo, saya membaca artikel "${post.title}" di blog dan ingin konsultasi kegiatan.`);
+---
+
+<BaseLayout
+  title={`${post.title} | Blog Malang Batu Outbound`}
+  description={post.excerpt}
+  canonicalPath={`/blog/${post.slug}/`}
+  activePath="/blog/"
+  type="article"
+>
+  <!-- ARTICLE HERO BANNER -->
+  <section class="position-relative overflow-hidden py-5 text-white" style="background: linear-gradient(135deg, #102A43 0%, #0B1F33 100%);">
+    <div class="position-absolute top-0 start-50 translate-middle-x w-100 h-100 pointer-events-none" style="background: radial-gradient(circle at 50% 15%, rgba(101, 183, 232, 0.14) 0%, transparent 70%);"></div>
+
+    <div class="container position-relative z-1 py-3 py-md-4 text-center" style="max-width: 860px;">
+      <!-- Breadcrumb Nav -->
+      <nav aria-label="breadcrumb" class="mb-3 d-inline-block">
+        <ol class="breadcrumb small mb-0 px-3 py-1.5 rounded-pill" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(4px);">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Beranda</a></li>
+          <li class="breadcrumb-item"><a href="/blog/" class="text-white-50 text-decoration-none">Blog</a></li>
+          <li class="breadcrumb-item active text-truncate" style="color: #65B7E8; max-width: 200px;" aria-current="page">{post.title}</li>
+        </ol>
+      </nav>
+
+      <!-- Badge Pill -->
+      <div class="d-block mb-3">
+        <span class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill" style="background-color: rgba(101, 183, 232, 0.15); border: 1px solid rgba(101, 183, 232, 0.35); color: #65B7E8; font-size: 0.82rem; font-weight: 700; text-transform: uppercase;">
+          {post.category}
+        </span>
+      </div>
+
+      <!-- Main Heading H1 -->
+      <h1 class="display-6 fw-bold text-white mb-3 tracking-tight lh-base">
+        {post.title}
+      </h1>
+
+      <!-- Meta Info -->
+      <div class="d-flex flex-wrap align-items-center justify-content-center gap-3 small text-white text-opacity-75 pt-1">
+        <span>✍️ {post.author}</span>
+        <span>•</span>
+        <span>📅 {post.date}</span>
+        <span>•</span>
+        <span>⏱️ {post.readTime}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT SECTION -->
+  <article class="section-padding bg-white">
+    <div class="container" style="max-width: 840px;">
+      <!-- Featured Image -->
+      <div class="rounded-4 overflow-hidden shadow-sm border border-light mb-4" style="aspect-ratio: 16/9; max-height: 440px;">
+        <img
+          src={post.image}
+          alt={post.alt}
+          width="840"
+          height="480"
+          class="w-100 h-100 object-fit-cover"
+          loading="eager"
+        />
+      </div>
+
+      <!-- Intro Lead -->
+      <div class="p-4 rounded-3 bg-light border-start border-4 border-primary mb-4">
+        <p class="lead text-dark mb-0 fw-medium" style="font-size: 1.05rem; line-height: 1.75;">
+          {post.content.intro}
+        </p>
+      </div>
+
+      <!-- Article Sections -->
+      <div class="article-body mb-5">
+        {post.content.sections.map((sec) => (
+          <div class="mb-4">
+            <h2 class="h4 fw-bold text-dark mb-2.5">{sec.heading}</h2>
+            <p class="text-muted lh-base mb-3" style="font-size: 1rem; line-height: 1.8;">
+              {sec.body}
+            </p>
+            {sec.points && (
+              <ul class="text-muted small ps-3 mb-3 d-flex flex-column gap-1.5">
+                {sec.points.map((pt) => (
+                  <li>{pt}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+
+        <div class="pt-3 border-top border-light-subtle">
+          <h3 class="h5 fw-bold text-dark mb-2">Kesimpulan</h3>
+          <p class="text-muted lh-base mb-0" style="font-size: 1rem; line-height: 1.8;">
+            {post.content.conclusion}
+          </p>
+        </div>
+      </div>
+
+      <!-- Article CTA Box -->
+      <div class="p-4 p-md-5 rounded-4 bg-primary text-white text-center shadow-md position-relative overflow-hidden mb-5" style="background: linear-gradient(135deg, #102A43 0%, #0B1F33 100%) !important;">
+        <h3 class="h4 fw-bold text-white mb-2">Tertarik Menerapkan Konsep Ini untuk Tim Anda?</h3>
+        <p class="small text-white text-opacity-75 mb-4 mx-auto" style="max-width: 580px;">
+          Diskusikan rencana kegiatan gathering, team building, atau outbound instansi Anda langsung bersama fasilitator {siteConfig.name}.
+        </p>
+        <a href={articleWaLink} target="_blank" rel="noopener noreferrer" class="btn-mbo-whatsapp px-4 py-2.5">
+          <span>Konsultasi via WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- Navigation Back to Blog -->
+      <div class="text-center pt-2">
+        <a href="/blog/" class="btn btn-outline-secondary rounded-pill px-4 py-2 small fw-semibold">
+          &larr; Kembali ke Seluruh Artikel
+        </a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+

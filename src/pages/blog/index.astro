@@ -1,0 +1,206 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { blogPosts } from '../../data/blog';
+import { getWhatsAppUrl, siteConfig } from '../../data/site';
+
+const waLink = getWhatsAppUrl('Halo, saya membaca artikel di website Malang Batu Outbound dan ingin konsultasi kegiatan.');
+
+const categories = ['Semua', 'Panduan Perusahaan', 'Tips Lokasi', 'Edukasi & Sekolah', 'Tips Acara'];
+---
+
+<BaseLayout
+  title="Artikel & Panduan Kegiatan Outdoor di Malang Batu | Blog"
+  description="Kumpulan artikel edukatif, panduan memilih lokasi outbound di Batu, tips team building perusahaan, dan checklist perencanaan corporate gathering."
+  canonicalPath="/blog/"
+  activePath="/blog/"
+>
+  <!-- DEDICATED PAGE HERO BANNER (BLOG) -->
+  <section class="position-relative overflow-hidden py-5 text-white" style="background: linear-gradient(135deg, #102A43 0%, #0B1F33 100%);">
+    <!-- Ambient Backdrop Light -->
+    <div class="position-absolute top-0 start-50 translate-middle-x w-100 h-100 pointer-events-none" style="background: radial-gradient(circle at 50% 15%, rgba(101, 183, 232, 0.14) 0%, transparent 70%);"></div>
+
+    <div class="container position-relative z-1 py-3 py-md-4 text-center">
+      <!-- Breadcrumb Nav -->
+      <nav aria-label="breadcrumb" class="mb-3 d-inline-block">
+        <ol class="breadcrumb small mb-0 px-3 py-1.5 rounded-pill" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(4px);">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Beranda</a></li>
+          <li class="breadcrumb-item active" style="color: #65B7E8;" aria-current="page">Blog</li>
+        </ol>
+      </nav>
+
+      <!-- Badge Pill -->
+      <div class="d-block mb-3">
+        <span class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill" style="background-color: rgba(101, 183, 232, 0.15); border: 1px solid rgba(101, 183, 232, 0.35); color: #65B7E8; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;">
+          <span style="display: inline-block; width: 7px; height: 7px; border-radius: 50%; background-color: #25D366;"></span> Pusat Edukasi &amp; Informasi
+        </span>
+      </div>
+
+      <!-- Main Heading H1 -->
+      <h1 class="display-5 fw-bold text-white mb-3 tracking-tight">
+        Artikel &amp; Panduan Kegiatan Outdoor
+      </h1>
+
+      <!-- Subtitle Description -->
+      <p class="lead text-white text-opacity-75 mb-4 mx-auto" style="max-width: 780px; font-size: 1.1rem; line-height: 1.7;">
+        Wawasan praktis, tips memilih lokasi ground, dan panduan merancang outbound, team building, serta corporate gathering yang berkesan di kawasan Malang Raya &amp; Kota Batu.
+      </p>
+
+      <!-- Category Ribbon -->
+      <div class="d-flex flex-wrap justify-content-center gap-2 pt-1">
+        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.82rem;">
+          💼 Panduan Perusahaan
+        </span>
+        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.82rem;">
+          📍 Tips Ground &amp; Lokasi
+        </span>
+        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.82rem;">
+          🎓 Edukasi &amp; Sekolah
+        </span>
+        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.82rem;">
+          📝 Checklist Acara
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAFTAR ARTIKEL DENGAN FILTER -->
+  <section class="section-padding bg-white">
+    <div class="container">
+      <!-- Filter Tabs Kategori -->
+      <div class="d-flex flex-wrap align-items-center justify-content-center gap-2 mb-5">
+        {categories.map((cat, idx) => (
+          <button
+            type="button"
+            class={`blog-filter-btn btn btn-sm px-3.5 py-2 rounded-pill fw-semibold ${idx === 0 ? 'active' : ''}`}
+            data-filter={cat === 'Semua' ? 'all' : cat}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Articles Grid: 3 Kolom x 2 Baris -->
+      <div class="row g-4 mb-5" id="blogGrid">
+        {blogPosts.map((post, idx) => (
+          <div class="col-12 col-md-6 col-lg-4 blog-card-col" data-category={post.category}>
+            <div class="mbo-card h-100 d-flex flex-column">
+              <!-- Article Image -->
+              <div style="aspect-ratio: 16/10;" class="overflow-hidden bg-light position-relative">
+                <a href={`/blog/${post.slug}/`} class="d-block w-100 h-100 text-decoration-none" aria-label={post.title}>
+                  <img
+                    src={post.image}
+                    alt={post.alt}
+                    width="700"
+                    height="450"
+                    loading={idx < 3 ? 'eager' : 'lazy'}
+                    class="w-100 h-100 object-fit-cover transition-base hover-scale"
+                  />
+                </a>
+                <span class="position-absolute top-0 start-0 m-2.5 badge bg-dark bg-opacity-75 text-white small px-2.5 py-1 rounded-pill backdrop-blur" style="font-size: 0.72rem;">
+                  {post.category}
+                </span>
+              </div>
+
+              <!-- Card Body -->
+              <div class="p-3.5 p-xl-4 d-flex flex-column flex-grow-1">
+                <!-- Meta: Date & Read Time -->
+                <div class="d-flex align-items-center justify-content-between small text-muted mb-2" style="font-size: 0.78rem;">
+                  <span>{post.date}</span>
+                  <span>⏱️ {post.readTime}</span>
+                </div>
+
+                <!-- Title -->
+                <h2 class="h6 fw-bold text-dark mb-2 lh-base" style="font-size: 1.05rem;">
+                  <a href={`/blog/${post.slug}/`} class="text-dark text-decoration-none hover-primary transition-base d-block">
+                    {post.title}
+                  </a>
+                </h2>
+
+                <!-- Excerpt -->
+                <p class="small text-muted mb-3 lh-sm flex-grow-1" style="font-size: 0.86rem;">
+                  {post.excerpt}
+                </p>
+
+                <!-- Footer: Author & Read More -->
+                <div class="pt-2.5 border-top border-light d-flex align-items-center justify-content-between mt-auto">
+                  <span class="small text-muted" style="font-size: 0.8rem;">
+                    ✍️ {post.author}
+                  </span>
+                  <a href={`/blog/${post.slug}/`} class="small fw-semibold text-primary text-decoration-none d-inline-flex align-items-center gap-1 hover-arrow">
+                    <span>Baca</span> &rarr;
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Box Konsultasi Penutup -->
+      <div class="p-4 p-md-5 rounded-4 bg-light border border-light-subtle text-center shadow-2xs mt-4">
+        <h3 class="h4 fw-bold text-dark mb-2">Ingin Konsultasi Konsep Acara yang Dibahas?</h3>
+        <p class="text-muted small mb-4 mx-auto" style="max-width: 620px;">
+          Tim fasilitator kami siap berdiskusi langsung untuk menerjemahkan ide kegiatan di atas menjadi skenario nyata bagi instansi Anda.
+        </p>
+        <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-mbo-whatsapp px-4 py-2.5">
+          <span>Konsultasi Gratis via WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-filter-btn {
+    background-color: #FFFFFF;
+    color: var(--color-primary-navy);
+    border: 1px solid var(--color-border);
+    transition: all 0.2s ease;
+  }
+  .blog-filter-btn:hover,
+  .blog-filter-btn.active {
+    background-color: var(--color-primary-navy);
+    color: #FFFFFF;
+    border-color: var(--color-primary-navy);
+  }
+  .hover-scale {
+    transition: transform 0.3s ease;
+  }
+  .hover-scale:hover {
+    transform: scale(1.04);
+  }
+  .hover-primary:hover {
+    color: var(--color-secondary-blue) !important;
+  }
+  .hover-arrow:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<script>
+  function initBlogFilter() {
+    const filterBtns = document.querySelectorAll<HTMLButtonElement>('.blog-filter-btn');
+    const cardCols = document.querySelectorAll<HTMLElement>('.blog-card-col');
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filterVal = btn.getAttribute('data-filter');
+
+        cardCols.forEach((col) => {
+          const colCat = col.getAttribute('data-category');
+          if (filterVal === 'all' || colCat === filterVal) {
+            col.style.display = 'block';
+          } else {
+            col.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  initBlogFilter();
+  document.addEventListener('astro:page-load', initBlogFilter);
+</script>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450" width="700" height="450">
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#251E3E"/>
+      <stop offset="100%" stop-color="#45356D"/>
+    </linearGradient>
+    <pattern id="cardPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="20" cy="20" r="1.5" fill="#FFFFFF" opacity="0.12"/>
+    </pattern>
+  </defs>
+
+  <rect width="700" height="450" fill="url(#cardGrad)"/>
+  <rect width="700" height="450" fill="url(#cardPattern)"/>
+
+  <!-- Mountain Hills in Background of card -->
+  <path d="M0,380 Q180,310 350,340 T700,310 L700,450 L0,450 Z" fill="#000000" opacity="0.18"/>
+  <path d="M0,400 Q200,360 420,380 T700,360 L700,450 L0,450 Z" fill="#000000" opacity="0.25"/>
+
+  <!-- Center Decorative Icon -->
+  <g transform="translate(350, 160)">
+      <circle cx="0" cy="0" r="45" fill="#65B7E8" opacity="0.25"/>
+      <circle cx="0" cy="0" r="28" fill="#FFD166"/>
+      <path d="M-15,-2 C-8,-15 8,-15 15,-2" fill="none" stroke="#102A43" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="-8" cy="-8" r="3" fill="#102A43"/>
+      <circle cx="8" cy="-8" r="3" fill="#102A43"/>
+    </g>
+
+  <!-- Category Badge -->
+  <g transform="translate(45, 45)">
+    <rect width="210" height="34" rx="17" fill="#0B1F33" fill-opacity="0.6" stroke="#65B7E8" stroke-width="1.2"/>
+    <text x="105" y="22" fill="#65B7E8" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="1">AUDIO TERARAH</text>
+  </g>
+
+  <!-- Title Bottom Ribbon -->
+  <g transform="translate(45, 360)">
+    <rect width="610" height="54" rx="12" fill="#0B1F33" fill-opacity="0.82" stroke="#FFFFFF" stroke-opacity="0.15" stroke-width="1"/>
+    <text x="30" y="34" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="18" font-weight="600">Sound System Lapangan Jernih</text>
+  </g>
+</svg>

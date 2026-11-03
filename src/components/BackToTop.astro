@@ -1,0 +1,43 @@
+---
+---
+
+<button
+  type="button"
+  id="backToTopBtn"
+  class="floating-top-btn"
+  aria-label="Kembali ke bagian atas halaman"
+  title="Kembali ke atas"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+    <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+  </svg>
+</button>
+
+<script>
+  function setupBackToTop() {
+    const btn = document.getElementById('backToTopBtn');
+    if (!btn) return;
+
+    function handleScroll() {
+      if (window.scrollY > 300) {
+        btn?.classList.add('visible');
+      } else {
+        btn?.classList.remove('visible');
+      }
+    }
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+  }
+
+  setupBackToTop();
+  document.addEventListener('astro:page-load', setupBackToTop);
+</script>
+

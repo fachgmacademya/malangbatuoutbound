@@ -1,0 +1,370 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig, getWhatsAppUrl } from '../data/site';
+
+const waLink = getWhatsAppUrl('Halo, saya ingin konsultasi kegiatan outbound dan perancangan acara di Malang Batu.');
+
+const coreValues = [
+  {
+    title: 'Safety First (Prioritas Keselamatan)',
+    desc: 'Keselamatan peserta adalah harga mati. Setiap aktivitas didampingi standar operasional prosedur (SOP) mitigasi risiko lapangan, peralatan teruji, dan tim medis P3K siaga.',
+    icon: `<path d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.134a.1.1 0 0 0 .01.003c.006.003.01.005.01.005l.006.002s.002 0 .003-.001a.7.7 0 0 0 .542 0s.002 0 .003.001l.006-.002.01-.005a.1.1 0 0 0 .01-.003q.114-.05.293-.134c.241-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.464 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56"/>`
+  },
+  {
+    title: 'Result & Impactful Experience',
+    desc: 'Outbound bukan sekadar hiburan fisik semata. Melalui simulasi experiential learning dan debriefing mendalam, peserta diajak memetik insight nyata untuk sinergi kerja.',
+    icon: `<path d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 4V3h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2zm3 6.35c.196.14.417.27.658.384.77.365 1.342.924 1.342 1.266v.7c0 .342-.572.901-1.342 1.266a4 4 0 0 1-.658.384V8.35z"/>`
+  },
+  {
+    title: 'Fasilitator Berpengalaman & Energik',
+    desc: 'Didampingi instruktur lapangan dan master game bersertifikasi yang ramah, komunikatif, serta terbiasa menangani dinamika kelompok dari berbagai latar belakang instansi.',
+    icon: `<path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>`
+  },
+  {
+    title: 'Kustomisasi Program & Transparan',
+    desc: 'Kami menyusun alur kegiatan yang disesuaikan dengan kebutuhan riil, durasi waktu, lokasi pilihan, dan plafon anggaran klien secara terbuka dan transparan.',
+    icon: `<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/><path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>`
+  }
+];
+
+const processSteps = [
+  {
+    num: '01',
+    title: 'Analisis Kebutuhan & Tujuan Acara',
+    desc: 'Kami mengidentifikasi sasaran kegiatan, profil peserta, durasi waktu yang diinginkan, dan harapan spesifik manajemen tim Anda.'
+  },
+  {
+    num: '02',
+    title: 'Rekomendasi Konsep & Pemilihan Ground',
+    desc: 'Menyusun proposal skenario aktivitas dan menyelaraskan dengan lokasi destinasi alam terbaik di Malang Raya atau Kota Batu.'
+  },
+  {
+    num: '03',
+    title: 'Eksekusi Dinamis & Pengawalan SOP',
+    desc: 'Fasilitasi seluruh rangkaian games, ice breaking, tantangan kelompok, dan pengkondisian logistik dengan kepatuhan penuh pada keselamatan.'
+  },
+  {
+    num: '04',
+    title: 'Debriefing & Penyerahan Dokumentasi',
+    desc: 'Sesi perenungan nilai kebersamaan, komitmen bersama pasca-acara, dan penyerahan arsip foto video berkualitas tinggi untuk instansi.'
+  }
+];
+
+const targetSegments = [
+  {
+    badge: 'Korporat & Bisnis',
+    title: 'Perusahaan Swasta & BUMN',
+    desc: 'Program team building, employee gathering, rapat kerja outdoor, hingga capacity building untuk meningkatkan performa kerja dan kekompakan lintas divisi.'
+  },
+  {
+    badge: 'Institusi Publik',
+    title: 'Instansi Pemerintah & Lembaga',
+    desc: 'Kegiatan pembinaan jiwa korsa, outbound penyegaran birokrasi, dan rekreasi kebersamaan aparatur dalam suasana alam terbuka yang santai.'
+  },
+  {
+    badge: 'Dunia Pendidikan',
+    title: 'Sekolah, Kampus & Mahasiswa',
+    desc: 'Latihan Dasar Kepemimpinan Siswa (LDKS), pembentukan karakter pelajar, masa orientasi positif, dan edukasi pengenalan ekosistem alam.'
+  },
+  {
+    badge: 'Komunitas & Hobi',
+    title: 'Keluarga Besar & Komunitas',
+    desc: 'Family gathering ceria antar keluarga, temu kangen reuni akbar, serta petualangan seru komunitas pecinta alam dan offroad.'
+  }
+];
+---
+
+<BaseLayout
+  title="Tentang Kami | Malang Batu Outbound"
+  description="Profil lengkap Malang Batu Outbound: mitra terpercaya perancang kegiatan outbound, corporate gathering, team building, dan event alam di Malang Raya & Kota Batu."
+  canonicalPath="/tentang-kami/"
+  activePath="/tentang-kami/"
+>
+  <!-- DEDICATED PAGE HERO BANNER (TENTANG KAMI) -->
+  <section class="position-relative overflow-hidden py-5 text-white" style="background: linear-gradient(135deg, #102A43 0%, #0B1F33 100%);">
+    <!-- Ambient Backdrop Light -->
+    <div class="position-absolute top-0 start-50 translate-middle-x w-100 h-100 pointer-events-none" style="background: radial-gradient(circle at 50% 15%, rgba(101, 183, 232, 0.14) 0%, transparent 70%);"></div>
+
+    <div class="container position-relative z-1 py-3 py-md-4 text-center">
+      <!-- Breadcrumb Nav -->
+      <nav aria-label="breadcrumb" class="mb-3 d-inline-block">
+        <ol class="breadcrumb small mb-0 px-3 py-1.5 rounded-pill" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(4px);">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Beranda</a></li>
+          <li class="breadcrumb-item active" style="color: #65B7E8;" aria-current="page">Tentang Kami</li>
+        </ol>
+      </nav>
+
+      <!-- Badge Pill -->
+      <div class="d-block mb-3">
+        <span class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill" style="background-color: rgba(101, 183, 232, 0.15); border: 1px solid rgba(101, 183, 232, 0.35); color: #65B7E8; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;">
+          <span style="display: inline-block; width: 7px; height: 7px; border-radius: 50%; background-color: #25D366;"></span> Profil &amp; Dedikasi Layanan
+        </span>
+      </div>
+
+      <!-- Main Heading H1 -->
+      <h1 class="display-5 fw-bold text-white mb-3 tracking-tight">
+        Mengenal Malang Batu Outbound Lebih Dekat
+      </h1>
+
+      <!-- Subtitle Description -->
+      <p class="lead text-white text-opacity-75 mb-4 mx-auto" style="max-width: 780px; font-size: 1.1rem; line-height: 1.7;">
+        Mitra perancang kegiatan luar ruang, corporate gathering, dan team building terpercaya di Malang Raya &amp; Kota Batu. Berorientasi pada keselamatan prima, dinamika kebersamaan, dan pengalaman berkesan bagi setiap instansi.
+      </p>
+
+      <!-- Key Commitment Badges Ribbon -->
+      <div class="d-flex flex-wrap justify-content-center gap-2 pt-1">
+        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.85rem;">
+          🛡️ Standard Safety &amp; SOP Lapangan
+        </span>
+        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.85rem;">
+          👥 Fasilitator Bersertifikat &amp; Komunikatif
+        </span>
+        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.85rem;">
+          📋 Perancangan Program Kustom &amp; Fleksibel
+        </span>
+        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.85rem;">
+          📍 Jaringan Venue Alam &amp; Resort Terlengkap
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 1: LATAR BELAKANG & VISI MISI -->
+  <section class="section-padding bg-white">
+    <div class="container">
+      <div class="row align-items-center g-4 g-lg-5 mb-5">
+        <div class="col-12 col-lg-6">
+          <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10 text-primary small fw-bold mb-2">
+            Latar Belakang &amp; Filosofi
+          </div>
+          <h2 class="h2 fw-bold text-dark mb-3">
+            Mengapa Kegiatan Luar Ruang Begitu Bernilai bagi Tim Anda?
+          </h2>
+          <p class="text-muted mb-3 lh-base">
+            Di tengah ritme kerja perkotaan yang padat, rutinitas kantor sering kali menimbulkan kejenuhan emosional, sekat komunikasi antar bagian, hingga penurunan motivasi kolektif. Kami percaya bahwa alam terbuka—khususnya kesejukan lembah dan pegunungan Malang Raya—memiliki kekuatan alami untuk menyegarkan kembali pikiran dan mempererat empati antar sesama.
+          </p>
+          <p class="text-muted mb-4 lh-base">
+            Oleh karena itu, <strong>{siteConfig.name}</strong> tidak memposisikan outbound sebagai sekadar ajang bermain atau berlari di lapangan rumput. Kami merancang setiap sesi melalui metodologi <em>experiential learning</em> (belajar dari pengalaman langsung), di mana setiap simulasi permainan memicu interaksi alami, kerja sama strategis, dan kepemimpinan yang dapat diimplementasikan kembali di tempat kerja.
+          </p>
+          <div class="p-3 rounded-3 bg-light border-start border-4 border-primary">
+            <p class="small text-dark mb-0 fw-medium fst-italic">
+              "Ketika sekat formalitas kantor melebur di bawah naungan pohon pinus dan segarnya udara pegunungan, di situlah kekompakan sejati sebuah tim mulai bertumbuh."
+            </p>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <div class="position-relative rounded-4 overflow-hidden shadow-sm border border-light">
+            <img
+              src="/images/about-malang-outbound.svg"
+              alt="Profil dan Tim Fasilitator Malang Batu Outbound"
+              width="600"
+              height="450"
+              class="w-100 h-auto object-fit-cover d-block"
+              loading="lazy"
+            />
+            <div class="p-3 bg-white border-top">
+              <div class="d-flex align-items-center gap-3">
+                <div class="d-inline-flex p-2.5 rounded-circle bg-primary bg-opacity-10 text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="fw-bold text-dark small">Berbasis di Kota Wisata Batu &amp; Malang Raya</div>
+                  <div class="text-muted" style="font-size: 0.8rem;">Melayani puluhan instansi &amp; komunitas setiap musim kegiatan</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visi & Misi Box -->
+      <div class="p-4 p-md-5 rounded-4 bg-light border border-light-subtle shadow-2xs">
+        <div class="row g-4 align-items-center">
+          <div class="col-12 col-lg-5">
+            <h3 class="h4 fw-bold text-primary mb-3">Visi &amp; Komitmen Utama</h3>
+            <p class="text-muted mb-0 lh-base">
+              Menjadi mitra perancang dan fasilitator kegiatan luar ruang terdepan di Jawa Timur yang diakui atas profesionalisme, komitmen keselamatan tinggi, serta kemampuan memberikan dampak transformasi positif bagi setiap instansi yang kami layani.
+            </p>
+          </div>
+          <div class="col-12 col-lg-7 border-start-lg border-secondary border-opacity-15 ps-lg-4">
+            <h4 class="h6 fw-bold text-dark text-uppercase letter-spacing-1 mb-3">Misi Operasional Kami</h4>
+            <ul class="list-unstyled small text-muted mb-0 d-flex flex-column gap-2.5">
+              <li class="d-flex align-items-start gap-2">
+                <span class="text-success fw-bold">✓</span>
+                <span>Menyediakan program outbound dan gathering yang adaptif terhadap karakteristik unik peserta.</span>
+              </li>
+              <li class="d-flex align-items-start gap-2">
+                <span class="text-success fw-bold">✓</span>
+                <span>Menerapkan prosedur keselamatan ketat demi kenyamanan dan rasa aman penuh sepanjang acara.</span>
+              </li>
+              <li class="d-flex align-items-start gap-2">
+                <span class="text-success fw-bold">✓</span>
+                <span>Mengembangkan instruktur dan fasilitator yang berintegritas, komunikatif, dan kaya wawasan lapangan.</span>
+              </li>
+              <li class="d-flex align-items-start gap-2">
+                <span class="text-success fw-bold">✓</span>
+                <span>Mendukung kemajuan ekowisata berkelanjutan dan memberdayakan masyarakat serta potensi lokal di Malang Raya.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: NILAI-NILAI UTAMA KAMI (CORE VALUES) -->
+  <section class="section-padding bg-light">
+    <div class="container">
+      <div class="text-center mb-5" style="max-width: 720px; margin: 0 auto;">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10 text-primary small fw-bold mb-2">
+          Fondasi Pelayanan
+        </div>
+        <h2 class="h2 fw-bold text-dark mb-3">Empat Nilai Pokok Kami</h2>
+        <p class="text-muted small">
+          Komitmen yang senantiasa melandasi setiap interaksi dan operasional di lapangan demi kepuasan dan keselamatan rombongan Anda.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        {coreValues.map((val) => (
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="p-4 rounded-4 bg-white border border-light h-100 shadow-sm d-flex flex-column transition-base">
+              <div class="d-inline-flex p-3 rounded-3 bg-primary bg-opacity-10 text-primary mb-3 align-self-start">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" set:html={val.icon} />
+              </div>
+              <h3 class="h5 fw-bold text-dark mb-2">{val.title}</h3>
+              <p class="small text-muted mb-0 lh-base flex-grow-1">{val.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: ALUR PERANCANGAN 4 LANGKAH -->
+  <section class="section-padding bg-white">
+    <div class="container">
+      <div class="text-center mb-5" style="max-width: 720px; margin: 0 auto;">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10 text-primary small fw-bold mb-2">
+          Metodologi Kerja
+        </div>
+        <h2 class="h2 fw-bold text-dark mb-3">Alur Kerja Sama yang Jelas &amp; Terstruktur</h2>
+        <p class="text-muted small">
+          Dari tahap diskusi awal hingga pelaksanaan di hari H, kami memastikan setiap tahapan berjalan transparan tanpa merepotkan panitia internal Anda.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        {processSteps.map((step) => (
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="p-4 rounded-4 bg-light border border-light-subtle h-100 position-relative shadow-2xs">
+              <div class="display-6 fw-extrabold text-primary text-opacity-25 mb-2">{step.num}</div>
+              <h3 class="h5 fw-bold text-dark mb-2">{step.title}</h3>
+              <p class="small text-muted mb-0 lh-base">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: SEGMEN KELOMPOK YANG KAMI LAYANI -->
+  <section class="section-padding bg-light">
+    <div class="container">
+      <div class="text-center mb-5" style="max-width: 720px; margin: 0 auto;">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10 text-primary small fw-bold mb-2">
+          Jangkauan Klien
+        </div>
+        <h2 class="h2 fw-bold text-dark mb-3">Kelompok yang Kami Dampingi</h2>
+        <p class="text-muted small">
+          Pengalaman kami merentang luas untuk memfasilitasi berbagai karakteristik instansi dengan pendekatan yang tepat sasaran.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        {targetSegments.map((seg) => (
+          <div class="col-12 col-md-6">
+            <div class="p-4 rounded-4 bg-white border border-light h-100 shadow-sm d-flex flex-column justify-content-between">
+              <div>
+                <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-pill small fw-bold mb-2">
+                  {seg.badge}
+                </span>
+                <h3 class="h5 fw-bold text-dark mb-2">{seg.title}</h3>
+                <p class="small text-muted mb-0 lh-base">{seg.desc}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: AREA LAYANAN OPERASIONAL -->
+  <section class="section-padding bg-white">
+    <div class="container">
+      <div class="p-4 p-md-5 rounded-4 bg-primary text-white position-relative overflow-hidden shadow-md" style="background: linear-gradient(135deg, #102A43 0%, #0B1F33 100%) !important;">
+        <div class="row align-items-center g-4">
+          <div class="col-12 col-lg-8">
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background-color: rgba(101, 183, 232, 0.15); border: 1px solid rgba(101, 183, 232, 0.35); color: #65B7E8; font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">
+              Cakupan Geografis
+            </div>
+            <h2 class="display-6 fw-bold text-white mb-3">Area Operasional &amp; Jaringan Destinasi</h2>
+            <p class="lead text-white text-opacity-75 mb-3" style="font-size: 1.05rem;">
+              Kami bermitra erat dengan pengelola kawasan wisata alam terkemuka, pemilik resort, dan komunitas adventure lokal untuk memastikan ketersediaan ground terbaik:
+            </p>
+            <div class="row g-3 pt-1">
+              <div class="col-12 col-sm-6">
+                <div class="p-3 rounded-3 h-100" style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12);">
+                  <div class="d-flex align-items-center gap-1.5 mb-1.5 text-white fw-bold small">
+                    <span style="color: #65B7E8;">📍</span> Kota Wisata Batu
+                  </div>
+                  <div class="small text-white text-opacity-75 lh-base">
+                    Songgoriti, Bumiaji, Coban Talun, Coban Rais, Coban Putri, Selecta
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6">
+                <div class="p-3 rounded-3 h-100" style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12);">
+                  <div class="d-flex align-items-center gap-1.5 mb-1.5 text-white fw-bold small">
+                    <span style="color: #65B7E8;">📍</span> Kabupaten Malang
+                  </div>
+                  <div class="small text-white text-opacity-75 lh-base">
+                    Coban Rondo Pujon, Kasembon Rafting, Dau, Wagir &amp; Tumpang
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6">
+                <div class="p-3 rounded-3 h-100" style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12);">
+                  <div class="d-flex align-items-center gap-1.5 mb-1.5 text-white fw-bold small">
+                    <span style="color: #65B7E8;">📍</span> Kota Malang
+                  </div>
+                  <div class="small text-white text-opacity-75 lh-base">
+                    Pusat kota, hotel convention hall, dan taman rekreasi edukasi
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6">
+                <div class="p-3 rounded-3 h-100" style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12);">
+                  <div class="d-flex align-items-center gap-1.5 mb-1.5 text-white fw-bold small">
+                    <span style="color: #65B7E8;">📍</span> Ekspedisi Khusus
+                  </div>
+                  <div class="small text-white text-opacity-75 lh-base">
+                    Lautan Pasir Bromo (TNBTS) &amp; Panorama Air Terjun Tumpak Sewu
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-4 text-lg-end text-center">
+            <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-mbo-whatsapp px-4 py-3 fs-6 d-inline-block">
+              <span>Diskusikan Rencana Tim Anda</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
