@@ -28,7 +28,7 @@ export const facilitiesData: FacilityItem[] = [
     ],
     capacity: '50 - 600+ Peserta',
     suitableFor: ['Corporate Gathering', 'Team Building', 'LDKS Sekolah'],
-    image: '/images/destination-coban-rondo.svg',
+    image: '/images/destination-coban-rondo.jpg',
     alt: 'Fasilitas ground outbound dan camping di kawasan wisata alam Coban Rondo Pujon Malang'
   },
   {
@@ -46,7 +46,7 @@ export const facilitiesData: FacilityItem[] = [
     ],
     capacity: '30 - 350 Peserta',
     suitableFor: ['Fun Games', 'Gathering Komunitas', 'Camping Ceria'],
-    image: '/images/destination-coban-rais.svg',
+    image: '/images/destination-coban-rais.jpg',
     alt: 'Fasilitas lapangan outbound dan perkemahan di Coban Rais Oro-oro Ombo Kota Batu'
   },
   {
@@ -64,7 +64,7 @@ export const facilitiesData: FacilityItem[] = [
     ],
     capacity: '30 - 250 Peserta',
     suitableFor: ['Outbound + Offroad', 'Team Building', 'Family Outing'],
-    image: '/images/destination-coban-putri.svg',
+    image: '/images/destination-coban-putri.jpg',
     alt: 'Fasilitas ground outbound dan lintasan offroad di Coban Putri Kota Batu'
   },
   {
@@ -82,7 +82,7 @@ export const facilitiesData: FacilityItem[] = [
     ],
     capacity: '50 - 500+ Peserta',
     suitableFor: ['Leadership Camp', 'Team Building', 'Glamping Outbound'],
-    image: '/images/destination-coban-talun.svg',
+    image: '/images/destination-coban-talun.jpg',
     alt: 'Fasilitas area ground outbound dan camping glamping di Coban Talun Bumiaji Batu'
   },
   {
@@ -100,7 +100,7 @@ export const facilitiesData: FacilityItem[] = [
     ],
     capacity: '30 - 200 Peserta',
     suitableFor: ['Fun Games Santai', 'Reuni Komunitas', 'Gathering Senja'],
-    image: '/images/destination-payung-pinus.svg',
+    image: '/images/destination-payung-pinus.jpg',
     alt: 'Fasilitas ground gathering dan pemandangan di kawasan Payung Pinus Songgoriti Batu'
   },
   {
@@ -118,7 +118,7 @@ export const facilitiesData: FacilityItem[] = [
     ],
     capacity: '20 - 250 Peserta',
     suitableFor: ['Arung Jeram Rafting', 'Uji Adrenalin', 'Corporate Adventure'],
-    image: '/images/destination-kaliwatu-rafting.svg',
+    image: '/images/destination-kaliwatu-rafting.jpg',
     alt: 'Fasilitas basecamp arung jeram dan perlengkapan rafting di Kaliwatu Rafting Kota Batu'
   },
   {
@@ -136,7 +136,7 @@ export const facilitiesData: FacilityItem[] = [
     ],
     capacity: '20 - 200 Peserta',
     suitableFor: ['Corporate Outing VIP', 'Konvoi Jeep 4x4', 'Sunrise Hunting'],
-    image: '/images/destination-gunung-bromo.svg',
+    image: '/images/destination-gunung-bromo.jpg',
     alt: 'Fasilitas armada jeep dan kawasan gathering alam di Gunung Bromo TNBTS Jawa Timur'
   },
   {
@@ -154,7 +154,7 @@ export const facilitiesData: FacilityItem[] = [
     ],
     capacity: '15 - 150 Peserta',
     suitableFor: ['Trekking Ekspedisi', 'Wisata Petualangan', 'Karakter Tangguh'],
-    image: '/images/destination-tumpak-sewu.svg',
+    image: '/images/destination-tumpak-sewu.jpg',
     alt: 'Fasilitas viewpoint dan jalur trekking di Air Terjun Tumpak Sewu Malang'
   },
   {
@@ -172,7 +172,7 @@ export const facilitiesData: FacilityItem[] = [
     ],
     capacity: '30 - 400 Peserta',
     suitableFor: ['Corporate Gathering VIP', 'Raker + Outbound', 'Gala Dinner'],
-    image: '/images/destination-jambuluwuk.svg',
+    image: '/images/destination-jambuluwuk.jpg',
     alt: 'Fasilitas lapangan outbound privat dan convention hall di Jambuluwuk Resort Kota Batu'
   }
 ];

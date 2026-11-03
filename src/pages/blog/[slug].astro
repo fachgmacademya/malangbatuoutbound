@@ -15,7 +15,13 @@ export interface Props {
 }
 
 const { post } = Astro.props;
-const articleWaLink = getWhatsAppUrl(`Halo, saya membaca artikel "${post.title}" di blog dan ingin konsultasi kegiatan.`);
+
+// WhatsApp direct links
+const promoWaLink = getWhatsAppUrl(post.promoBanner.waMessage);
+const articleInquiryWaLink = getWhatsAppUrl(`Halo Malang Batu Outbound, saya membaca artikel "${post.title}" di blog dan ingin konsultasi lebih lanjut.`);
+
+// 2 Artikel Terkait (karena total ada 3 artikel, artikel terkait ditampilkan 2 kolom)
+const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 2);
 ---
 
 <BaseLayout
@@ -25,21 +31,21 @@ const articleWaLink = getWhatsAppUrl(`Halo, saya membaca artikel "${post.title}"
   activePath="/blog/"
   type="article"
 >
-  <!-- ARTICLE HERO BANNER -->
+  <!-- DEDICATED ARTICLE HERO BANNER -->
   <section class="position-relative overflow-hidden py-5 text-white" style="background: linear-gradient(135deg, #102A43 0%, #0B1F33 100%);">
-    <div class="position-absolute top-0 start-50 translate-middle-x w-100 h-100 pointer-events-none" style="background: radial-gradient(circle at 50% 15%, rgba(101, 183, 232, 0.14) 0%, transparent 70%);"></div>
+    <div class="position-absolute top-0 start-50 translate-middle-x w-100 h-100 pointer-events-none" style="background: radial-gradient(circle at 50% 15%, rgba(101, 183, 232, 0.16) 0%, transparent 70%);"></div>
 
-    <div class="container position-relative z-1 py-3 py-md-4 text-center" style="max-width: 860px;">
+    <div class="container position-relative z-1 py-2 py-md-3 text-center" style="max-width: 900px;">
       <!-- Breadcrumb Nav -->
       <nav aria-label="breadcrumb" class="mb-3 d-inline-block">
         <ol class="breadcrumb small mb-0 px-3 py-1.5 rounded-pill" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(4px);">
           <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Beranda</a></li>
           <li class="breadcrumb-item"><a href="/blog/" class="text-white-50 text-decoration-none">Blog</a></li>
-          <li class="breadcrumb-item active text-truncate" style="color: #65B7E8; max-width: 200px;" aria-current="page">{post.title}</li>
+          <li class="breadcrumb-item active text-truncate" style="color: #65B7E8; max-width: 320px;" aria-current="page">{post.title}</li>
         </ol>
       </nav>
 
-      <!-- Badge Pill -->
+      <!-- Badge Category -->
       <div class="d-block mb-3">
         <span class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill" style="background-color: rgba(101, 183, 232, 0.15); border: 1px solid rgba(101, 183, 232, 0.35); color: #65B7E8; font-size: 0.82rem; font-weight: 700; text-transform: uppercase;">
           {post.category}
@@ -51,9 +57,9 @@ const articleWaLink = getWhatsAppUrl(`Halo, saya membaca artikel "${post.title}"
         {post.title}
       </h1>
 
-      <!-- Meta Info -->
-      <div class="d-flex flex-wrap align-items-center justify-content-center gap-3 small text-white text-opacity-75 pt-1">
-        <span>✍️ {post.author}</span>
+      <!-- Meta Info (Tanpa Foto Profil Penulis di Hero Sesuai Instruksi) -->
+      <div class="d-flex flex-wrap align-items-center justify-content-center gap-2 gap-md-3 small text-white text-opacity-75 pt-1">
+        <span>✍️ {post.author.name}</span>
         <span>•</span>
         <span>📅 {post.date}</span>
         <span>•</span>
@@ -62,72 +68,541 @@ const articleWaLink = getWhatsAppUrl(`Halo, saya membaca artikel "${post.title}"
     </div>
   </section>
 
-  <!-- ARTICLE CONTENT SECTION -->
-  <article class="section-padding bg-white">
-    <div class="container" style="max-width: 840px;">
-      <!-- Featured Image -->
-      <div class="rounded-4 overflow-hidden shadow-sm border border-light mb-4" style="aspect-ratio: 16/9; max-height: 440px;">
-        <img
-          src={post.image}
-          alt={post.alt}
-          width="840"
-          height="480"
-          class="w-100 h-100 object-fit-cover"
-          loading="eager"
-        />
+  <!-- ARTICLE MAIN CONTENT CONTAINER -->
+  <article class="section-padding bg-white pt-4 pt-md-5">
+    <div class="container" style="max-width: 860px;">
+      
+      <!-- GAMBAR 1 DARI 2: GAMBAR UTAMA DI BAGIAN ATAS SENDIRI (UKURAN 1200 x 675) -->
+      <figure class="figure w-100 mb-4 pb-2">
+        <div class="rounded-4 overflow-hidden shadow-sm border border-light" style="aspect-ratio: 1200 / 675; width: 100%;">
+          <img
+            src={post.image}
+            alt={post.alt}
+            width="1200"
+            height="675"
+            class="w-100 h-100 object-fit-cover"
+            loading="eager"
+          />
+        </div>
+        <figcaption class="figure-caption text-center small text-muted mt-2.5 fst-italic px-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-camera me-1 text-secondary" viewBox="0 0 16 16">
+            <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4z"/>
+            <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+          </svg>
+          <span class="fw-semibold text-secondary">Keterangan Foto:</span> {post.imageCaption}
+        </figcaption>
+      </figure>
+
+      <!-- TOC OTOMATIS BACA H2 DAN H3 (TAMPILAN RAPI DENGAN BUKA TUTUP OTOMATIS) -->
+      <div class="article-toc-box p-3.5 p-md-4 mb-4 mb-md-5" id="articleTocContainer">
+        <div class="d-flex align-items-center justify-content-between cursor-pointer" id="tocToggleHeader">
+          <div class="d-flex align-items-center gap-2 fw-bold text-dark fs-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="text-primary" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z"/>
+              <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z"/>
+              <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5zM2 7h1v1H2zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm1 .5H2v1h1z"/>
+            </svg>
+            <span>Daftar Isi Artikel</span>
+          </div>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary rounded-pill px-3 py-1 d-inline-flex align-items-center gap-1.5"
+            id="tocToggleBtn"
+            aria-expanded="true"
+            aria-controls="tocCollapseContent"
+          >
+            <span id="tocToggleLabel">Tutup</span>
+            <svg id="tocChevron" class="transition-base" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+            </svg>
+          </button>
+        </div>
+
+        <nav id="tocCollapseContent" class="mt-3 pt-3 border-top border-secondary border-opacity-15" aria-label="Daftar Isi Konten">
+          <div class="d-flex flex-column gap-2" id="tocAutoList">
+            {post.sections.map((sec, secIdx) => (
+              <div class="toc-group-item">
+                <a href={`#${sec.id}`} class="toc-link-h2">
+                  <span class="text-primary fw-bold">{secIdx + 1}.</span>
+                  <span>{sec.heading}</span>
+                </a>
+                {sec.subsections && sec.subsections.length > 0 && (
+                  <div class="toc-sub-group">
+                    {sec.subsections.map((sub) => (
+                      <a href={`#${sub.id}`} class="toc-link-h3">
+                        <span class="text-muted opacity-75">•</span>
+                        <span>{sub.heading}</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+            <div class="toc-group-item">
+              <a href="#kesimpulan-artikel" class="toc-link-h2">
+                <span class="text-primary fw-bold">•</span>
+                <span>{post.conclusion.heading}</span>
+              </a>
+            </div>
+            <div class="toc-group-item">
+              <a href="#faq-artikel" class="toc-link-h2">
+                <span class="text-primary fw-bold">•</span>
+                <span>Pertanyaan yang Sering Diajukan (FAQ)</span>
+              </a>
+            </div>
+          </div>
+        </nav>
       </div>
 
-      <!-- Intro Lead -->
-      <div class="p-4 rounded-3 bg-light border-start border-4 border-primary mb-4">
-        <p class="lead text-dark mb-0 fw-medium" style="font-size: 1.05rem; line-height: 1.75;">
-          {post.content.intro}
-        </p>
-      </div>
+      <!-- KONTEN LENGKAP ARTIKEL -->
+      <div class="article-content lh-lg text-dark" id="mainArticleBody" style="font-size: 1.05rem; line-height: 1.85;">
+        
+        <!-- SECTION 1 -->
+        {post.sections[0] && (
+          <section class="mb-4 mb-md-5" id={post.sections[0].id}>
+            <h2 class="h3 fw-bold text-dark mb-3 pt-2" style="color: #102A43;">
+              {post.sections[0].heading}
+            </h2>
+            {post.sections[0].intro && post.sections[0].intro.map((p) => (
+              <p class="text-muted mb-3">{p}</p>
+            ))}
 
-      <!-- Article Sections -->
-      <div class="article-body mb-5">
-        {post.content.sections.map((sec) => (
-          <div class="mb-4">
-            <h2 class="h4 fw-bold text-dark mb-2.5">{sec.heading}</h2>
-            <p class="text-muted lh-base mb-3" style="font-size: 1rem; line-height: 1.8;">
-              {sec.body}
-            </p>
+            {post.sections[0].subsections && post.sections[0].subsections.map((sub) => (
+              <div class="mt-4 mb-3" id={sub.id}>
+                <h3 class="h5 fw-bold text-dark mb-2" style="color: #243B53;">
+                  {sub.heading}
+                </h3>
+                {sub.content.map((p) => (
+                  <p class="text-muted mb-3">{p}</p>
+                ))}
+              </div>
+            ))}
+          </section>
+        )}
+
+        <!-- BACA JUGA #1 (KLIK PADA TEKS JUDUL) -->
+        <div class="baca-juga-box my-4 my-md-4.5 p-3 p-md-3.5 rounded-3 shadow-2xs">
+          <div class="d-flex align-items-center gap-3">
+            <span class="baca-juga-tag px-2.5 py-1 rounded-pill flex-shrink-0">
+              BACA JUGA
+            </span>
+            <a href={`/blog/${post.bacaJuga[0].slug}/`} class="baca-juga-title text-decoration-none">
+              <span>{post.bacaJuga[0].title}</span>
+              <span class="text-primary ms-1">&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- GAMBAR 2 DARI 2: TEPAT BERADA DI ATAS H2 SECTION 2 (UKURAN 1200 x 675) -->
+        <figure class="figure w-100 my-4 my-md-5">
+          <div class="rounded-4 overflow-hidden shadow-sm border border-light" style="aspect-ratio: 1200 / 675; width: 100%;">
+            <img
+              src={post.supportingImage.image}
+              alt={post.supportingImage.alt}
+              width="1200"
+              height="675"
+              class="w-100 h-100 object-fit-cover"
+              loading="lazy"
+            />
+          </div>
+          <figcaption class="figure-caption text-center small text-muted mt-2.5 fst-italic px-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-camera me-1 text-secondary" viewBox="0 0 16 16">
+              <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4z"/>
+              <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+            </svg>
+            <span class="fw-semibold text-secondary">Keterangan Foto:</span> {post.supportingImage.caption}
+          </figcaption>
+        </figure>
+
+        <!-- SECTION 2 (LANGSUNG DI BAWAH GAMBAR 2) -->
+        {post.sections[1] && (
+          <section class="mb-4 mb-md-5" id={post.sections[1].id}>
+            <h2 class="h3 fw-bold text-dark mb-3 pt-2" style="color: #102A43;">
+              {post.sections[1].heading}
+            </h2>
+            {post.sections[1].intro && post.sections[1].intro.map((p) => (
+              <p class="text-muted mb-3">{p}</p>
+            ))}
+
+            {post.sections[1].subsections && post.sections[1].subsections.map((sub) => (
+              <div class="mt-4 mb-3" id={sub.id}>
+                <h3 class="h5 fw-bold text-dark mb-2" style="color: #243B53;">
+                  {sub.heading}
+                </h3>
+                {sub.content.map((p) => (
+                  <p class="text-muted mb-3">{p}</p>
+                ))}
+              </div>
+            ))}
+          </section>
+        )}
+
+        <!-- BACA JUGA #2 (KLIK PADA TEKS JUDUL) -->
+        <div class="baca-juga-box my-4 my-md-4.5 p-3 p-md-3.5 rounded-3 shadow-2xs">
+          <div class="d-flex align-items-center gap-3">
+            <span class="baca-juga-tag px-2.5 py-1 rounded-pill flex-shrink-0">
+              BACA JUGA
+            </span>
+            <a href={`/blog/${post.bacaJuga[1].slug}/`} class="baca-juga-title text-decoration-none">
+              <span>{post.bacaJuga[1].title}</span>
+              <span class="text-primary ms-1">&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- SECTION 3 & BEYOND -->
+        {post.sections.slice(2).map((sec) => (
+          <section class="mb-4 mb-md-5" id={sec.id}>
+            <h2 class="h3 fw-bold text-dark mb-3 pt-2" style="color: #102A43;">
+              {sec.heading}
+            </h2>
+            {sec.intro && sec.intro.map((p) => (
+              <p class="text-muted mb-3">{p}</p>
+            ))}
+
+            {sec.subsections && sec.subsections.map((sub) => (
+              <div class="mt-4 mb-3" id={sub.id}>
+                <h3 class="h5 fw-bold text-dark mb-2" style="color: #243B53;">
+                  {sub.heading}
+                </h3>
+                {sub.content.map((p) => (
+                  <p class="text-muted mb-3">{p}</p>
+                ))}
+              </div>
+            ))}
+
             {sec.points && (
-              <ul class="text-muted small ps-3 mb-3 d-flex flex-column gap-1.5">
+              <ul class="text-muted ps-3 mb-3 d-flex flex-column gap-2">
                 {sec.points.map((pt) => (
                   <li>{pt}</li>
                 ))}
               </ul>
             )}
-          </div>
+          </section>
         ))}
 
-        <div class="pt-3 border-top border-light-subtle">
-          <h3 class="h5 fw-bold text-dark mb-2">Kesimpulan</h3>
-          <p class="text-muted lh-base mb-0" style="font-size: 1rem; line-height: 1.8;">
-            {post.content.conclusion}
-          </p>
+        <!-- KESIMPULAN -->
+        <section class="mb-4 mb-md-5 pt-3" id="kesimpulan-artikel">
+          <div class="p-4 p-md-4.5 rounded-4 bg-light border border-light-subtle">
+            <h2 class="h4 fw-bold text-dark mb-3" style="color: #102A43;">
+              {post.conclusion.heading}
+            </h2>
+            {post.conclusion.text.map((p) => (
+              <p class="text-muted mb-3 lh-base">{p}</p>
+            ))}
+          </div>
+        </section>
+
+        <!-- FAQ (FREQUENTLY ASKED QUESTIONS) -->
+        <section class="mb-4 mb-md-5" id="faq-artikel">
+          <h2 class="h4 fw-bold text-dark mb-3 pt-2" style="color: #102A43;">
+            Pertanyaan yang Sering Diajukan (FAQ)
+          </h2>
+          <div class="accordion accordion-flush rounded-4 overflow-hidden border border-light-subtle shadow-2xs" id="blogFaqAccordion">
+            {post.faq.map((item, idx) => (
+              <div class="accordion-item border-bottom">
+                <h3 class="accordion-header" id={`faqHeading${idx}`}>
+                  <button
+                    class="accordion-button collapsed fw-bold text-dark small py-3"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target={`#faqCollapse${idx}`}
+                    aria-expanded="false"
+                    aria-controls={`faqCollapse${idx}`}
+                    style="font-size: 0.96rem;"
+                  >
+                    {item.question}
+                  </button>
+                </h3>
+                <div
+                  id={`faqCollapse${idx}`}
+                  class="accordion-collapse collapse"
+                  aria-labelledby={`faqHeading${idx}`}
+                  data-bs-parent="#blogFaqAccordion"
+                >
+                  <div class="accordion-body text-muted small lh-base py-3 bg-light bg-opacity-50" style="font-size: 0.92rem; line-height: 1.75;">
+                    {item.answer}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+      </div>
+
+      <!-- SHARE ARTIKEL AKTIF KE WA DAN SOSIAL MEDIA -->
+      <div class="p-3.5 p-md-4 rounded-4 bg-light border border-light-subtle my-4 my-md-5">
+        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+          <div class="d-flex align-items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-primary" viewBox="0 0 16 16">
+              <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
+            </svg>
+            <span class="fw-bold text-dark fs-6">Bagikan Artikel Ini:</span>
+          </div>
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <!-- Share WhatsApp -->
+            <a
+              id="shareWaBtn"
+              href={`https://api.whatsapp.com/send?text=${encodeURIComponent(post.title + ' - https://malangbatuoutbound.com/blog/' + post.slug + '/')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="share-btn share-wa"
+              aria-label="Bagikan ke WhatsApp"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.364 2.76 1.057 3.96L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326z"/></svg>
+              <span>WhatsApp</span>
+            </a>
+            <!-- Share Facebook -->
+            <a
+              id="shareFbBtn"
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://malangbatuoutbound.com/blog/' + post.slug + '/')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="share-btn share-fb"
+              aria-label="Bagikan ke Facebook"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/></svg>
+              <span>Facebook</span>
+            </a>
+            <!-- Share Twitter / X -->
+            <a
+              id="shareXBtn"
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent('https://malangbatuoutbound.com/blog/' + post.slug + '/')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="share-btn share-x"
+              aria-label="Bagikan ke X Twitter"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg>
+              <span>X</span>
+            </a>
+            <!-- Share LinkedIn -->
+            <a
+              id="shareInBtn"
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://malangbatuoutbound.com/blog/' + post.slug + '/')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="share-btn share-in"
+              aria-label="Bagikan ke LinkedIn"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+            <!-- Salin Tautan -->
+            <button
+              type="button"
+              class="share-btn share-copy border-0"
+              id="copyLinkBtn"
+              aria-label="Salin Tautan Artikel"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z"/></svg>
+              <span id="copyLinkText">Salin Link</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Article CTA Box -->
-      <div class="p-4 p-md-5 rounded-4 bg-primary text-white text-center shadow-md position-relative overflow-hidden mb-5" style="background: linear-gradient(135deg, #102A43 0%, #0B1F33 100%) !important;">
-        <h3 class="h4 fw-bold text-white mb-2">Tertarik Menerapkan Konsep Ini untuk Tim Anda?</h3>
-        <p class="small text-white text-opacity-75 mb-4 mx-auto" style="max-width: 580px;">
-          Diskusikan rencana kegiatan gathering, team building, atau outbound instansi Anda langsung bersama fasilitator {siteConfig.name}.
-        </p>
-        <a href={articleWaLink} target="_blank" rel="noopener noreferrer" class="btn-mbo-whatsapp px-4 py-2.5">
-          <span>Konsultasi via WhatsApp</span>
+      <!-- BIO PENULIS (FACHRY RENDY P. - RAPI & PROPORSIONAL DI DESKTOP & MOBILE) -->
+      <div class="author-bio-card p-4 p-md-4.5 my-4 my-md-5">
+        <div class="d-flex flex-column flex-md-row align-items-center align-items-md-center gap-3.5 gap-md-4 text-center text-md-start">
+          <div class="flex-shrink-0">
+            <img
+              src={post.author.avatar}
+              alt={post.author.name}
+              width="84"
+              height="84"
+              class="author-avatar-circle"
+            />
+          </div>
+          <div class="flex-grow-1">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-start gap-2 mb-1">
+              <h3 class="h5 fw-bold text-dark mb-0">{post.author.name}</h3>
+              <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 rounded-pill px-2.5 py-0.5" style="font-size: 0.72rem;">
+                ✓ Terverifikasi
+              </span>
+            </div>
+            <p class="small text-primary fw-semibold mb-2">{post.author.role}</p>
+            <p class="small text-muted mb-0 lh-base" style="font-size: 0.93rem; line-height: 1.7;">
+              {post.author.bio}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARTIKEL TERKAIT (2 KOLOM KARENA MASIH 3 ARTIKEL) -->
+      <section class="pt-4 border-top border-light-subtle my-5">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+          <div>
+            <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 rounded-pill px-3 py-1 text-uppercase fw-bold small mb-2">
+              Rekomendasi Bacaan
+            </span>
+            <h2 class="h4 fw-bold text-dark mb-0">Artikel Terkait Lainnya</h2>
+          </div>
+          <a href="/blog/" class="btn btn-outline-secondary rounded-pill px-3 py-1.5 small fw-semibold d-none d-sm-inline-flex">
+            Lihat Semua Artikel &rarr;
+          </a>
+        </div>
+
+        <!-- 2 Kolom Grid -->
+        <div class="row g-4">
+          {relatedPosts.map((rel) => (
+            <div class="col-12 col-md-6">
+              <div class="mbo-card h-100 d-flex flex-column">
+                <!-- Gambar -->
+                <div style="aspect-ratio: 1200 / 675;" class="overflow-hidden bg-light position-relative">
+                  <a href={`/blog/${rel.slug}/`} class="d-block w-100 h-100 text-decoration-none" aria-label={rel.title}>
+                    <img
+                      src={rel.image}
+                      alt={rel.alt}
+                      width="1200"
+                      height="675"
+                      loading="lazy"
+                      class="w-100 h-100 object-fit-cover transition-base hover-scale"
+                    />
+                  </a>
+                </div>
+
+                <!-- Konten Kartu -->
+                <div class="p-3.5 p-xl-4 d-flex flex-column flex-grow-1">
+                  <!-- Meta: Date & Read Time -->
+                  <div class="d-flex align-items-center justify-content-between small text-muted mb-2" style="font-size: 0.78rem;">
+                    <span>{rel.date}</span>
+                    <span>⏱️ {rel.readTime}</span>
+                  </div>
+
+                  <!-- Judul -->
+                  <h3 class="h6 fw-bold text-dark mb-2 lh-base" style="font-size: 1.05rem;">
+                    <a href={`/blog/${rel.slug}/`} class="text-dark text-decoration-none hover-primary transition-base d-block">
+                      {rel.title}
+                    </a>
+                  </h3>
+
+                  <!-- Deskripsi Singkat -->
+                  <p class="small text-muted mb-3 lh-sm flex-grow-1" style="font-size: 0.88rem; line-height: 1.6;">
+                    {rel.excerpt}
+                  </p>
+
+                  <!-- Tombol Baca Selengkapnya -->
+                  <div class="pt-2.5 border-top border-light d-flex align-items-center justify-content-between mt-auto">
+                    <span class="small text-muted" style="font-size: 0.8rem;">
+                      ✍️ {rel.author.name}
+                    </span>
+                    <a href={`/blog/${rel.slug}/`} class="small fw-bold text-primary text-decoration-none d-inline-flex align-items-center gap-1 hover-arrow">
+                      <span>Baca Selengkapnya</span> &rarr;
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- NAVIGATION BACK TO BLOG -->
+      <div class="text-center pt-2 pb-4">
+        <a href="/blog/" class="btn btn-outline-secondary rounded-pill px-4 py-2 small fw-semibold">
+          &larr; Kembali ke Pusat Panduan &amp; Blog
         </a>
       </div>
 
-      <!-- Navigation Back to Blog -->
-      <div class="text-center pt-2">
-        <a href="/blog/" class="btn btn-outline-secondary rounded-pill px-4 py-2 small fw-semibold">
-          &larr; Kembali ke Seluruh Artikel
-        </a>
-      </div>
     </div>
   </article>
-</BaseLayout>
 
+  <!-- SCRIPT INTERAKTIF TOC & SHARE -->
+  <script>
+    function initArticleFeatures() {
+      // 1. TOC Toggle Buka/Tutup Otomatis
+      const tocToggleBtn = document.getElementById('tocToggleBtn');
+      const tocToggleHeader = document.getElementById('tocToggleHeader');
+      const tocCollapseContent = document.getElementById('tocCollapseContent');
+      const tocToggleLabel = document.getElementById('tocToggleLabel');
+      const tocChevron = document.getElementById('tocChevron');
+
+      let isTocOpen = true;
+
+      function toggleToc() {
+        isTocOpen = !isTocOpen;
+        if (tocCollapseContent) {
+          tocCollapseContent.style.display = isTocOpen ? 'block' : 'none';
+        }
+        if (tocToggleLabel) {
+          tocToggleLabel.textContent = isTocOpen ? 'Tutup' : 'Buka';
+        }
+        if (tocChevron) {
+          tocChevron.style.transform = isTocOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+        if (tocToggleBtn) {
+          tocToggleBtn.setAttribute('aria-expanded', isTocOpen ? 'true' : 'false');
+        }
+      }
+
+      if (tocToggleBtn) {
+        tocToggleBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleToc();
+        });
+      }
+
+      if (tocToggleHeader) {
+        tocToggleHeader.addEventListener('click', toggleToc);
+      }
+
+      // Smooth scroll for TOC links with sticky header offset
+      const tocLinks = document.querySelectorAll('.toc-link-h2, .toc-link-h3');
+      tocLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+          const targetId = link.getAttribute('href');
+          if (targetId && targetId.startsWith('#')) {
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) {
+              e.preventDefault();
+              const headerOffset = 80;
+              const elementPosition = targetEl.getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+              });
+            }
+          }
+        });
+      });
+
+      // 2. Salin Link ke Clipboard
+      const copyBtn = document.getElementById('copyLinkBtn');
+      const copyText = document.getElementById('copyLinkText');
+      if (copyBtn && copyText) {
+        copyBtn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            copyText.textContent = 'Tersalin!';
+            copyBtn.classList.remove('share-copy');
+            copyBtn.classList.add('btn-success');
+            setTimeout(() => {
+              copyText.textContent = 'Salin Link';
+              copyBtn.classList.remove('btn-success');
+              copyBtn.classList.add('share-copy');
+            }, 2500);
+          } catch (err) {
+            console.error('Gagal menyalin tautan:', err);
+          }
+        });
+      }
+
+      // 3. Update active share links dynamically with current window URL
+      const currentUrl = encodeURIComponent(window.location.href);
+      const shareFb = document.getElementById('shareFbBtn');
+      if (shareFb) {
+        shareFb.setAttribute('href', `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`);
+      }
+      const shareIn = document.getElementById('shareInBtn');
+      if (shareIn) {
+        shareIn.setAttribute('href', `https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`);
+      }
+    }
+
+    initArticleFeatures();
+    document.addEventListener('astro:page-load', initArticleFeatures);
+  </script>
+</BaseLayout>

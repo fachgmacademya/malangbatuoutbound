@@ -4,8 +4,6 @@ import { blogPosts } from '../../data/blog';
 import { getWhatsAppUrl, siteConfig } from '../../data/site';
 
 const waLink = getWhatsAppUrl('Halo, saya membaca artikel di website Malang Batu Outbound dan ingin konsultasi kegiatan.');
-
-const categories = ['Semua', 'Panduan Perusahaan', 'Tips Lokasi', 'Edukasi & Sekolah', 'Tips Acara'];
 ---
 
 <BaseLayout
@@ -66,22 +64,39 @@ const categories = ['Semua', 'Panduan Perusahaan', 'Tips Lokasi', 'Edukasi & Sek
   <!-- DAFTAR ARTIKEL DENGAN FILTER -->
   <section class="section-padding bg-white">
     <div class="container">
-      <!-- Filter Tabs Kategori -->
-      <div class="d-flex flex-wrap align-items-center justify-content-center gap-2 mb-5">
-        {categories.map((cat, idx) => (
-          <button
-            type="button"
-            class={`blog-filter-btn btn btn-sm px-3.5 py-2 rounded-pill fw-semibold ${idx === 0 ? 'active' : ''}`}
-            data-filter={cat === 'Semua' ? 'all' : cat}
-          >
-            {cat}
-          </button>
-        ))}
+      <!-- Search Bar Artikel Blog -->
+      <div class="row justify-content-center mb-5">
+        <div class="col-12 col-md-8 col-lg-6">
+          <div class="position-relative">
+            <input
+              type="text"
+              id="blogSearchInput"
+              class="form-control form-control-lg rounded-pill ps-4 pe-5 border shadow-2xs"
+              placeholder="Cari artikel atau panduan outbound..."
+              aria-label="Cari artikel"
+              style="font-size: 0.95rem; padding-top: 0.75rem; padding-bottom: 0.75rem;"
+            />
+            <button
+              type="button"
+              id="blogSearchBtn"
+              class="btn btn-primary rounded-circle position-absolute top-50 end-0 translate-middle-y me-2 d-inline-flex align-items-center justify-content-center shadow-sm"
+              style="width: 40px; height: 40px;"
+              aria-label="Tombol Search"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+              </svg>
+            </button>
+          </div>
+          <p id="noResultsMsg" class="text-center text-muted small mt-3 d-none">
+            Artikel tidak ditemukan. Silakan coba kata kunci lain.
+          </p>
+        </div>
       </div>
 
-      <!-- Articles Grid: 3 Kolom x 2 Baris -->
+      <!-- Articles Grid: 3 Artikel -->
       <div class="row g-4 mb-5" id="blogGrid">
-        {blogPosts.map((post, idx) => (
+        {blogPosts.slice(0, 3).map((post, idx) => (
           <div class="col-12 col-md-6 col-lg-4 blog-card-col" data-category={post.category}>
             <div class="mbo-card h-100 d-flex flex-column">
               <!-- Article Image -->
@@ -96,9 +111,6 @@ const categories = ['Semua', 'Panduan Perusahaan', 'Tips Lokasi', 'Edukasi & Sek
                     class="w-100 h-100 object-fit-cover transition-base hover-scale"
                   />
                 </a>
-                <span class="position-absolute top-0 start-0 m-2.5 badge bg-dark bg-opacity-75 text-white small px-2.5 py-1 rounded-pill backdrop-blur" style="font-size: 0.72rem;">
-                  {post.category}
-                </span>
               </div>
 
               <!-- Card Body -->
@@ -124,7 +136,7 @@ const categories = ['Semua', 'Panduan Perusahaan', 'Tips Lokasi', 'Edukasi & Sek
                 <!-- Footer: Author & Read More -->
                 <div class="pt-2.5 border-top border-light d-flex align-items-center justify-content-between mt-auto">
                   <span class="small text-muted" style="font-size: 0.8rem;">
-                    ✍️ {post.author}
+                    ✍️ {post.author.name}
                   </span>
                   <a href={`/blog/${post.slug}/`} class="small fw-semibold text-primary text-decoration-none d-inline-flex align-items-center gap-1 hover-arrow">
                     <span>Baca</span> &rarr;
@@ -151,18 +163,6 @@ const categories = ['Semua', 'Panduan Perusahaan', 'Tips Lokasi', 'Edukasi & Sek
 </BaseLayout>
 
 <style>
-  .blog-filter-btn {
-    background-color: #FFFFFF;
-    color: var(--color-primary-navy);
-    border: 1px solid var(--color-border);
-    transition: all 0.2s ease;
-  }
-  .blog-filter-btn:hover,
-  .blog-filter-btn.active {
-    background-color: var(--color-primary-navy);
-    color: #FFFFFF;
-    border-color: var(--color-primary-navy);
-  }
   .hover-scale {
     transition: transform 0.3s ease;
   }
@@ -178,29 +178,47 @@ const categories = ['Semua', 'Panduan Perusahaan', 'Tips Lokasi', 'Edukasi & Sek
 </style>
 
 <script>
-  function initBlogFilter() {
-    const filterBtns = document.querySelectorAll<HTMLButtonElement>('.blog-filter-btn');
+  function initBlogSearch() {
+    const searchInput = document.getElementById('blogSearchInput') as HTMLInputElement | null;
+    const searchBtn = document.getElementById('blogSearchBtn');
     const cardCols = document.querySelectorAll<HTMLElement>('.blog-card-col');
+    const noResultsMsg = document.getElementById('noResultsMsg');
 
-    filterBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
+    if (!searchInput) return;
 
-        const filterVal = btn.getAttribute('data-filter');
+    function doSearch() {
+      const q = (searchInput?.value || '').toLowerCase().trim();
+      let matchedCount = 0;
 
-        cardCols.forEach((col) => {
-          const colCat = col.getAttribute('data-category');
-          if (filterVal === 'all' || colCat === filterVal) {
-            col.style.display = 'block';
-          } else {
-            col.style.display = 'none';
-          }
-        });
+      cardCols.forEach((col) => {
+        const text = col.innerText.toLowerCase();
+        if (!q || text.includes(q)) {
+          col.style.display = 'block';
+          matchedCount++;
+        } else {
+          col.style.display = 'none';
+        }
       });
+
+      if (noResultsMsg) {
+        if (matchedCount === 0) {
+          noResultsMsg.classList.remove('d-none');
+        } else {
+          noResultsMsg.classList.add('d-none');
+        }
+      }
+    }
+
+    searchInput.addEventListener('input', doSearch);
+    searchBtn?.addEventListener('click', doSearch);
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        doSearch();
+      }
     });
   }
 
-  initBlogFilter();
-  document.addEventListener('astro:page-load', initBlogFilter);
+  initBlogSearch();
+  document.addEventListener('astro:page-load', initBlogSearch);
 </script>

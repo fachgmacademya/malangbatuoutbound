@@ -202,21 +202,42 @@ const packageDetailUrl = `/paket/${pkg.slug}.html`;
 
           <!-- Section 3: Fasilitas Program Termasuk -->
           <div class="p-4 p-md-5 rounded-4 bg-white border border-light shadow-sm mb-4">
-            <h2 class="h4 fw-bold text-dark mb-3">Fasilitas yang Disiapkan</h2>
-            <div class="p-3.5 p-md-4 rounded-4" style="background-color: #F0FDF4; border: 1px solid #BBF7D0;">
-              <div class="row g-3">
-                {prog.includedHighlights.map((inc) => (
-                  <div class="col-12 col-md-6">
-                    <div class="d-flex align-items-start gap-2.5">
-                      <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(37, 211, 102, 0.18); color: #16a34a;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
-                          <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
-                        </svg>
-                      </span>
-                      <span class="text-dark small fw-medium">{inc}</span>
+            <div class="d-flex align-items-center gap-2.5 mb-2">
+              <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 36px; height: 36px; background-color: rgba(30, 90, 157, 0.12); color: var(--color-primary-blue);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z"/>
+                </svg>
+              </span>
+              <h2 class="h4 fw-bold text-dark mb-0">Fasilitas yang Disiapkan</h2>
+            </div>
+            <p class="text-muted small mb-4">
+              Kelengkapan fasilitas operasional yang disertakan untuk modul program <strong>{prog.title}</strong>:
+            </p>
+
+            <div class="rounded-4 bg-white border d-flex flex-column shadow-2xs overflow-hidden" style="border-color: #E2E8F0 !important;">
+              <div class="px-4 py-3 d-flex align-items-center gap-2.5 border-bottom" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.03) 100%); border-color: rgba(34, 197, 94, 0.2) !important;">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 text-white" style="width: 24px; height: 24px; background-color: #16A34A;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                  </svg>
+                </span>
+                <h3 class="h6 fw-bold mb-0 text-dark">Fasilitas Resmi Termasuk (Include):</h3>
+              </div>
+              <div class="p-4">
+                <div class="row g-3">
+                  {prog.includedHighlights.map((inc) => (
+                    <div class="col-12 col-md-6">
+                      <div class="d-flex align-items-start gap-2.5">
+                        <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                          </svg>
+                        </span>
+                        <span class="text-dark small fw-medium" style="line-height: 1.55;">{inc}</span>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>

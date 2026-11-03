@@ -134,7 +134,7 @@ const waLink = getWhatsAppUrl(pkg.whatsappMessage);
           </div>
 
           <!-- Section 1: Detail Lengkap Paket -->
-          <div class="p-3.5 p-md-4 p-lg-5 rounded-4 bg-white border border-light shadow-sm mb-4">
+          <div class="p-4 p-md-4 p-lg-5 rounded-4 bg-white border border-light shadow-sm mb-4">
             <div class="d-flex align-items-center gap-2.5 mb-3">
               <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 36px; height: 36px; background-color: rgba(30, 90, 157, 0.12); color: var(--color-primary-blue);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
@@ -165,8 +165,8 @@ const waLink = getWhatsAppUrl(pkg.whatsappMessage);
             </div>
           </div>
 
-          <!-- Section 2: DAFTAR PROGRAM DALAM PAKET INI (Rapi & Kartu Elegan) -->
-          <div class="p-3.5 p-md-4 p-lg-5 rounded-4 bg-white border border-light shadow-sm mb-4">
+          <!-- Section 2: DAFTAR PROGRAM DALAM PAKET INI (Desain Kartu Premium & Rapi) -->
+          <div class="p-4 p-md-4 p-lg-5 rounded-4 bg-white border border-light shadow-sm mb-4">
             <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
               <div>
                 <span class="badge bg-primary bg-opacity-10 text-primary fw-bold px-3 py-1 rounded-pill small mb-2 d-inline-block">PILIHAN PROGRAM LENGKAP</span>
@@ -178,47 +178,45 @@ const waLink = getWhatsAppUrl(pkg.whatsappMessage);
               Berikut adalah pilihan program yang dapat Anda pilih atau kombinasikan dalam paket ini. Klik <strong>Lihat Detail Program</strong> untuk melihat rincian alur kegiatan, sasaran, dan manfaat khusus masing-masing program:
             </p>
 
-            <div class="d-flex flex-column gap-3.5">
+            <div class="d-flex flex-column gap-3">
               {pkg.programs.map((prog, index) => {
                 const programUrl = `/paket/${pkg.slug}/${prog.slug}.html`;
                 return (
-                  <div class="p-3.5 p-md-4 rounded-4 bg-white border border-secondary border-opacity-15 shadow-sm transition-hover">
+                  <div class="p-4 rounded-4 bg-white border shadow-2xs transition-hover" style="border-color: #E2E8F0 !important;">
                     <!-- Header Kartu Program -->
                     <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2 pb-2 border-bottom border-light">
                       <div class="d-flex align-items-center gap-2.5">
-                        <span class="d-inline-flex align-items-center justify-content-center rounded-circle fw-bold text-white flex-shrink-0 shadow-2xs" style="width: 32px; height: 32px; background: linear-gradient(135deg, #1E5A9D, #0B1F33); font-size: 0.82rem;">
+                        <span class="d-inline-flex align-items-center justify-content-center rounded-circle fw-bold text-white flex-shrink-0 shadow-2xs" style="width: 34px; height: 34px; background: linear-gradient(135deg, #1E5A9D, #0B1F33); font-size: 0.85rem;">
                           0{index + 1}
                         </span>
                         <h3 class="h5 fw-bold text-dark mb-0">{prog.title}</h3>
                       </div>
                       {prog.badge && (
-                        <span class="badge bg-warning text-dark fw-bold px-2.5 py-1 rounded-pill small">
+                        <span class="px-2.5 py-1 rounded-pill small fw-semibold" style="background-color: rgba(30, 90, 157, 0.08); color: var(--color-primary-blue); border: 1px solid rgba(30, 90, 157, 0.18); font-size: 0.78rem;">
                           {prog.badge}
                         </span>
                       )}
                     </div>
 
                     <!-- Deskripsi Singkat -->
-                    <p class="text-muted small mb-3" style="line-height: 1.65;">
+                    <p class="text-muted small mb-3" style="line-height: 1.7; font-size: 0.92rem;">
                       {prog.summary}
                     </p>
 
                     <!-- Baris Bawah Responsif: Durasi & Tombol Detail -->
-                    <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2.5 pt-2.5 border-top border-light">
-                      <div class="small text-muted d-flex align-items-center gap-2">
-                        <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 24px; height: 24px; background-color: rgba(30, 90, 157, 0.1); color: var(--color-primary-blue);">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
-                          </svg>
-                        </span>
-                        <span><strong>Durasi:</strong> {prog.duration.split('/')[0]}</span>
+                    <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2.5 pt-3 border-top border-light">
+                      <div class="small text-muted d-flex align-items-center gap-2 px-3 py-1.5 rounded-pill bg-light border border-light-subtle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="var(--color-primary-blue)" class="flex-shrink-0" viewBox="0 0 16 16" aria-hidden="true">
+                          <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                        </svg>
+                        <span><strong class="text-dark">Durasi:</strong> {prog.duration.split('/')[0]}</span>
                       </div>
 
-                      <!-- Tombol Lihat Detail Program -->
+                      <!-- Tombol Lihat Detail Program Berdesain Solid Elegan -->
                       <a
                         href={programUrl}
-                        class="btn btn-sm btn-outline-primary rounded-pill px-3.5 py-1.5 fw-bold d-inline-flex align-items-center justify-content-center gap-1.5 shadow-2xs text-nowrap"
+                        class="btn btn-sm btn-primary rounded-pill px-4 py-2 fw-semibold d-inline-flex align-items-center justify-content-center gap-1.5 shadow-2xs text-nowrap"
                       >
                         <span>Lihat Detail Program</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" class="flex-shrink-0">
@@ -233,7 +231,7 @@ const waLink = getWhatsAppUrl(pkg.whatsappMessage);
           </div>
 
           <!-- Section 3: Rangkaian Aktivitas Umum -->
-          <div class="p-3.5 p-md-4 p-lg-5 rounded-4 bg-white border border-light shadow-sm mb-4">
+          <div class="p-4 p-md-4 p-lg-5 rounded-4 bg-white border border-light shadow-sm mb-4">
             <div class="d-flex align-items-center gap-2.5 mb-3">
               <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 36px; height: 36px; background-color: rgba(30, 90, 157, 0.12); color: var(--color-primary-blue);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
@@ -263,60 +261,93 @@ const waLink = getWhatsAppUrl(pkg.whatsappMessage);
             </div>
           </div>
 
-          <!-- Section 4: Fasilitas Include & Exclude (Icon Checklist & Cross SVG Bersih) -->
-          <div class="p-3.5 p-md-4 p-lg-5 rounded-4 bg-white border border-light shadow-sm mb-4">
-            <h2 class="h4 fw-bold text-dark mb-4">Fasilitas &amp; Perlengkapan</h2>
+          <!-- Section 4: Fasilitas Include & Exclude (Dua Kartu Seimbang, Modern & Estetik) -->
+          <div class="p-4 p-md-4 p-lg-5 rounded-4 bg-white border border-light shadow-sm mb-4">
+            <div class="d-flex align-items-center gap-2.5 mb-2">
+              <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 36px; height: 36px; background-color: rgba(30, 90, 157, 0.12); color: var(--color-primary-blue);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z"/>
+                </svg>
+              </span>
+              <h2 class="h4 fw-bold text-dark mb-0">Fasilitas &amp; Perlengkapan</h2>
+            </div>
+            <p class="text-muted small mb-4">
+              Rincian kelengkapan sarana yang telah disiapkan secara profesional dan opsi penyesuaian untuk rombongan Anda:
+            </p>
 
-            <div class="row g-4">
-              <!-- Included -->
+            <div class="row g-4 align-items-stretch">
+              <!-- Kartu 1: Included Highlights -->
               <div class="col-12 col-md-6">
-                <div class="p-3.5 p-md-4 rounded-4 h-100" style="background-color: #F0FDF4; border: 1px solid #BBF7D0;">
-                  <h3 class="h6 fw-bold text-success mb-3 d-flex align-items-center gap-2">
-                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 22px; height: 22px; background-color: rgba(34, 197, 94, 0.2); color: #16A34A;">
+                <div class="rounded-4 h-100 bg-white border d-flex flex-column shadow-2xs overflow-hidden" style="border-color: #E2E8F0 !important;">
+                  <!-- Header Include -->
+                  <div class="px-4 py-3 d-flex align-items-center gap-2.5 border-bottom" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.03) 100%); border-color: rgba(34, 197, 94, 0.2) !important;">
+                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 text-white" style="width: 24px; height: 24px; background-color: #16A34A;">
                       <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                         <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
                       </svg>
                     </span>
-                    <span>Fasilitas Termasuk (Include):</span>
-                  </h3>
-                  <ul class="list-unstyled mb-0 small">
-                    {pkg.includedHighlights.map((inc) => (
-                      <li class="d-flex align-items-start gap-2.5 mb-2.5">
-                        <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
-                          </svg>
-                        </span>
-                        <span class="text-dark fw-medium" style="line-height: 1.55;">{inc}</span>
-                      </li>
-                    ))}
-                  </ul>
+                    <h3 class="h6 fw-bold mb-0 text-dark">Fasilitas Termasuk (Include):</h3>
+                  </div>
+
+                  <!-- Body Include -->
+                  <div class="p-4 flex-grow-1">
+                    <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                      {pkg.includedHighlights.map((inc) => (
+                        <li class="d-flex align-items-start gap-2.5">
+                          <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                              <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                            </svg>
+                          </span>
+                          <span class="text-dark small fw-medium" style="line-height: 1.55;">{inc}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
 
-              <!-- Excluded / Optional -->
+              <!-- Kartu 2: Excluded Highlights + Kustomisasi (Seimbang) -->
               <div class="col-12 col-md-6">
-                <div class="p-3.5 p-md-4 rounded-4 h-100" style="background-color: #FEF2F2; border: 1px solid #FECACA;">
-                  <h3 class="h6 fw-bold text-danger mb-3 d-flex align-items-center gap-2">
-                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 22px; height: 22px; background-color: rgba(239, 68, 68, 0.18); color: #DC2626;">
+                <div class="rounded-4 h-100 bg-white border d-flex flex-column shadow-2xs overflow-hidden" style="border-color: #E2E8F0 !important;">
+                  <!-- Header Exclude -->
+                  <div class="px-4 py-3 d-flex align-items-center gap-2.5 border-bottom" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(239, 68, 68, 0.02) 100%); border-color: rgba(239, 68, 68, 0.18) !important;">
+                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 text-white" style="width: 24px; height: 24px; background-color: #DC2626;">
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                         <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
                       </svg>
                     </span>
-                    <span>Belum Termasuk (Exclude / Opsional):</span>
-                  </h3>
-                  <ul class="list-unstyled mb-0 small">
-                    {pkg.excludedHighlights && pkg.excludedHighlights.map((exc) => (
-                      <li class="d-flex align-items-start gap-2.5 mb-2.5">
-                        <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(239, 68, 68, 0.12); color: #DC2626;">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-                          </svg>
-                        </span>
-                        <span class="text-secondary" style="line-height: 1.55;">{exc}</span>
-                      </li>
-                    ))}
-                  </ul>
+                    <h3 class="h6 fw-bold mb-0 text-dark">Belum Termasuk (Exclude):</h3>
+                  </div>
+
+                  <!-- Body Exclude -->
+                  <div class="p-4 d-flex flex-column flex-grow-1">
+                    <ul class="list-unstyled mb-4 d-flex flex-column gap-3">
+                      {pkg.excludedHighlights && pkg.excludedHighlights.map((exc) => (
+                        <li class="d-flex align-items-start gap-2.5">
+                          <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(239, 68, 68, 0.12); color: #DC2626;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                            </svg>
+                          </span>
+                          <span class="text-secondary small" style="line-height: 1.55;">{exc}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <!-- Callout Kustomisasi Penyeimbang Tinggi Kartu -->
+                    <div class="mt-auto pt-2">
+                      <div class="p-3 rounded-3" style="background-color: #F8FAFC; border: 1px dashed #CBD5E1;">
+                        <div class="d-flex align-items-start gap-2">
+                          <span class="text-primary fs-6 mt-0.5">💡</span>
+                          <div class="small text-muted" style="font-size: 0.82rem; line-height: 1.5;">
+                            <strong class="text-dark d-block mb-0.5">Kustomisasi Fasilitas:</strong>
+                            Kebutuhan tambahan seperti armada bus, hotel/resort menginap, atau dokumentasi drone dapat ditambahkan sesuai kebutuhan instansi Anda.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -324,7 +355,7 @@ const waLink = getWhatsAppUrl(pkg.whatsappMessage);
 
           <!-- Section 5: Rekomendasi Lokasi Ground Outbound (Icon Map Pin & Card Rapi) -->
           {pkg.recommendedVenues && pkg.recommendedVenues.length > 0 && (
-            <div class="p-3.5 p-md-4 p-lg-5 rounded-4 bg-white border border-light shadow-sm">
+            <div class="p-4 p-md-4 p-lg-5 rounded-4 bg-white border border-light shadow-sm">
               <div class="d-flex align-items-center gap-2.5 mb-2">
                 <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 36px; height: 36px; background-color: rgba(30, 90, 157, 0.12); color: var(--color-primary-blue);">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">

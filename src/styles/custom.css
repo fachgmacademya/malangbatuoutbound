@@ -328,6 +328,28 @@ a.dropdown-cat-title:hover {
     overflow-x: hidden;
   }
 
+  .navbar-collapse.show,
+  .navbar-collapse.collapsing {
+    max-height: calc(100dvh - 72px);
+    max-height: calc(100vh - 72px);
+  }
+
+  .navbar-collapse.show {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2rem;
+    overscroll-behavior: contain;
+  }
+
+  .navbar-collapse::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .navbar-collapse::-webkit-scrollbar-thumb {
+    background: rgba(16, 42, 67, 0.2);
+    border-radius: 4px;
+  }
+
   .mega-dropdown-menu.show {
     display: block;
     animation: fadeInDropdown 0.22s ease-in-out;
@@ -611,4 +633,172 @@ a.dropdown-cat-title:hover {
   color: var(--color-accent-blue);
   padding-left: 3px;
 }
+
+/* ==========================================================================
+   Blog Single Article Dedicated Styling
+   ========================================================================== */
+
+/* Table of Contents (TOC) - Clean, polished & modern */
+.article-toc-box {
+  background: #F8FAFC;
+  border: 1px solid rgba(16, 42, 67, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(16, 42, 67, 0.04);
+}
+
+.toc-link-h2 {
+  color: #102A43;
+  text-decoration: none;
+  font-size: 0.94rem;
+  font-weight: 600;
+  line-height: 1.55;
+  transition: color 0.18s ease, transform 0.18s ease;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+
+.toc-link-h2:hover,
+.toc-link-h2.active {
+  color: var(--color-secondary-blue);
+  transform: translateX(4px);
+}
+
+.toc-sub-group {
+  margin-top: 0.35rem;
+  margin-bottom: 0.6rem;
+  margin-left: 0.85rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(37, 99, 166, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.toc-link-h3 {
+  color: #486581;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.5;
+  transition: color 0.18s ease, transform 0.18s ease;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.toc-link-h3:hover,
+.toc-link-h3.active {
+  color: var(--color-secondary-blue);
+  transform: translateX(3px);
+  font-weight: 600;
+}
+
+/* Baca Juga Callout - Clean Modern Card */
+.baca-juga-box {
+  background: #FFFFFF;
+  border: 1px solid rgba(16, 42, 67, 0.12);
+  border-left: 4px solid var(--color-secondary-blue) !important;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(16, 42, 67, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.baca-juga-box:hover {
+  transform: translateY(-2px);
+  border-color: rgba(37, 99, 166, 0.35);
+  box-shadow: 0 8px 24px rgba(37, 99, 166, 0.1);
+}
+
+.baca-juga-tag {
+  background-color: rgba(37, 99, 166, 0.1);
+  color: var(--color-secondary-blue);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.baca-juga-title {
+  color: var(--color-primary-navy);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.5;
+  transition: color 0.2s ease;
+}
+
+.baca-juga-title:hover {
+  color: var(--color-secondary-blue);
+  text-decoration: underline;
+}
+
+/* Author Avatar - Guaranteed 100% Circle on Mobile & Desktop */
+.author-avatar-circle {
+  width: 84px !important;
+  height: 84px !important;
+  min-width: 84px !important;
+  min-height: 84px !important;
+  max-width: 84px !important;
+  max-height: 84px !important;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 4px 14px rgba(16, 42, 67, 0.12);
+  border: 3px solid #FFFFFF;
+  outline: 2px solid var(--color-secondary-blue);
+  display: block;
+}
+
+/* Author Bio Card */
+.author-bio-card {
+  background: #F8FAFC;
+  border: 1px solid rgba(16, 42, 67, 0.1);
+  border-radius: 16px;
+}
+
+/* Social Share Buttons */
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.share-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.share-wa {
+  background-color: #25D366;
+  color: #FFFFFF;
+}
+
+.share-fb {
+  background-color: #1877F2;
+  color: #FFFFFF;
+}
+
+.share-x {
+  background-color: #0F1419;
+  color: #FFFFFF;
+}
+
+.share-in {
+  background-color: #0A66C2;
+  color: #FFFFFF;
+}
+
+.share-copy {
+  background-color: #486581;
+  color: #FFFFFF;
+}
+
 
