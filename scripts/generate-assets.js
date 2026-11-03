@@ -113,7 +113,7 @@ function createHeroSvg() {
     <path d="M40,24 C33,24 28,29 28,36 C28,45 40,52 40,52 C40,52 52,45 52,36 C52,29 47,24 40,24 Z" fill="#FFFFFF"/>
     <circle cx="40" cy="34" r="4" fill="#2563A6"/>
     <text x="75" y="32" fill="#65B7E8" font-family="system-ui, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">LOKASI ALAM SEJUK</text>
-    <text x="75" y="52" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="15" font-weight="600">Kawasan Malang &amp; Kota Batu</text>
+    <text x="75" y="52" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="15" font-weight="600">Kawasan Malang dan Kota Batu</text>
   </g>
 </svg>`;
 }
@@ -211,7 +211,7 @@ const cardConfigs = [
   { name: 'package-family.svg', title: 'Family & Community Gathering', cat: 'Semua Usia', c1: '#432810', c2: '#8C5221', icon: 'smile' },
   { name: 'package-sekolah.svg', title: 'Outbound Edukatif & Karakter Pelajar', cat: 'Sekolah & Siswa', c1: '#1F2937', c2: '#374151', icon: 'education' },
   { name: 'package-adventure.svg', title: 'Rafting Kaliwatu & Adventure Batu', cat: 'Sensasi Petualangan', c1: '#0B3C49', c2: '#16697A', icon: 'adventure' },
-  
+
   // Facilities
   { name: 'facility-ground.svg', title: 'Ground Outbound Asri & Sejuk', cat: 'Venue Terpilih', c1: '#183B25', c2: '#2B6A3F', icon: 'target' },
   { name: 'facility-equipment.svg', title: 'Peralatan Simulasi Standar Tinggi', cat: 'Properti Lengkap', c1: '#102A43', c2: '#2C4F7C', icon: 'users' },
