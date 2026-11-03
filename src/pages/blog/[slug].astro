@@ -30,6 +30,11 @@ const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 2);
   canonicalPath={`/blog/${post.slug}/`}
   activePath="/blog/"
   type="article"
+  ogImage={post.image}
+  faqs={post.faq}
+  author={post.author.name}
+  category={post.category}
+  publishedTime={post.date}
 >
   <!-- DEDICATED ARTICLE HERO BANNER -->
   <section class="position-relative overflow-hidden py-5 text-white" style="background: linear-gradient(135deg, #102A43 0%, #0B1F33 100%);">
@@ -344,7 +349,7 @@ const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 2);
             <!-- Share WhatsApp -->
             <a
               id="shareWaBtn"
-              href={`https://api.whatsapp.com/send?text=${encodeURIComponent(post.title + ' - https://malangbatuoutbound.com/blog/' + post.slug + '/')}`}
+              href={`https://api.whatsapp.com/send?text=${encodeURIComponent(post.title + ' - ' + siteConfig.siteUrl + '/blog/' + post.slug + '/')}`}
               target="_blank"
               rel="noopener noreferrer"
               class="share-btn share-wa"
@@ -356,7 +361,7 @@ const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 2);
             <!-- Share Facebook -->
             <a
               id="shareFbBtn"
-              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://malangbatuoutbound.com/blog/' + post.slug + '/')}`}
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(siteConfig.siteUrl + '/blog/' + post.slug + '/')}`}
               target="_blank"
               rel="noopener noreferrer"
               class="share-btn share-fb"
@@ -368,7 +373,7 @@ const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 2);
             <!-- Share Twitter / X -->
             <a
               id="shareXBtn"
-              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent('https://malangbatuoutbound.com/blog/' + post.slug + '/')}`}
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(siteConfig.siteUrl + '/blog/' + post.slug + '/')}`}
               target="_blank"
               rel="noopener noreferrer"
               class="share-btn share-x"
@@ -380,7 +385,7 @@ const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 2);
             <!-- Share LinkedIn -->
             <a
               id="shareInBtn"
-              href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://malangbatuoutbound.com/blog/' + post.slug + '/')}`}
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(siteConfig.siteUrl + '/blog/' + post.slug + '/')}`}
               target="_blank"
               rel="noopener noreferrer"
               class="share-btn share-in"

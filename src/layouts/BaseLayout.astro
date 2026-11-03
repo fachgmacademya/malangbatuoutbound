@@ -16,6 +16,10 @@ export interface Props {
   type?: 'website' | 'article';
   activePath?: string;
   faqs?: FAQItem[];
+  author?: string;
+  category?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
 }
 
 const {
@@ -25,7 +29,11 @@ const {
   ogImage,
   type = 'website',
   activePath = '/',
-  faqs = []
+  faqs = [],
+  author,
+  category,
+  publishedTime,
+  modifiedTime
 } = Astro.props;
 ---
 
@@ -39,6 +47,10 @@ const {
       ogImage={ogImage}
       type={type}
       faqs={faqs}
+      author={author}
+      category={category}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
     />
   </head>
   <body>

@@ -20,7 +20,7 @@ export const siteConfig: SiteConfig = {
   tagline: 'Outbound, Gathering & Team Building di Malang dan Batu',
   description:
     'Layanan perencanaan dan fasilitasi kegiatan outbound, team building, corporate gathering, dan outdoor event di wilayah Malang, Kota Batu, dan sekitarnya. Program fleksibel, terarah, dan didampingi fasilitator berpengalaman.',
-  siteUrl: 'https://malangbatuoutbound.com',
+  siteUrl: 'https://malangbatuoutbound.web.id',
   phoneDisplay: '0822-1122-1909',
   phoneRaw: '6282211221909',
   whatsappUrl: 'https://wa.me/6282211221909',

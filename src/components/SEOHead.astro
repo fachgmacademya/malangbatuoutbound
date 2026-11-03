@@ -9,54 +9,192 @@ export interface Props {
   ogImage?: string;
   type?: 'website' | 'article';
   faqs?: FAQItem[];
+  author?: string;
+  category?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
 }
 
 const {
   title = `${siteConfig.tagline} | ${siteConfig.name}`,
   description = siteConfig.description,
   canonicalPath = '/',
-  ogImage = '/images/hero-outbound-malang.svg',
+  ogImage = '/images/og-default.jpg',
   type = 'website',
-  faqs = []
+  faqs = [],
+  author = 'Fachry Rendy P.',
+  category,
+  publishedTime,
+  modifiedTime
 } = Astro.props;
 
+// Canonical and OpenGraph Absolute URLs (always on https://malangbatuoutbound.web.id/)
 const canonicalUrl = new URL(canonicalPath, siteConfig.siteUrl).href;
 const fullOgImage = new URL(ogImage, siteConfig.siteUrl).href;
 
-// Structured Data: LocalBusiness & WebSite
+// 1. Dynamic BreadcrumbList Schema (AEO / GEO Hierarchical Navigation)
+const pathSegments = canonicalPath.split('/').filter(Boolean);
+const breadcrumbItems = [
+  {
+    '@type': 'ListItem',
+    position: 1,
+    name: 'Beranda',
+    item: siteConfig.siteUrl + '/'
+  }
+];
+
+let accumulatedPath = '';
+pathSegments.forEach((segment, index) => {
+  accumulatedPath += `/${segment}`;
+  let segmentName = segment
+    .replace('.html', '')
+    .replace(/-/g, ' ')
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+
+  if (segment === 'paket') segmentName = 'Paket Outbound';
+  else if (segment === 'fasilitas') segmentName = 'Fasilitas & Ground';
+  else if (segment === 'galeri') segmentName = 'Galeri Kegiatan';
+  else if (segment === 'tentang-kami') segmentName = 'Tentang Kami';
+  else if (segment === 'blog') segmentName = 'Blog & Panduan';
+  else if (index === pathSegments.length - 1 && title) {
+    segmentName = title.split('|')[0].trim();
+  }
+
+  breadcrumbItems.push({
+    '@type': 'ListItem',
+    position: index + 2,
+    name: segmentName,
+    item: new URL(accumulatedPath + (segment.endsWith('.html') ? '' : '/'), siteConfig.siteUrl).href
+  });
+});
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbItems
+};
+
+// 2. Structured Data: LocalBusiness & SportsActivityLocation (AEO & GEO Entity Authority)
 const businessSchema = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
+  '@type': ['LocalBusiness', 'SportsActivityLocation', 'TravelAgency'],
   '@id': `${siteConfig.siteUrl}/#business`,
   name: siteConfig.name,
+  legalName: siteConfig.name,
+  alternateName: ['MBO', 'Malang Batu Outbound', 'Outbound Malang Batu Provider'],
   url: siteConfig.siteUrl,
+  logo: `${siteConfig.siteUrl}/icon-512.png`,
+  image: `${siteConfig.siteUrl}/images/og-default.jpg`,
   telephone: '+62-822-1122-1909',
+  email: 'info@malangbatuoutbound.web.id',
+  priceRange: 'Rp 85.000 - Rp 350.000',
+  currenciesAccepted: 'IDR',
+  paymentAccepted: 'Cash, Bank Transfer',
   description: siteConfig.description,
+  slogan: siteConfig.tagline,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Kawasan Wisata Songgoriti & Coban Rondo',
+    addressLocality: 'Kota Batu',
+    addressRegion: 'Jawa Timur',
+    postalCode: '65311',
+    addressCountry: 'ID'
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: -7.8712,
+    longitude: 112.527
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '07:00',
+      closes: '21:00'
+    }
+  ],
   areaServed: [
-    { '@type': 'City', name: 'Malang' },
-    { '@type': 'City', name: 'Batu' },
-    { '@type': 'AdministrativeArea', name: 'Kabupaten Malang' }
+    { '@type': 'City', name: 'Kota Batu' },
+    { '@type': 'City', name: 'Kota Malang' },
+    { '@type': 'AdministrativeArea', name: 'Kabupaten Malang' },
+    { '@type': 'Place', name: 'Kawasan TNBTS Gunung Bromo' }
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Katalog Layanan Outbound Malang Batu',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Paket Outbound Perusahaan & Corporate Team Building'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Paket Family Gathering Rekreatif & Rekreasi Alam'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Paket Outbound Sekolah Karakter & LDKS Pelajar'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Paket Outbound Wisata Petualangan (Rafting, Jeep Offroad Bromo, Camping)'
+        }
+      }
+    ]
+  },
+  knowsAbout: [
+    'Outbound Perusahaan Malang Batu',
+    'Corporate Team Building',
+    'Family Gathering Jawa Timur',
+    'Latihan Dasar Kepemimpinan Siswa (LDKS)',
+    'Arung Jeram Rafting Kaliwatu & Kasembon',
+    'Offroad Jeep Sunrise Bromo',
+    'Experiential Learning Outdoor Training'
   ],
   contactPoint: {
     '@type': 'ContactPoint',
     telephone: '+62-822-1122-1909',
     contactType: 'customer service',
+    areaServed: 'ID',
     availableLanguage: ['Indonesian']
   }
 };
 
+// 3. WebSite Schema
 const webSiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   '@id': `${siteConfig.siteUrl}/#website`,
   url: siteConfig.siteUrl,
   name: siteConfig.name,
+  alternateName: 'MBO',
+  description: siteConfig.description,
   inLanguage: 'id-ID',
   publisher: {
     '@id': `${siteConfig.siteUrl}/#business`
+  },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: `${siteConfig.siteUrl}/blog/?q={search_term_string}`
+    },
+    'query-input': 'required name=search_term_string'
   }
 };
 
+// 4. WebPage Schema
 const webPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
@@ -70,10 +208,54 @@ const webPageSchema = {
   },
   about: {
     '@id': `${siteConfig.siteUrl}/#business`
+  },
+  breadcrumb: {
+    '@id': `${canonicalUrl}#breadcrumb`
   }
 };
 
-// Optional FAQPage schema
+// 5. Article / BlogPosting Schema (when type === 'article')
+let articleSchema = null;
+if (type === 'article') {
+  articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    '@id': `${canonicalUrl}#article`,
+    isPartOf: {
+      '@id': `${siteConfig.siteUrl}/#website`
+    },
+    headline: title.split('|')[0].trim(),
+    description: description,
+    url: canonicalUrl,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl
+    },
+    image: {
+      '@type': 'ImageObject',
+      url: fullOgImage,
+      width: 1200,
+      height: 675
+    },
+    inLanguage: 'id-ID',
+    datePublished: publishedTime || '2026-11-01T08:00:00+07:00',
+    dateModified: modifiedTime || publishedTime || '2026-11-03T20:00:00+07:00',
+    author: {
+      '@type': 'Person',
+      name: author || 'Fachry Rendy P.',
+      jobTitle: 'Event Facilitator & Content Specialist',
+      worksFor: {
+        '@id': `${siteConfig.siteUrl}/#business`
+      }
+    },
+    publisher: {
+      '@id': `${siteConfig.siteUrl}/#business`
+    },
+    articleSection: category || 'Outbound Malang'
+  };
+}
+
+// 6. FAQPage Schema (Direct Q&A ingestion for Google AI Overviews & SearchGPT)
 let faqSchema = null;
 if (faqs && faqs.length > 0) {
   faqSchema = {
@@ -92,37 +274,83 @@ if (faqs && faqs.length > 0) {
 }
 ---
 
-<!-- Core Metadata -->
+<!-- Core Technical Meta -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalUrl} />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content={type} />
+<!-- Geographic & Language Meta (GEO targeting Malang Batu, Jawa Timur) -->
+<meta name="geo.region" content="ID-JI" />
+<meta name="geo.placename" content="Kota Batu, Malang, Jawa Timur" />
+<meta name="geo.position" content="-7.8712;112.5270" />
+<meta name="ICBM" content="-7.8712, 112.5270" />
+<meta name="language" content="Indonesian" />
+<meta name="author" content={author} />
+<meta name="publisher" content={siteConfig.name} />
+
+<!-- Performance Resource Hints (Pagespeed Optimization) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="dns-prefetch" href="https://wa.me" />
+<link rel="dns-prefetch" href="https://api.whatsapp.com" />
+
+<!-- Open Graph / Facebook / WhatsApp (Complete OG protocol) -->
 <meta property="og:site_name" content={siteConfig.name} />
+<meta property="og:type" content={type} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:image" content={fullOgImage} />
+<meta property="og:image:secure_url" content={fullOgImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:alt" content={title} />
 <meta property="og:locale" content="id_ID" />
+
+{type === 'article' && (
+  <>
+    <meta property="article:published_time" content={publishedTime || '2026-11-01T08:00:00+07:00'} />
+    <meta property="article:modified_time" content={modifiedTime || publishedTime || '2026-11-03T20:00:00+07:00'} />
+    <meta property="article:author" content={author} />
+    {category && <meta property="article:section" content={category} />}
+    <meta property="article:publisher" content={siteConfig.siteUrl} />
+  </>
+)}
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@malangbatuoutbound" />
+<meta name="twitter:creator" content="@malangbatuoutbound" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={fullOgImage} />
+<meta name="twitter:image:alt" content={title} />
 
-<!-- Favicon -->
+<!-- Complete Favicon & PWA App Icons Set -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="icon" href="/favicon.ico" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="48x48 32x32 16x16" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#102A43" />
+<meta name="msapplication-TileColor" content="#102A43" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content={siteConfig.name} />
 
-<!-- Schema JSON-LD -->
+<!-- Schema JSON-LD Structured Data (AEO & GEO Optimization) -->
 <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(webSiteSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
+{articleSchema && <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />}
 {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
-
