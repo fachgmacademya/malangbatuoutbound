@@ -42,22 +42,6 @@ const waLink = getWhatsAppUrl('Halo, saya membaca artikel di website Malang Batu
       <p class="lead text-white text-opacity-75 mb-4 mx-auto" style="max-width: 780px; font-size: 1.1rem; line-height: 1.7;">
         Wawasan praktis, tips memilih lokasi ground, dan panduan merancang outbound, team building, serta corporate gathering yang berkesan di kawasan Malang Raya &amp; Kota Batu.
       </p>
-
-      <!-- Category Ribbon -->
-      <div class="d-flex flex-wrap justify-content-center gap-2 pt-1">
-        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.82rem;">
-          💼 Panduan Perusahaan
-        </span>
-        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.82rem;">
-          📍 Tips Ground &amp; Lokasi
-        </span>
-        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.82rem;">
-          🎓 Edukasi &amp; Sekolah
-        </span>
-        <span class="badge px-3 py-2 rounded-pill fw-normal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #F4F7FA; font-size: 0.82rem;">
-          📝 Checklist Acara
-        </span>
-      </div>
     </div>
   </section>
 
@@ -114,32 +98,29 @@ const waLink = getWhatsAppUrl('Halo, saya membaca artikel di website Malang Batu
               </div>
 
               <!-- Card Body -->
-              <div class="p-3.5 p-xl-4 d-flex flex-column flex-grow-1">
+              <div class="p-4 d-flex flex-column flex-grow-1">
                 <!-- Meta: Date & Read Time -->
-                <div class="d-flex align-items-center justify-content-between small text-muted mb-2" style="font-size: 0.78rem;">
+                <div class="d-flex align-items-center justify-content-between text-muted" style="font-size: 0.88rem; margin-bottom: 0.85rem;">
                   <span>{post.date}</span>
                   <span>⏱️ {post.readTime}</span>
                 </div>
 
                 <!-- Title -->
-                <h2 class="h6 fw-bold text-dark mb-2 lh-base" style="font-size: 1.05rem;">
+                <h2 class="fw-bold text-dark" style="font-size: 1.22rem; line-height: 1.48; margin-bottom: 1.1rem;">
                   <a href={`/blog/${post.slug}/`} class="text-dark text-decoration-none hover-primary transition-base d-block">
                     {post.title}
                   </a>
                 </h2>
 
-                <!-- Excerpt -->
-                <p class="small text-muted mb-3 lh-sm flex-grow-1" style="font-size: 0.86rem;">
+                <!-- Excerpt: Jarak baris dan jarak antar teks lebih lega dan nyaman dibaca -->
+                <p class="flex-grow-1" style="font-size: 1.02rem; line-height: 1.78; color: #334155; margin-bottom: 1.35rem;">
                   {post.excerpt}
                 </p>
 
-                <!-- Footer: Author & Read More -->
-                <div class="pt-2.5 border-top border-light d-flex align-items-center justify-content-between mt-auto">
-                  <span class="small text-muted" style="font-size: 0.8rem;">
-                    ✍️ {post.author.name}
-                  </span>
-                  <a href={`/blog/${post.slug}/`} class="small fw-semibold text-primary text-decoration-none d-inline-flex align-items-center gap-1 hover-arrow">
-                    <span>Baca</span> &rarr;
+                <!-- Footer: Read More -->
+                <div class="border-top border-light d-flex align-items-center justify-content-end mt-auto" style="padding-top: 1rem;">
+                  <a href={`/blog/${post.slug}/`} class="fw-bold text-primary text-decoration-none d-inline-flex align-items-center gap-1.5 hover-arrow" style="font-size: 0.95rem;">
+                    <span>Baca Selengkapnya</span> &rarr;
                   </a>
                 </div>
               </div>

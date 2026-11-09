@@ -64,11 +64,11 @@ const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 2);
 
       <!-- Meta Info (Tanpa Foto Profil Penulis di Hero Sesuai Instruksi) -->
       <div class="d-flex flex-wrap align-items-center justify-content-center gap-2 gap-md-3 small text-white text-opacity-75 pt-1">
-        <span>✍️ {post.author.name}</span>
+        <span>{post.author.name}</span>
         <span>•</span>
-        <span>📅 {post.date}</span>
+        <span>{post.date}</span>
         <span>•</span>
-        <span>⏱️ {post.readTime}</span>
+        <span>{post.readTime}</span>
       </div>
     </div>
   </section>
@@ -99,7 +99,7 @@ const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 2);
       </figure>
 
       <!-- TOC OTOMATIS BACA H2 DAN H3 (TAMPILAN RAPI DENGAN BUKA TUTUP OTOMATIS) -->
-      <div class="article-toc-box p-3.5 p-md-4 mb-4 mb-md-5" id="articleTocContainer">
+      <div class="article-toc-box p-4 mb-4 mb-md-5" id="articleTocContainer">
         <div class="d-flex align-items-center justify-content-between cursor-pointer" id="tocToggleHeader">
           <div class="d-flex align-items-center gap-2 fw-bold text-dark fs-6">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="text-primary" viewBox="0 0 16 16">
@@ -337,7 +337,7 @@ const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 2);
       </div>
 
       <!-- SHARE ARTIKEL AKTIF KE WA DAN SOSIAL MEDIA -->
-      <div class="p-3.5 p-md-4 rounded-4 bg-light border border-light-subtle my-4 my-md-5">
+      <div class="p-4 rounded-4 bg-light border border-light-subtle my-4 my-md-5">
         <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
           <div class="d-flex align-items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-primary" viewBox="0 0 16 16">
@@ -469,31 +469,28 @@ const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 2);
                 </div>
 
                 <!-- Konten Kartu -->
-                <div class="p-3.5 p-xl-4 d-flex flex-column flex-grow-1">
+                <div class="p-4 d-flex flex-column flex-grow-1">
                   <!-- Meta: Date & Read Time -->
-                  <div class="d-flex align-items-center justify-content-between small text-muted mb-2" style="font-size: 0.78rem;">
+                  <div class="d-flex align-items-center justify-content-between text-muted" style="font-size: 0.88rem; margin-bottom: 0.85rem;">
                     <span>{rel.date}</span>
                     <span>⏱️ {rel.readTime}</span>
                   </div>
 
                   <!-- Judul -->
-                  <h3 class="h6 fw-bold text-dark mb-2 lh-base" style="font-size: 1.05rem;">
+                  <h3 class="fw-bold text-dark" style="font-size: 1.22rem; line-height: 1.48; margin-bottom: 1.1rem;">
                     <a href={`/blog/${rel.slug}/`} class="text-dark text-decoration-none hover-primary transition-base d-block">
                       {rel.title}
                     </a>
                   </h3>
 
-                  <!-- Deskripsi Singkat -->
-                  <p class="small text-muted mb-3 lh-sm flex-grow-1" style="font-size: 0.88rem; line-height: 1.6;">
+                  <!-- Deskripsi Singkat: Jarak baris dan vertikal lebih lega -->
+                  <p class="flex-grow-1" style="font-size: 1.02rem; line-height: 1.78; color: #334155; margin-bottom: 1.35rem;">
                     {rel.excerpt}
                   </p>
 
                   <!-- Tombol Baca Selengkapnya -->
-                  <div class="pt-2.5 border-top border-light d-flex align-items-center justify-content-between mt-auto">
-                    <span class="small text-muted" style="font-size: 0.8rem;">
-                      ✍️ {rel.author.name}
-                    </span>
-                    <a href={`/blog/${rel.slug}/`} class="small fw-bold text-primary text-decoration-none d-inline-flex align-items-center gap-1 hover-arrow">
+                  <div class="border-top border-light d-flex align-items-center justify-content-end mt-auto" style="padding-top: 1rem;">
+                    <a href={`/blog/${rel.slug}/`} class="fw-bold text-primary text-decoration-none d-inline-flex align-items-center gap-1.5 hover-arrow" style="font-size: 0.95rem;">
                       <span>Baca Selengkapnya</span> &rarr;
                     </a>
                   </div>

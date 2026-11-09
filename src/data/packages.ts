@@ -67,7 +67,7 @@ export const catalogPackages: PackageItem[] = [
       'Kawasan Wisata Songgoriti & Selecta (Batu)',
       'Coban Talun Pine Ground (Bumiaji)'
     ],
-    image: '/images/package-outbound-perusahaan.jpg',
+    image: '/images/package-outbound-perusahaan.webp',
     alt: 'Kegiatan Outbound Perusahaan simulasi team building kelompok di lapangan hijau terbuka Kota Batu',
     whatsappMessage: 'Halo, saya ingin menanyakan paket Outbound Perusahaan di Malang Batu.',
     activities: [
@@ -234,7 +234,7 @@ export const catalogPackages: PackageItem[] = [
       'Payung Pinus & Pujon Kidul Agro Wisata',
       'Area Rekreasi Lembah Songgoriti'
     ],
-    image: '/images/package-family-gathering.jpg',
+    image: '/images/package-family-gathering.webp',
     alt: 'Suasana kebersamaan Family Gathering di tengah alam pegunungan Kota Batu Malang',
     whatsappMessage: 'Halo, saya ingin menanyakan paket Family Gathering di Malang Batu.',
     activities: [
@@ -399,7 +399,7 @@ export const catalogPackages: PackageItem[] = [
       'Kawasan Hutan Pinus Coban Rondo (Pujon)',
       'Bumi Perkemahan Bedengan (Dau, Malang)'
     ],
-    image: '/images/package-outbound-sekolah.jpg',
+    image: '/images/package-outbound-sekolah.webp',
     alt: 'Siswa sekolah mengikuti kegiatan Outbound Edukatif dan LDKS kepemimpinan di alam terbuka',
     whatsappMessage: 'Halo, saya ingin menanyakan paket Outbound Sekolah di Malang Batu.',
     activities: [
@@ -566,7 +566,7 @@ export const catalogPackages: PackageItem[] = [
       'Jalur Offroad Coban Talun & Bumiaji Pinus',
       'Ekspedisi Sunrise Bromo Tengger Semeru'
     ],
-    image: '/images/package-outbound-wisata.jpg',
+    image: '/images/package-outbound-wisata.webp',
     alt: 'Kegiatan Outbound Wisata petualangan rafting dan offroad jeep di alam terbuka Malang Batu',
     whatsappMessage: 'Halo, saya ingin menanyakan paket Outbound Wisata di Malang Batu.',
     activities: [
@@ -730,7 +730,7 @@ export const featuredPackages = [
       'Sound System Lapangan & Area Ground Outbound',
       'P3K Standar & Air Mineral Kegiatan'
     ],
-    image: '/images/package-outbound-perusahaan.jpg',
+    image: '/images/package-outbound-perusahaan.webp',
     alt: 'Kegiatan simulasi team building kelompok di lapangan hijau terbuka Kota Batu',
     whatsappMessage: 'Halo, saya ingin bertanya tentang Paket Outbound Team Building Perusahaan di Malang Batu.'
   },
@@ -757,7 +757,7 @@ export const featuredPackages = [
       'Dokumentasi Tim & Properti Fun Games',
       'Koordinasi Terpadu Kebutuhan Acara'
     ],
-    image: '/images/package-outbound-perusahaan.jpg',
+    image: '/images/package-outbound-perusahaan.webp',
     alt: 'Suasana keakraban peserta company gathering di area wisata alam pegunungan',
     whatsappMessage: 'Halo, saya ingin menanyakan paket Company Gathering & Employee Outing di Malang Batu.'
   },
@@ -784,7 +784,7 @@ export const featuredPackages = [
       'Lokasi Sejuk dengan Fasilitas Sanitasi Bersih',
       'Dukungan Area Makan Bersama'
     ],
-    image: '/images/package-family-gathering.jpg',
+    image: '/images/package-family-gathering.webp',
     alt: 'Aktivitas kebersamaan family gathering di alam terbuka dengan pemandangan pinus',
     whatsappMessage: 'Halo, saya ingin konsultasi kegiatan Family Gathering / Komunitas di Malang Batu.'
   },
@@ -811,7 +811,7 @@ export const featuredPackages = [
       'Briefing Keselamatan & Pendampingan P3K Siaga',
       'Sertifikat Partisipasi (Berdasarkan Permintaan)'
     ],
-    image: '/images/package-outbound-sekolah.jpg',
+    image: '/images/package-outbound-sekolah.webp',
     alt: 'Siswa sekolah mengikuti pelatihan kepemimpinan dan permainan outbound di lapangan',
     whatsappMessage: 'Halo, saya ingin menanyakan program Outbound Edukatif Sekolah di Malang Batu.'
   },
@@ -838,7 +838,7 @@ export const featuredPackages = [
       'Asuransi Aktivitas Petualangan',
       'Transportasi Lapangan Lokal (Sesuai Rute)'
     ],
-    image: '/images/package-outbound-wisata.jpg',
+    image: '/images/package-outbound-wisata.webp',
     alt: 'Aktivitas rafting dan petualangan outdoor seru melintasi jeram sungai di Batu Malang',
     whatsappMessage: 'Halo, saya tertarik dengan paket Outbound Kombinasi Adventure di Malang Batu.'
   },
@@ -865,7 +865,7 @@ export const featuredPackages = [
       'Peralatan Lengkap & P3K Standar',
       'Dokumentasi Momen Ceria Rombongan'
     ],
-    image: '/images/package-family-gathering.jpg',
+    image: '/images/package-family-gathering.webp',
     alt: 'Keseruan peserta mengikuti sesi permainan fun games dan ice breaking ceria',
     whatsappMessage: 'Halo, saya ingin menanyakan Paket Outbound Fun Games & Ice Breaking di Malang Batu.'
   }

@@ -150,7 +150,7 @@ const waLink = getWhatsAppUrl(pkg.whatsappMessage);
             </p>
 
             <!-- Sasaran Peserta Callout Box -->
-            <div class="p-3.5 rounded-3 border-start border-4 border-primary bg-light mb-0">
+            <div class="p-3 p-md-4 rounded-3 border-start border-4 border-primary bg-light mb-0">
               <div class="d-flex align-items-start gap-3">
                 <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 32px; height: 32px; background-color: rgba(30, 90, 157, 0.12); color: var(--color-primary-blue);">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
@@ -186,13 +186,13 @@ const waLink = getWhatsAppUrl(pkg.whatsappMessage);
                     <!-- Header Kartu Program -->
                     <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2 pb-2 border-bottom border-light">
                       <div class="d-flex align-items-center gap-2.5">
-                        <span class="d-inline-flex align-items-center justify-content-center rounded-circle fw-bold text-white flex-shrink-0 shadow-2xs" style="width: 34px; height: 34px; background: linear-gradient(135deg, #1E5A9D, #0B1F33); font-size: 0.85rem;">
-                          0{index + 1}
+                        <span class="fw-bold text-primary flex-shrink-0" style="font-size: 1.15rem; min-width: 1.8rem;">
+                          0{index + 1}.
                         </span>
                         <h3 class="h5 fw-bold text-dark mb-0">{prog.title}</h3>
                       </div>
                       {prog.badge && (
-                        <span class="px-2.5 py-1 rounded-pill small fw-semibold" style="background-color: rgba(30, 90, 157, 0.08); color: var(--color-primary-blue); border: 1px solid rgba(30, 90, 157, 0.18); font-size: 0.78rem;">
+                        <span class="rounded-pill fw-semibold d-inline-flex align-items-center text-nowrap" style="padding: 0.35rem 0.85rem; background-color: rgba(30, 90, 157, 0.08); color: var(--color-primary-blue); border: 1px solid rgba(30, 90, 157, 0.22); font-size: 0.82rem; line-height: 1.2;">
                           {prog.badge}
                         </span>
                       )}
@@ -204,8 +204,8 @@ const waLink = getWhatsAppUrl(pkg.whatsappMessage);
                     </p>
 
                     <!-- Baris Bawah Responsif: Durasi & Tombol Detail -->
-                    <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2.5 pt-3 border-top border-light">
-                      <div class="small text-muted d-flex align-items-center gap-2 px-3 py-1.5 rounded-pill bg-light border border-light-subtle">
+                    <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 pt-3 border-top border-light">
+                      <div class="small text-muted d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill bg-light border border-light-subtle">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="var(--color-primary-blue)" class="flex-shrink-0" viewBox="0 0 16 16" aria-hidden="true">
                           <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
                           <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
@@ -216,7 +216,7 @@ const waLink = getWhatsAppUrl(pkg.whatsappMessage);
                       <!-- Tombol Lihat Detail Program Berdesain Solid Elegan -->
                       <a
                         href={programUrl}
-                        class="btn btn-sm btn-primary rounded-pill px-4 py-2 fw-semibold d-inline-flex align-items-center justify-content-center gap-1.5 shadow-2xs text-nowrap"
+                        class="btn btn-sm btn-primary rounded-pill px-4 py-2 fw-semibold d-inline-flex align-items-center justify-content-center gap-2 shadow-2xs text-nowrap"
                       >
                         <span>Lihat Detail Program</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" class="flex-shrink-0">
@@ -250,9 +250,9 @@ const waLink = getWhatsAppUrl(pkg.whatsappMessage);
             <div class="d-flex flex-column gap-2.5">
               {pkg.activities.map((act, idx) => (
                 <div class="p-3 rounded-3 bg-light d-flex align-items-center gap-3 border border-light">
-                  <div class="flex-shrink-0 d-inline-flex align-items-center justify-content-center rounded-circle fw-bold text-white shadow-2xs" style="width: 32px; height: 32px; background: linear-gradient(135deg, #1E5A9D, #0B1F33); font-size: 0.85rem;">
-                    {idx + 1}
-                  </div>
+                  <span class="flex-shrink-0 fw-bold text-primary" style="font-size: 1.05rem; min-width: 1.5rem;">
+                    {idx + 1}.
+                  </span>
                   <div class="flex-grow-1">
                     <span class="text-dark fw-semibold" style="font-size: 0.95rem;">{act}</span>
                   </div>
@@ -294,12 +294,12 @@ const waLink = getWhatsAppUrl(pkg.whatsappMessage);
                     <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
                       {pkg.includedHighlights.map((inc) => (
                         <li class="d-flex align-items-start gap-2.5">
-                          <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                          <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 22px; height: 22px; margin-top: 0.15rem; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                               <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
                             </svg>
                           </span>
-                          <span class="text-dark small fw-medium" style="line-height: 1.55;">{inc}</span>
+                          <span class="text-dark small fw-medium" style="line-height: 1.6;">{inc}</span>
                         </li>
                       ))}
                     </ul>
@@ -325,12 +325,12 @@ const waLink = getWhatsAppUrl(pkg.whatsappMessage);
                     <ul class="list-unstyled mb-4 d-flex flex-column gap-3">
                       {pkg.excludedHighlights && pkg.excludedHighlights.map((exc) => (
                         <li class="d-flex align-items-start gap-2.5">
-                          <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(239, 68, 68, 0.12); color: #DC2626;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                          <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 22px; height: 22px; margin-top: 0.15rem; background-color: rgba(239, 68, 68, 0.12); color: #DC2626;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                               <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
                             </svg>
                           </span>
-                          <span class="text-secondary small" style="line-height: 1.55;">{exc}</span>
+                          <span class="text-secondary small" style="line-height: 1.6;">{exc}</span>
                         </li>
                       ))}
                     </ul>
@@ -456,38 +456,38 @@ const waLink = getWhatsAppUrl(pkg.whatsappMessage);
             <!-- Kartu Keunggulan Layanan (Checklist SVG Bersih & Rapi) -->
             <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
               <h4 class="h6 fw-bold text-dark mb-3">Keuntungan Bersama Kami:</h4>
-              <ul class="list-unstyled mb-0 small text-muted">
-                <li class="d-flex align-items-start gap-2.5 mb-2.5">
-                  <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+              <ul class="list-unstyled mb-0 small text-muted d-flex flex-column gap-3">
+                <li class="d-flex align-items-start gap-2.5">
+                  <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 22px; height: 22px; margin-top: 0.15rem; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                       <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
                     </svg>
                   </span>
-                  <span class="text-dark fw-medium">Fasilitator bersertifikasi &amp; berpengalaman</span>
-                </li>
-                <li class="d-flex align-items-start gap-2.5 mb-2.5">
-                  <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                      <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
-                    </svg>
-                  </span>
-                  <span class="text-dark fw-medium">Perlengkapan game aman &amp; terawat</span>
-                </li>
-                <li class="d-flex align-items-start gap-2.5 mb-2.5">
-                  <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                      <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
-                    </svg>
-                  </span>
-                  <span class="text-dark fw-medium">Fleksibilitas pilihan lokasi ground</span>
+                  <span class="text-dark fw-medium" style="line-height: 1.55;">Fasilitator bersertifikasi &amp; berpengalaman</span>
                 </li>
                 <li class="d-flex align-items-start gap-2.5">
-                  <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                  <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 22px; height: 22px; margin-top: 0.15rem; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                       <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
                     </svg>
                   </span>
-                  <span class="text-dark fw-medium">Kustomisasi konsep &amp; budget transparan</span>
+                  <span class="text-dark fw-medium" style="line-height: 1.55;">Perlengkapan game aman &amp; terawat</span>
+                </li>
+                <li class="d-flex align-items-start gap-2.5">
+                  <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 22px; height: 22px; margin-top: 0.15rem; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                      <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                    </svg>
+                  </span>
+                  <span class="text-dark fw-medium" style="line-height: 1.55;">Fleksibilitas pilihan lokasi ground</span>
+                </li>
+                <li class="d-flex align-items-start gap-2.5">
+                  <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 22px; height: 22px; margin-top: 0.15rem; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                      <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                    </svg>
+                  </span>
+                  <span class="text-dark fw-medium" style="line-height: 1.55;">Kustomisasi konsep &amp; budget transparan</span>
                 </li>
               </ul>
             </div>

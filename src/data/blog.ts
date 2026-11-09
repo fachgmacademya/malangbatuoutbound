@@ -83,12 +83,12 @@ export const blogPosts: BlogPost[] = [
     author: {
       name: 'Fachry Rendy P.',
       role: 'Event Facilitator & Content Specialist MBO',
-      avatar: '/images/author-fachry-rendy.jpg',
+      avatar: '/images/author-fachry-rendy.webp',
       bio: 'Fasilitator outbound dan penjelajah alam terbuka di kawasan Malang Raya dan Kota Wisata Batu. Berdedikasi dalam merancang program team building yang seru, edukatif, serta menumbuhkan kebersamaan tim yang solid.'
     },
     readTime: '7 menit baca',
     excerpt: 'Panduan komprehensif bagi HRD, pimpinan divisi, dan panitia internal dalam menentukan format team building, simulasi permainan edukatif, pemilihan venue alam, serta mitigasi risiko untuk kesuksesan agenda instansi di Kota Batu Malang.',
-    image: '/images/package-outbound-perusahaan.jpg',
+    image: '/images/package-outbound-perusahaan.webp',
     imageCaption: 'Peserta outbound perusahaan mengikuti simulasi dinamika kelompok terstruktur di hamparan alam terbuka Kota Wisata Batu.',
     alt: 'Fasilitator memandu sesi team building outbound perusahaan di kawasan alam Kota Batu',
     bacaJuga: [
@@ -102,7 +102,7 @@ export const blogPosts: BlogPost[] = [
       }
     ],
     promoBanner: {
-      image: '/images/hero-outbound-malang.jpg',
+      image: '/images/hero-outbound-malang.webp',
       badge: 'PENAWARAN SPESIAL CORPORATE OUTBOUND',
       title: 'Rencanakan Agenda Outbound Perusahaan Anda Bersama Fasilitator Berpengalaman',
       description: 'Dapatkan proposal rancangan program kustom, free dokumentasi drone cinematic, dan harga paket fleksibel sesuai anggaran kantor Anda di Malang Batu.',
@@ -110,7 +110,7 @@ export const blogPosts: BlogPost[] = [
       waMessage: 'Halo Tim Malang Batu Outbound, saya ingin konsultasi rencana kegiatan outbound perusahaan untuk instansi kami.'
     },
     supportingImage: {
-      image: '/images/gallery-team-strategy.jpg',
+      image: '/images/gallery-team-strategy.webp',
       alt: 'Peserta outbound menyelesaikan tantangan strategi dan sinergi pipa air',
       caption: 'Simulasi problem solving terstruktur melatih keselarasan visi dan komunikasi efektif lintas departemen.'
     },
@@ -260,12 +260,12 @@ export const blogPosts: BlogPost[] = [
     author: {
       name: 'Fachry Rendy P.',
       role: 'Event Facilitator & Content Specialist MBO',
-      avatar: '/images/author-fachry-rendy.jpg',
+      avatar: '/images/author-fachry-rendy.webp',
       bio: 'Fasilitator outbound dan penjelajah alam terbuka di kawasan Malang Raya dan Kota Wisata Batu. Berdedikasi dalam merancang program team building yang seru, edukatif, serta menumbuhkan kebersamaan tim yang solid.'
     },
     readTime: '8 menit baca',
     excerpt: 'Kerap dianggap sama, outbound, team building, dan family gathering ternyata memiliki sasaran psikologis, rancangan simulasi, dan intensitas dinamika yang sangat berbeda. Simak komparasinya agar panitia kantor tidak salah menentukan pilihan paket.',
-    image: '/images/package-family-gathering.jpg',
+    image: '/images/package-family-gathering.webp',
     imageCaption: 'Keceriaan rombongan keluarga besar dan rekan kerja dalam suasana hangat sesi gathering di kawasan wisata Batu Malang.',
     alt: 'Simulasi kelompok di lapangan hijau pegunungan Jawa Timur',
     bacaJuga: [
@@ -279,7 +279,7 @@ export const blogPosts: BlogPost[] = [
       }
     ],
     promoBanner: {
-      image: '/images/package-family-gathering.jpg',
+      image: '/images/package-family-gathering.webp',
       badge: 'PAKET GATHERING & TEAM BUILDING ASLI MALANG',
       title: 'Hadirkan Momen Keakraban Penuh Kesan Bersama Rekan Kerja & Keluarga',
       description: 'Pilihan paket fleksibel mulai dari Half Day, Full Day, hingga 2D1N menginap di resort terbaik Kota Batu dengan fasilitas lengkap tanpa ribet.',
@@ -287,7 +287,7 @@ export const blogPosts: BlogPost[] = [
       waMessage: 'Halo Malang Batu Outbound, saya ingin meminta katalog dan penawaran paket Family Gathering / Team Building untuk kantor kami.'
     },
     supportingImage: {
-      image: '/images/gallery-trust-fall.jpg',
+      image: '/images/gallery-trust-fall.webp',
       alt: 'Tantangan trust fall yang membangun kepercayaan mendalam antarpeserta tim',
       caption: 'Simulasi trust fall dalam sesi team building menguji keberanian dan rasa percaya mutlak kepada rekan kerja satu divisi.'
     },
@@ -414,12 +414,12 @@ export const blogPosts: BlogPost[] = [
     author: {
       name: 'Fachry Rendy P.',
       role: 'Event Facilitator & Content Specialist MBO',
-      avatar: '/images/author-fachry-rendy.jpg',
+      avatar: '/images/author-fachry-rendy.webp',
       bio: 'Fasilitator outbound dan penjelajah alam terbuka di kawasan Malang Raya dan Kota Wisata Batu. Berdedikasi dalam merancang program team building yang seru, edukatif, serta menumbuhkan kebersamaan tim yang solid.'
     },
     readTime: '7 menit baca',
     excerpt: 'Mulai dari aksesibilitas manuver armada bus besar, kemiringan kontur rumput terbuka, rasio sanitasi toilet bersih, hingga ketersediaan aula pendopo cadangan saat hujan. Simak checklist wajib sebelum menetapkan venue kegiatan di Kota Batu.',
-    image: '/images/package-outbound-wisata.jpg',
+    image: '/images/package-outbound-wisata.webp',
     imageCaption: 'Kawasan lapangan alam terbuka dengan pemandangan pegunungan hijau yang asri dan sejuk di wilayah Kota Wisata Batu.',
     alt: 'Hamparan lapangan rumput luas dikelilingi hutan pinus di kawasan Batu Malang',
     bacaJuga: [
@@ -433,7 +433,7 @@ export const blogPosts: BlogPost[] = [
       }
     ],
     promoBanner: {
-      image: '/images/destination-coban-rondo.jpg',
+      image: '/images/destination-coban-rondo.webp',
       badge: 'LAYANAN SURVEI GROUND GRATIS',
       title: 'Bingung Menentukan Lokasi Ground Terbaik di Malang Batu untuk Rombongan Anda?',
       description: 'Konsultasikan jumlah peserta dan tipe armada Anda. Tim MBO siap mendampingi survei lapangan gratis ke lokasi ground mitra unggulan.',
@@ -441,7 +441,7 @@ export const blogPosts: BlogPost[] = [
       waMessage: 'Halo Tim MBO, saya ingin konsultasi pemilihan lokasi ground outbound dan rekomendasi venue di Malang Batu untuk rombongan kami.'
     },
     supportingImage: {
-      image: '/images/destination-coban-rondo.jpg',
+      image: '/images/destination-coban-rondo.webp',
       alt: 'Keasrian kawasan hutan pinus Coban Rondo Pujon Malang dengan pohon-pohon rindang',
       caption: 'Kawasan Coban Rondo menawarkan lapangan rumput luas terlindung kanopi pinus yang sejuk dan menenangkan.'
     },

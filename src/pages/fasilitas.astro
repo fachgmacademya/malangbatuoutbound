@@ -62,25 +62,9 @@ const standardEquipments = [
       </h1>
 
       <!-- Subtitle Description -->
-      <p class="lead text-white text-opacity-75 mb-4 mx-auto" style="max-width: 780px; font-size: 1.1rem; line-height: 1.7;">
+      <p class="lead text-white text-opacity-75 mb-0 mx-auto" style="max-width: 780px; font-size: 1.1rem; line-height: 1.7;">
         Informasi detail mengenai kesiapan sarana, daya tampung ground, dan fasilitas pendukung di setiap destinasi terbaik kawasan Malang, Batu, hingga Bromo &amp; Tumpak Sewu untuk kelancaran kegiatan tim Anda.
       </p>
-
-      <!-- Interactive Quick-Jump Navigation to 9 Destinations -->
-      <div class="pt-2">
-        <div class="small text-white-50 mb-2">Pilih Destinasi untuk Melihat Detail Fasilitas:</div>
-        <div class="d-flex flex-wrap justify-content-center gap-2">
-          {facilitiesData.map((d) => (
-            <a
-              href={`#${d.id}`}
-              class="badge px-3 py-2 rounded-pill fw-medium text-decoration-none quick-jump-pill transition-base"
-              style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #FFFFFF; font-size: 0.82rem;"
-            >
-              📍 {d.title.replace('Destinasi ', '').replace('Hotel ', '')}
-            </a>
-          ))}
-        </div>
-      </div>
     </div>
   </section>
 
@@ -116,49 +100,51 @@ const standardEquipments = [
                 </div>
 
                 <!-- Card Body -->
-                <div class="p-3.5 p-xl-4 d-flex flex-column flex-grow-1">
+                <div class="p-4 d-flex flex-column flex-grow-1">
                   <!-- Header title & status -->
-                  <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                  <div class="d-flex align-items-start justify-content-between gap-2" style="margin-bottom: 1.15rem;">
                     <div>
-                      <h3 class="h6 fw-bold text-dark mb-1 fs-5">{dest.title}</h3>
-                      <div class="small text-muted d-flex align-items-center gap-1" style="font-size: 0.8rem;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--color-secondary-blue)" viewBox="0 0 16 16" aria-hidden="true">
+                      <h3 class="fw-bold text-dark" style="font-size: 1.22rem; line-height: 1.42; margin-bottom: 0.45rem;">{dest.title}</h3>
+                      <div class="small text-muted d-flex align-items-center gap-1.5" style="font-size: 0.88rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="var(--color-secondary-blue)" viewBox="0 0 16 16" aria-hidden="true" class="flex-shrink-0">
                           <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
                         </svg>
                         <span>{dest.location}</span>
                       </div>
                     </div>
-                    <span class="badge bg-primary bg-opacity-10 text-primary small flex-shrink-0" style="font-size: 0.72rem;">
+                    <span class="badge bg-primary bg-opacity-10 text-primary fw-semibold px-2.5 py-1 rounded-pill flex-shrink-0" style="font-size: 0.78rem;">
                       {dest.status}
                     </span>
                   </div>
 
-                  <!-- Concise Description -->
-                  <p class="small text-muted mb-2.5 lh-sm" style="font-size: 0.86rem;">
+                  <!-- Concise Description: Jarak baris dan jarak vertikal lebih lega -->
+                  <p style="font-size: 1.02rem; line-height: 1.78; color: #334155; margin-bottom: 1.25rem;">
                     {dest.description}
                   </p>
 
-                  <!-- Fasilitas Detail List -->
-                  <div class="p-2.5 rounded-3 bg-light border border-light-subtle mb-3">
-                    <div class="fw-bold text-dark small mb-1.5 d-flex align-items-center justify-content-between" style="font-size: 0.8rem;">
+                  <!-- Fasilitas Detail List: Spacing & Checkmark rapi -->
+                  <div class="rounded-3 bg-light border border-light-subtle" style="padding: 1.15rem 1.2rem; margin-bottom: 1.25rem;">
+                    <div class="fw-bold text-dark small d-flex align-items-center justify-content-between" style="font-size: 0.95rem; margin-bottom: 0.85rem;">
                       <span>Fasilitas Ground:</span>
-                      <span class="badge bg-white text-secondary border" style="font-size: 0.7rem;">{dest.capacity}</span>
+                      <span class="badge bg-white text-secondary border px-2.5 py-1 rounded-pill" style="font-size: 0.8rem;">{dest.capacity}</span>
                     </div>
-                    <ul class="list-unstyled small text-muted mb-0 d-flex flex-column gap-1" style="font-size: 0.82rem;">
+                    <ul class="list-unstyled small mb-0 d-flex flex-column" style="font-size: 0.95rem; gap: 0.75rem;">
                       {dest.features.map((feat) => (
-                        <li class="d-flex align-items-start gap-1.5">
-                          <span class="text-success fw-bold flex-shrink-0">✓</span>
-                          <span>{feat}</span>
+                        <li class="d-flex align-items-start gap-2">
+                          <svg class="text-success flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                          </svg>
+                          <span style="line-height: 1.65; color: #334155;">{feat}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <!-- Suitable For Tags -->
-                  <div class="mb-3">
-                    <div class="d-flex flex-wrap gap-1">
+                  <!-- Suitable For Tags: Rapi & proporsional -->
+                  <div style="margin-bottom: 1.25rem;">
+                    <div class="d-flex flex-wrap gap-1.5">
                       {dest.suitableFor.map((act) => (
-                        <span class="badge bg-white text-primary border border-primary border-opacity-25 fw-normal py-1 px-2 rounded-2" style="font-size: 0.72rem;">
+                        <span class="badge bg-white text-primary border border-primary border-opacity-25 fw-medium rounded-pill" style="font-size: 0.82rem; padding: 0.4rem 0.75rem;">
                           {act}
                         </span>
                       ))}
@@ -166,13 +152,13 @@ const standardEquipments = [
                   </div>
 
                   <!-- Action CTA -->
-                  <div class="mt-auto pt-2 border-top border-light">
+                  <div class="mt-auto border-top border-light" style="padding-top: 1rem;">
                     <a
                       href={destWaLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="btn btn-sm btn-outline-primary w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-1.5"
-                      style="font-size: 0.82rem;"
+                      class="btn btn-sm btn-outline-primary w-100 rounded-pill py-2.5 fw-semibold d-flex align-items-center justify-content-center gap-1.5"
+                      style="font-size: 0.92rem;"
                     >
                       <span>Tanyakan {dest.title.replace('Destinasi ', '').replace('Hotel ', '')}</span>
                       <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
@@ -238,12 +224,3 @@ const standardEquipments = [
     </div>
   </section>
 </BaseLayout>
-
-<style>
-  .quick-jump-pill:hover {
-    background: rgba(101, 183, 232, 0.25) !important;
-    border-color: #65B7E8 !important;
-    color: #65B7E8 !important;
-    transform: translateY(-2px);
-  }
-</style>

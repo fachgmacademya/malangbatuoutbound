@@ -165,10 +165,10 @@ const packageDetailUrl = `/paket/${pkg.slug}.html`;
 
             <!-- Manfaat Utama Program -->
             <h3 class="h6 fw-bold text-dark mb-3">Manfaat &amp; Nilai Tambah yang Diperoleh:</h3>
-            <ul class="list-unstyled mb-0">
+            <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
               {prog.benefits.map((b) => (
-                <li class="d-flex align-items-start gap-2.5 mb-2.5">
-                  <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 22px; height: 22px; background-color: rgba(37, 211, 102, 0.15); color: #16a34a;">
+                <li class="d-flex align-items-start gap-2.5">
+                  <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 22px; height: 22px; margin-top: 0.15rem; background-color: rgba(37, 211, 102, 0.15); color: #16a34a;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
                       <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
                     </svg>
@@ -189,9 +189,9 @@ const packageDetailUrl = `/paket/${pkg.slug}.html`;
             <div class="d-flex flex-column gap-2.5">
               {prog.activities.map((act, idx) => (
                 <div class="p-3 rounded-3 bg-light d-flex align-items-center gap-3 border border-light">
-                  <div class="flex-shrink-0 d-inline-flex align-items-center justify-content-center rounded-circle fw-bold text-white shadow-sm" style="width: 32px; height: 32px; background: linear-gradient(135deg, #1E5A9D, #0B1F33); font-size: 0.85rem;">
-                    {idx + 1}
-                  </div>
+                  <span class="flex-shrink-0 fw-bold text-primary" style="font-size: 1.05rem; min-width: 1.5rem;">
+                    {idx + 1}.
+                  </span>
                   <div class="flex-grow-1">
                     <span class="text-dark fw-semibold" style="font-size: 0.95rem;">{act}</span>
                   </div>
@@ -228,12 +228,12 @@ const packageDetailUrl = `/paket/${pkg.slug}.html`;
                   {prog.includedHighlights.map((inc) => (
                     <div class="col-12 col-md-6">
                       <div class="d-flex align-items-start gap-2.5">
-                        <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 mt-0.5" style="width: 20px; height: 20px; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16">
+                        <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 22px; height: 22px; margin-top: 0.15rem; background-color: rgba(34, 197, 94, 0.15); color: #16A34A;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
                           </svg>
                         </span>
-                        <span class="text-dark small fw-medium" style="line-height: 1.55;">{inc}</span>
+                        <span class="text-dark small fw-medium" style="line-height: 1.6;">{inc}</span>
                       </div>
                     </div>
                   ))}
